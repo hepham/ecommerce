@@ -79,6 +79,7 @@ class _productDecriptionState extends State<productDecription> {
         ),
 
         //hien thi mô ta sản phẩm
+
         Padding(
           padding: EdgeInsets.only(
               left: getProportionateScreenWidth(20),
