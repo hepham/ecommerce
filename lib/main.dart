@@ -1,4 +1,6 @@
 import 'package:commerce/routes.dart';
+import 'package:commerce/screen/Home/component/specialOffer.dart';
+import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/screen/start/start.dart';

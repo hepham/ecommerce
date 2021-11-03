@@ -1,5 +1,6 @@
 import 'package:commerce/screen/Cart/CartScreen.dart';
 import 'package:commerce/screen/Search/Search.dart';
+import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:commerce/screen/signIn/SignInScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,4 +14,5 @@ final Map<String,WidgetBuilder>routes={
   DetailProduct.routeName:(context)=>DetailProduct(),
   CartScreen.routeName:(context)=>CartScreen(),
   SearchScreen.routeName:(context)=>SearchScreen(),
+  ProfileScreen.routeName: (context)=>ProfileScreen(),
 };
