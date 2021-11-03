@@ -1,4 +1,5 @@
 import 'package:commerce/routes.dart';
+import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/screen/start/start.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
-      initialRoute: start.routeName,
+      initialRoute: ProfileScreen.routeName,
       routes: routes,
     );
   }
