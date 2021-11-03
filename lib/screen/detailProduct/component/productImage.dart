@@ -13,6 +13,7 @@ class _productImageState extends State<productImage> {
   @override
   int selectedImage = 0;
   Widget build(BuildContext context) {
+    //trong phần này bạn xử lí scroll ngang để nó sang ảnh khác nhé, xử lí cả nếu là video nữa
     return Column(
       children: [
         SizedBox(

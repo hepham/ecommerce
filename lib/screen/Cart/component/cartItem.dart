@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/models/cart.dart';
+
 class CartItem extends StatelessWidget {
-  const CartItem({Key? key,required this.Cart}) : super(key: key);
+  const CartItem({Key? key, required this.Cart}) : super(key: key);
   final cart Cart;
   @override
   Widget build(BuildContext context) {
@@ -19,18 +20,21 @@ class CartItem extends StatelessWidget {
             child: Image.asset(Cart.product.images[0]),
           ),
         ),
-        SizedBox(width: getProportionateScreenWidth(20),),
+        SizedBox(
+          width: getProportionateScreenWidth(20),
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               Cart.product.title,
-              style: TextStyle(color: Colors.black,fontSize:16),
+              style: TextStyle(color: Colors.black, fontSize: 16),
               maxLines: 2,
             ),
-            SizedBox(height: 10,),
-            Text.rich(
-              TextSpan(
+            SizedBox(
+              height: 10,
+            ),
+            Text.rich(TextSpan(
                 text: '\$${Cart.product.price}',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
@@ -39,11 +43,9 @@ class CartItem extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: 'x${Cart.numOfItems}',
-                    style:Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyText1,
                   )
-                ]
-              )
-            )
+                ]))
           ],
         )
       ],

@@ -16,6 +16,8 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
+        //hien thi anh product
+
         Container(
           padding: EdgeInsets.all(getProportionateScreenWidth(30)),
           decoration: BoxDecoration(
@@ -26,10 +28,15 @@ class Body extends StatelessWidget {
         SizedBox(
           height: getProportionateScreenHeight(20),
         ),
+
+        //description product
+
         productDecription(product: product),
         SizedBox(
           height: getProportionateScreenHeight(20),
         ),
+
+        //hien thi màu
         Container(
           padding: EdgeInsets.all(getProportionateScreenWidth(20)),
           child: color(product: product),
@@ -37,6 +44,9 @@ class Body extends StatelessWidget {
             color: Colors.grey.withOpacity(0.2),
           ),
         ),
+
+
+        //button add cart
         Container(
           margin: EdgeInsets.only(top: getProportionateScreenWidth(10)),
           padding: EdgeInsets.only(top: getProportionateScreenWidth(10)),

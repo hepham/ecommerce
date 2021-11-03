@@ -21,6 +21,9 @@ class _productDecriptionState extends State<productDecription> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+
+        //hien thi tieu de san pham bạn thêm cái row ở đây để chèn cái icon message kìa
+
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
@@ -29,6 +32,10 @@ class _productDecriptionState extends State<productDecription> {
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
+
+        //hien thi gia san pham
+
+
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
@@ -70,6 +77,8 @@ class _productDecriptionState extends State<productDecription> {
             ),
           ),
         ),
+
+        //hien thi mô ta sản phẩm
         Padding(
           padding: EdgeInsets.only(
               left: getProportionateScreenWidth(20),
