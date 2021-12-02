@@ -1,3 +1,4 @@
+import 'package:commerce/screen/profile/tabs/changeavatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -29,9 +30,18 @@ class ProfilePic extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
-                      side: BorderSide(color: Colors.white,),),
+                      side: BorderSide(
+                        color: Colors.white,
+                      ),
+                    ),
                     color: Color(0xFFF5F6F9),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (ctx) => ChangeAvatar(),
+                        ),
+                      );
+                    },
                     child: SvgPicture.asset("assets/icons/Camera Icon.svg"),
                   ),
                 ),

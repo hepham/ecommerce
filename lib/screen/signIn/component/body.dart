@@ -1,7 +1,10 @@
 import 'package:commerce/config.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
+import 'package:commerce/screen/signIn/component/forgotpassword.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+bool obserText1 = true;
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -25,9 +28,10 @@ class Body extends StatelessWidget {
             'Sign in to your account',
             textAlign: TextAlign.center,
           ),
-          Spacer(),
           SignForm(),
-          Spacer(),
+          SizedBox(
+            height: 50,
+          ),
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(20)),
@@ -67,6 +71,7 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  bool remember = false;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -82,10 +87,52 @@ class _SignFormState extends State<SignForm> {
             ),
           ),
           TextFormField(
+            obscureText: obserText1,
             decoration: InputDecoration(
-              hintText: "Enter your passWord",
-              labelText: "password",
+              hintText: "Enter your password",
+              labelText: "Password",
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    obserText1 = !obserText1;
+                  });
+                  FocusScope.of(context).unfocus();
+                },
+                child: Icon(
+                  obserText1 == true ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.black,
+                ),
+              ),
             ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Checkbox(
+                  value: remember,
+                  activeColor: Colors.redAccent,
+                  onChanged: (value) {
+                    setState(() {
+                      remember = value!;
+                    });
+                  }),
+              Text("Remember me"),
+              Spacer(),
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => ForgotPassword(),
+                    ),
+                  );
+
+                },
+                child: Text("Forgot Password ?",style: TextStyle(decoration: TextDecoration.underline),),
+              ),
+
+            ],
           ),
         ],
       ),
