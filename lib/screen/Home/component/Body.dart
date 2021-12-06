@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
 
               SizedBox(height: getProportionateScreenHeight(20),),
               homeHeader(),
-              Discount(press: (){},),
+              Discount(),
               specialOffers(),
               ProductCard(product: demoProducts,),
             ],
