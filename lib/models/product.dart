@@ -20,7 +20,8 @@ class Product {
     required this.price,
     required this.description,
   });
-}List<Product> demoProducts = [
+}
+List<Product> demoProducts = [
   Product(
     id: 1,
     type:'techology',
@@ -261,5 +262,11 @@ class Product {
 
 
 ];
+
+List<Product> searchQuery(String? searchText) {
+  return demoProducts.
+    where((element) =>
+      element.title.toLowerCase().contains(searchText!)).toList();
+}
 const String description =
     'The iPhone 13 and 13 Mini received a number of significant upgrades including new cameras, a bigger battery, more storage and a brighter screen. The iPhone 13 is a delightful upgrade to last year`s already wonderful iPhone 12 family. Some will be disappointed because it`s not radically different from previous models, but that`s actually part of the charm. Familiarity has been one of the keys to Apple`s success with the iPhone, and the iPhone 13 and 13 Mini are those same reliable friends that seemingly never change.';

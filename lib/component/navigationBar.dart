@@ -1,6 +1,5 @@
 import 'package:commerce/screen/Cart/CartScreen.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
-import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -35,22 +34,42 @@ class NavigationBar extends StatelessWidget {
             IconButton(
               onPressed: () =>
                   Navigator.pushNamed(context, homeScreen.routeName),
-              icon: SvgPicture.asset('assets/icons/Home.svg',color: MenuState.home==selectedMenu?  Color(0xFFFF7643):Color(0xFFB6B6B6),),
+              icon: SvgPicture.asset(
+                'assets/icons/Home.svg',
+                color: MenuState.home == selectedMenu
+                    ? Color(0xFFFF7643)
+                    : Color(0xFFB6B6B6),
+              ),
             ),
             IconButton(
               onPressed: () =>
                   Navigator.pushNamed(context, homeScreen.routeName),
-              icon: SvgPicture.asset('assets/icons/Mail.svg',color: MenuState.message==selectedMenu?  Color(0xFFFF7643):Color(0xFFB6B6B6),),
+              icon: SvgPicture.asset(
+                'assets/icons/Mail.svg',
+                color: MenuState.message == selectedMenu
+                    ? Color(0xFFFF7643)
+                    : Color(0xFFB6B6B6),
+              ),
             ),
             IconButton(
               onPressed: () =>
                   Navigator.pushNamed(context, CartScreen.routeName),
-              icon: SvgPicture.asset('assets/icons/Cart.svg',color: MenuState.cart==selectedMenu?  Color(0xFFFF7643):Color(0xFFB6B6B6),),
+              icon: SvgPicture.asset(
+                'assets/icons/Cart.svg',
+                color: MenuState.cart == selectedMenu
+                    ? Color(0xFFFF7643)
+                    : Color(0xFFB6B6B6),
+              ),
             ),
             IconButton(
               onPressed: () =>
-                  Navigator.pushNamed(context, ProfileScreen.routeName),
-              icon: SvgPicture.asset('assets/icons/User.svg',color: MenuState.profile==selectedMenu?  Color(0xFFFF7643):Color(0xFFB6B6B6),),
+                  Navigator.pushNamed(context, homeScreen.routeName),
+              icon: SvgPicture.asset(
+                'assets/icons/User.svg',
+                color: MenuState.profile == selectedMenu
+                    ? Color(0xFFFF7643)
+                    : Color(0xFFB6B6B6),
+              ),
             )
           ],
         ),

@@ -1,6 +1,6 @@
 import 'package:commerce/config.dart';
 import 'package:flutter/material.dart';
-import 'package:commerce/screen/Search/Search.dart';
+import 'package:commerce/screen/Search/searchScreen.dart';
 class SearchField extends StatelessWidget {
   const SearchField({Key? key}) : super(key: key);
 
@@ -14,14 +14,15 @@ class SearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular((20)),
       ),
       child: TextField(
+        showCursor: true,
+        readOnly: true,
         onTap: ()=>Navigator.pushNamed(
           context,
-          SearchScreen.routeName,
+          searchScreen.routeName,
         ),
         onChanged: (value) {
-
-
         },
+
         decoration: InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
