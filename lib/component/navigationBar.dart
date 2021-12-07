@@ -1,5 +1,6 @@
 import 'package:commerce/screen/Cart/CartScreen.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
+import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -63,7 +64,7 @@ class NavigationBar extends StatelessWidget {
             ),
             IconButton(
               onPressed: () =>
-                  Navigator.pushNamed(context, homeScreen.routeName),
+                  Navigator.pushNamed(context, ProfileScreen.routeName),
               icon: SvgPicture.asset(
                 'assets/icons/User.svg',
                 color: MenuState.profile == selectedMenu
