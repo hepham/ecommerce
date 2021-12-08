@@ -1,3 +1,4 @@
+import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:commerce/screen/profile/tabs/myaccount.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class _ChangeUserNameState extends State<ChangeUserName> {
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (ctx) => MyAccount(),
+                builder: (ctx) => ProfileScreen(),
               ),
             );
           },

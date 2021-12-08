@@ -37,6 +37,16 @@ class Settings extends StatelessWidget {
           ),
           SizedBox(height: 30),
           ProfileMenu(
+            text: "Change UserName",
+            icon: "assets/icons/User.svg",
+            press: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (ctx) => ChangeUserName(),
+                ),
+              );
+            },),
+          ProfileMenu(
               text: "Change Password",
               icon: "assets/icons/Settings.svg",
               press: () {

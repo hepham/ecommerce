@@ -1,3 +1,4 @@
+import 'package:commerce/screen/detailUser/detailUserScreen.dart';
 import 'package:commerce/screen/profile/tabs/logout.dart';
 import 'package:commerce/screen/profile/tabs/myaccount.dart';
 import 'package:commerce/screen/profile/tabs/mycash.dart';
@@ -21,7 +22,7 @@ class Body extends StatelessWidget {
           press: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (ctx) => MyAccount(),
+                builder: (ctx) => DetailUserScreen(),
               ),
             );
           },

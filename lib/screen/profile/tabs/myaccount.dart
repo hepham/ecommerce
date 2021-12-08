@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 String userName = "Ha Dang";
 
 class MyAccount extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
