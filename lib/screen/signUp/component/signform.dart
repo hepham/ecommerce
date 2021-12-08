@@ -1,22 +1,24 @@
 import 'package:commerce/component/custom_surfix_icon.dart';
 import 'package:commerce/component/form_error.dart';
-import 'package:commerce/screen/Home/homeScreen.dart';
+import 'package:commerce/screen/signIn/SignInScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config.dart';
 import '../../../constants.dart';
-import '../../forgot_password/forgotpassword.dart';
 
-class SignForm extends StatefulWidget {
+
+
+class SignUpForm extends StatefulWidget {
   @override
-  _SignFormState createState() => _SignFormState();
+  _SignUpFormState createState() => _SignUpFormState();
 }
 
-class _SignFormState extends State<SignForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
-  bool? remember = false;
+  String? conform_password;
+  bool remember = false;
   final List<String?> errors = [];
 
   void addError({String? error}) {
@@ -43,36 +45,9 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          Row(
-            children: [
-              Checkbox(
-                value: remember,
-                activeColor: Colors.redAccent,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-              ),
-              Text("Remember me"),
-              Spacer(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (ctx) => ForgotPassword(),
-                    ),
-                  );
-                },
-                child: Text(
-                  "Forgot Password",
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
-              )
-            ],
-          ),
+          buildConformPassFormField(),
           FormError(errors: errors),
-          SizedBox(height: getProportionateScreenHeight(20)),
+          SizedBox(height: getProportionateScreenHeight(40)),
           FlatButton(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -80,7 +55,7 @@ class _SignFormState extends State<SignForm> {
               onPressed: () {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (ctx) => homeScreen(),
+                    builder: (ctx) => SignInScreen(),
                   ),
                 );
               },
@@ -97,6 +72,39 @@ class _SignFormState extends State<SignForm> {
     );
   }
 
+  TextFormField buildConformPassFormField() {
+    return TextFormField(
+      obscureText: true,
+      onSaved: (newValue) => conform_password = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPassNullError);
+        } else if (value.isNotEmpty && password == conform_password) {
+          removeError(error: kMatchPassError);
+        }
+        conform_password = value;
+      },
+      validator: (value) {
+        if (value!.isEmpty) {
+          addError(error: kPassNullError);
+          return "";
+        } else if ((password != value)) {
+          addError(error: kMatchPassError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Confirm Password",
+        hintText: "Re-enter your password",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+      ),
+    );
+  }
+
   TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
@@ -107,7 +115,7 @@ class _SignFormState extends State<SignForm> {
         } else if (value.length >= 8) {
           removeError(error: kShortPassError);
         }
-        return null;
+        password = value;
       },
       validator: (value) {
         if (value!.isEmpty) {

@@ -1,16 +1,14 @@
-import 'package:commerce/screen/Home/homeScreen.dart';
-import 'package:commerce/screen/start/start.dart';
+import 'package:commerce/screen/signIn/SignInScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:commerce/screen/signIn/component/body.dart';
-class SignInScreen extends StatelessWidget {
-  static String routeName='/signin';
-  const SignInScreen({Key? key}) : super(key: key);
 
+import 'component/body.dart';
+
+class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sign In"),
+        title: Text("Sign Up"),
         backgroundColor: Colors.redAccent,
         leading: IconButton(
           icon: Icon(
@@ -20,7 +18,7 @@ class SignInScreen extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (ctx) => start(),
+                builder: (ctx) => SignInScreen(),
               ),
             );
           },

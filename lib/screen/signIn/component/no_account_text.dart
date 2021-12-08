@@ -1,3 +1,4 @@
+import 'package:commerce/screen/signUp/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config.dart';
@@ -25,6 +26,13 @@ class NoAccountText extends StatelessWidget {
                 fontSize: getProportionateScreenWidth(16),
                 color: kPrimaryColor),
           ),
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (ctx) => SignUpScreen(),
+              ),
+            );
+          },
         ),
       ],
     );
