@@ -14,7 +14,6 @@ class userDecription extends StatefulWidget {
 }
 
 class _userDecriptionState extends State<userDecription> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,16 +27,29 @@ class _userDecriptionState extends State<userDecription> {
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
-        SizedBox(height: 2,),
+        SizedBox(
+          height: 2,
+        ),
         Padding(
           padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: Text(widget.user.age.toString() + ' years old',
+              style: TextStyle(fontStyle: FontStyle.italic,color: Colors.black54)),
+        ),
+        SizedBox(
+          height: 2,
+        ),
+        Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Text(
-            widget.user.age.toString() + ' years old',
-
+            widget.user.address.toString(),
+            style: TextStyle(fontStyle: FontStyle.italic,color: Colors.black54),
           ),
         ),
-        SizedBox(height: 2,),
+        SizedBox(
+          height: 8,
+        ),
         Padding(
           padding: EdgeInsets.only(
               left: getProportionateScreenWidth(20),
@@ -46,7 +58,6 @@ class _userDecriptionState extends State<userDecription> {
             widget.user.description,
           ),
         ),
-
       ],
     );
   }

@@ -34,6 +34,8 @@ const String kMatchPassError = "Passwords don't match";
 const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
+const String kNameNullError = "Please Enter your new name";
+const String kShortNameError = "Name is too short";
 
 final otpInputDecoration = InputDecoration(
   contentPadding:
@@ -49,3 +51,6 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: BorderSide(color: kTextColor),
   );
 }
+
+
+String userName = "Ha Dang";

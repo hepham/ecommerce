@@ -1,14 +1,18 @@
-import 'package:commerce/screen/profile/component/profile_menu.dart';
+import 'package:commerce/screen/profile/tabs/changeUserName/component/body.dart';
+import 'package:commerce/screen/profile/profile_screen.dart';
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../../config.dart';
-import '../profile_screen.dart';
-import 'changeUserName/changeusername.dart';
-import 'myaccount.dart';
 
-class MyCash extends StatelessWidget{
 
+class ChangeUserName extends StatefulWidget {
+  @override
+  State<ChangeUserName> createState() => _ChangeUserNameState();
+}
+
+
+class _ChangeUserNameState extends State<ChangeUserName> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -29,17 +33,7 @@ class MyCash extends StatelessWidget{
           },
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 30),
-          ProfileMenu(
-            text: "21510002490189",
-            icon: "assets/icons/Cash.svg",
-            press: () {
-            },
-          ),
-        ],
-      ),
+      body: Body(),
     );
   }
 }

@@ -1,11 +1,13 @@
 import 'package:commerce/screen/profile/component/profile_menu.dart';
-import 'package:commerce/screen/profile/component/profile_pic.dart';
+
 import 'package:commerce/screen/profile/profile_screen.dart';
-import 'package:commerce/screen/profile/tabs/changeusername.dart';
+import 'package:commerce/screen/profile/tabs/changeUserName/changeusername.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-String userName = "Ha Dang";
+import '../../../constants.dart';
+
+
 
 class MyAccount extends StatelessWidget {
 
@@ -58,7 +60,7 @@ class MyAccount extends StatelessWidget {
           ),
           SizedBox(height: 30),
           ProfileMenu(
-            text: userName,
+            text: userName.toString(),
             icon: "assets/icons/User.svg",
             press: () {
               Navigator.of(context).pushReplacement(

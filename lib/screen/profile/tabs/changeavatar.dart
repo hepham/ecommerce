@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../profile_screen.dart';
-import 'changeusername.dart';
+import 'changeUserName/changeusername.dart';
 
 class ChangeAvatar extends StatefulWidget{
   @override

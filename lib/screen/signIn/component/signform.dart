@@ -1,5 +1,6 @@
 import 'package:commerce/component/custom_surfix_icon.dart';
 import 'package:commerce/component/form_error.dart';
+import 'package:commerce/helper/keyboard.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -78,11 +79,17 @@ class _SignFormState extends State<SignForm> {
                 borderRadius: BorderRadius.circular(20),
               ),
               onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (ctx) => homeScreen(),
-                  ),
-                );
+                //if (_formKey.currentState!.validate()) {
+                  //_formKey.currentState!.save();
+
+                  //KeyboardUtil.hideKeyboard(context);
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => homeScreen(),
+                    ),
+                  );
+                //}
+
               },
               color: Colors.redAccent,
               child: Text(
