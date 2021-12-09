@@ -14,15 +14,12 @@ class userDecription extends StatefulWidget {
 }
 
 class _userDecriptionState extends State<userDecription> {
-  int index = 2;
-  bool check = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //hien thi tieu de san pham bạn thêm cái row ở đây để chèn cái icon message kìa
-
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
@@ -31,41 +28,25 @@ class _userDecriptionState extends State<userDecription> {
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
+        SizedBox(height: 2,),
+        Padding(
+          padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: Text(
+            widget.user.age.toString() + ' years old',
 
-        //hien thi gia san pham
-
+          ),
+        ),
+        SizedBox(height: 2,),
         Padding(
           padding: EdgeInsets.only(
               left: getProportionateScreenWidth(20),
               right: getProportionateScreenWidth(64)),
           child: Text(
             widget.user.description,
-            maxLines: index,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(
-              left: getProportionateScreenWidth(20),
-              right: getProportionateScreenWidth(64)),
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                index = widget.user.description.length;
-              });
-            },
-            child: Row(
-              children: [
-                Text(
-                  "See More Detail",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.redAccent,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        )
+
       ],
     );
   }
