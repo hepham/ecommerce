@@ -1,9 +1,12 @@
 import 'package:commerce/models/user.dart';
+import 'package:commerce/screen/profile/detailUser/component/description.dart';
+import 'package:commerce/screen/profile/detailUser/component/productImage.dart';
 
-import 'package:commerce/screen/detailUser/component/description.dart';
-import 'package:commerce/screen/detailUser/component/productImage.dart';
+
 import 'package:flutter/material.dart';
-import '../../../config.dart';
+
+import '../../../../config.dart';
+
 
 class Body extends StatelessWidget {
   final User user;

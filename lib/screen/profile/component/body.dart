@@ -1,6 +1,7 @@
-import 'package:commerce/screen/detailUser/detailUserScreen.dart';
+
+import 'package:commerce/screen/profile/detailUser/detailUserScreen.dart';
 import 'package:commerce/screen/profile/tabs/logout.dart';
-import 'package:commerce/screen/profile/tabs/myaccount.dart';
+
 import 'package:commerce/screen/profile/tabs/mycash.dart';
 import 'package:commerce/screen/profile/tabs/settings.dart';
 import 'package:commerce/screen/signIn/SignInScreen.dart';

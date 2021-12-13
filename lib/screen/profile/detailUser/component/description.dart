@@ -23,7 +23,7 @@ class _userDecriptionState extends State<userDecription> {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Text(
-            widget.user.title,
+            widget.user.username,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),

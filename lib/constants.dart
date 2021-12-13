@@ -52,5 +52,3 @@ OutlineInputBorder outlineInputBorder() {
   );
 }
 
-
-String userName = "Ha Dang";

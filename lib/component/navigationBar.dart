@@ -1,5 +1,6 @@
 import 'package:commerce/screen/Cart/CartScreen.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
+import 'package:commerce/screen/Sell/sell_screen.dart';
 import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
@@ -58,6 +59,16 @@ class NavigationBar extends StatelessWidget {
               icon: SvgPicture.asset(
                 'assets/icons/Cart.svg',
                 color: MenuState.cart == selectedMenu
+                    ? Color(0xFFFF7643)
+                    : Color(0xFFB6B6B6),
+              ),
+            ),
+            IconButton(
+              onPressed: () =>
+                  Navigator.pushNamed(context, SellScreen.routeName),
+              icon: SvgPicture.asset(
+                'assets/icons/Cash.svg',
+                color: MenuState.sell == selectedMenu
                     ? Color(0xFFFF7643)
                     : Color(0xFFB6B6B6),
               ),

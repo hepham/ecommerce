@@ -4,7 +4,8 @@ import 'package:commerce/screen/profile/profile_screen.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../enums.dart';
+
+import '../../../enums.dart';
 import 'component/body.dart';
 
 

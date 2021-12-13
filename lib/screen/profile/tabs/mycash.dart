@@ -1,11 +1,8 @@
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../../config.dart';
 import '../profile_screen.dart';
-import 'changeUserName/changeusername.dart';
-import 'myaccount.dart';
+
 
 class MyCash extends StatelessWidget{
 
