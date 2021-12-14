@@ -42,7 +42,7 @@ List<User> demoUser = [
     email: email,
     phone: phone,
     password: phone,
-    isSeller: true,
+    isSeller: isSeller,
   ),
 ];
 
@@ -52,6 +52,7 @@ List<User> searchQuery(String? searchText) {
       .toList();
 }
 
+bool isSeller = false;
 String userName = "Hà Đăng";
 const String email = "test@gmail.com";
 const String phone = "0123456789";

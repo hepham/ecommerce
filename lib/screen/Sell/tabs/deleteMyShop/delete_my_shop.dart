@@ -1,25 +1,47 @@
-
-
-import 'package:commerce/screen/profile/profile_screen.dart';
-import 'package:commerce/screen/signIn/SignInScreen.dart';
+import 'package:commerce/models/user.dart';
+import 'package:commerce/screen/Home/homeScreen.dart';
+import 'package:commerce/screen/Sell/sell_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../config.dart';
+import '../../../../config.dart';
+import '../../../../constants.dart';
 
-class LogOut extends StatelessWidget{
+
+
+class DeleteMyShop extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (ctx) => SellScreen(),
+              ),
+            );
+          },
+        ),
+
+      ),
       body: Column(
         children: [
-          SizedBox(height: 300),
-          Text("Do You Want To LogOut?",style: TextStyle(
-            fontSize: getProportionateScreenWidth(18),
-          )),
-          SizedBox(height: 30),
+          SizedBox(height: SizeConfig.screenHeight * 0.18),
+          Text("Do You Wish To Continue?",style: headingStyle),
+          SizedBox(height: SizeConfig.screenHeight * 0.01),
+          Text(
+            "By continuing we will delete\n your selling permission and all your products\n Are you sure?",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.redAccent),
+          ),
+          SizedBox(height: SizeConfig.screenHeight * 0.03),
           Center(
             child: SizedBox(
               width: getProportionateScreenWidth(200),
@@ -29,9 +51,10 @@ class LogOut extends StatelessWidget{
                     borderRadius: BorderRadius.circular(20),
                   ),
                   onPressed: () {
+                    isSeller = false;
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (ctx) => SignInScreen(),
+                        builder: (ctx) => homeScreen(),
                       ),
                     );
                   },
@@ -57,7 +80,7 @@ class LogOut extends StatelessWidget{
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (ctx) => ProfileScreen(),
+                        builder: (ctx) => SellScreen(),
                       ),
                     );
                   },

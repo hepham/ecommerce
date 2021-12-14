@@ -48,25 +48,29 @@ class _SignUpFormState extends State<SignUpForm> {
           buildConformPassFormField(),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
-          FlatButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (ctx) => SignInScreen(),
-                  ),
-                );
-              },
-              color: Colors.redAccent,
-              child: Text(
-                "Continue",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: getProportionateScreenWidth(18),
+          SizedBox(
+            width: double.infinity,
+            height: getProportionateScreenHeight(56),
+            child: FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-              )),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => SignInScreen(),
+                    ),
+                  );
+                },
+                color: Colors.redAccent,
+                child: Text(
+                  "Continue",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getProportionateScreenWidth(18),
+                  ),
+                )),
+          ),
         ],
       ),
     );

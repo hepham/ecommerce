@@ -74,31 +74,35 @@ class _SignFormState extends State<SignForm> {
           ),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
-          FlatButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              onPressed: () {
-                //if (_formKey.currentState!.validate()) {
-                  //_formKey.currentState!.save();
-
-                  //KeyboardUtil.hideKeyboard(context);
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (ctx) => homeScreen(),
-                    ),
-                  );
-                //}
-
-              },
-              color: Colors.redAccent,
-              child: Text(
-                "Continue",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: getProportionateScreenWidth(18),
+          SizedBox(
+            width: double.infinity,
+            height: getProportionateScreenHeight(56),
+            child: FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-              )),
+                onPressed: () {
+                  //if (_formKey.currentState!.validate()) {
+                    //_formKey.currentState!.save();
+
+                    //KeyboardUtil.hideKeyboard(context);
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (ctx) => homeScreen(),
+                      ),
+                    );
+                  //}
+
+                },
+                color: Colors.redAccent,
+                child: Text(
+                  "Continue",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getProportionateScreenWidth(18),
+                  ),
+                )),
+          ),
         ],
       ),
     );

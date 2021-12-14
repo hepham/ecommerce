@@ -97,25 +97,29 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           FormError(errors: errors),
           SizedBox(height: SizeConfig.screenHeight * 0.1),
-          FlatButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (ctx) => SignInScreen(),
-                  ),
-                );
-              },
-              color: Colors.redAccent,
-              child: Text(
-                "Continue",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: getProportionateScreenWidth(18),
+          SizedBox(
+            width: double.infinity,
+            height: getProportionateScreenHeight(56),
+            child: FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-              )),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => SignInScreen(),
+                    ),
+                  );
+                },
+                color: Colors.redAccent,
+                child: Text(
+                  "Continue",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getProportionateScreenWidth(18),
+                  ),
+                )),
+          ),
           SizedBox(height: SizeConfig.screenHeight * 0.1),
           NoAccountText(),
         ],

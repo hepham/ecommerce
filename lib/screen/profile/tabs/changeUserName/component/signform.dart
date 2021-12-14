@@ -2,7 +2,7 @@
 import 'package:commerce/component/form_error.dart';
 import 'package:commerce/helper/keyboard.dart';
 import 'package:commerce/models/user.dart';
-import 'package:commerce/screen/Home/homeScreen.dart';
+
 import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -46,30 +46,35 @@ class _SignFormState extends State<SignForm> {
 
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
-          FlatButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-
-                KeyboardUtil.hideKeyboard(context);
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (ctx) => ProfileScreen(),
-                  ),
-                );
-                }
-              },
-              color: Colors.redAccent,
-              child: Text(
-                "Continue",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: getProportionateScreenWidth(18),
+          SizedBox(
+            width: double.infinity,
+            height: getProportionateScreenHeight(56),
+            child: FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-              )),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
+                  userName = name.toString();
+
+                  KeyboardUtil.hideKeyboard(context);
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => ProfileScreen(),
+                    ),
+                  );
+                  }
+                },
+                color: Colors.redAccent,
+                child: Text(
+                  "Continue",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getProportionateScreenWidth(18),
+                  ),
+                )),
+          ),
         ],
       ),
     );
@@ -91,7 +96,6 @@ class _SignFormState extends State<SignForm> {
           removeError(error: kShortNameError);
         }
         name = value;
-        userName = name.toString();
 
       },
       validator: (value) {
@@ -101,8 +105,10 @@ class _SignFormState extends State<SignForm> {
         } else if (value.length < 3) {
           addError(error: kShortNameError);
           return "";
-        }
+        }else{
+        name = value;}
         return null;
+
       },
 
     );
