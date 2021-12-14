@@ -12,18 +12,18 @@ class discountField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-
-            for(int i=0;i<demoProducts.length-1;i+=2)
-              Row(
-                children: [
-                  card(product: demoProducts[i]),
-                  card(product: demoProducts[i+1]),
-                ],
-              ),
-          ],
-        ),
+        // child: Column(
+        //   children: [
+        //
+        //     for(int i=0;i<demoProducts.length-1;i+=2)
+        //       Row(
+        //         children: [
+        //           card(product: demoProducts[i]),
+        //           card(product: demoProducts[i+1]),
+        //         ],
+        //       ),
+        //   ],
+        // ),
       ),
     );
   }

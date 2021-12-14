@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
-import 'package:commerce/models/product.dart';
+import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/component/RoundBtn.dart';
 
 class color extends StatefulWidget {
   const color({Key? key, required this.product}) : super(key: key);
-  final Product product;
+  final newProduct product;
 
   @override
   State<color> createState() => _colorState();
@@ -14,7 +14,7 @@ class color extends StatefulWidget {
 
 int temp= 1;
 class _colorState extends State<color> {
-  int selectedColor = 0;int index = 1;
+  int selectedColor = 0;int index = 0;
 
 
   @override
@@ -37,13 +37,13 @@ class _colorState extends State<color> {
                 isSelected: i == selectedColor,
               ),
             ),
-          // ...List.generate(
-          //   widget.product.colors.length,
-          //   (index) => colorDot(
-          //     color: widget.product.colors[index],
-          //     isSelected: index == selectedColor,
-          //   ),
-          // ),
+          ...List.generate(
+            widget.product.colors.length,
+            (index) => colorDot(
+              color: widget.product.colors[index],
+              isSelected: index == selectedColor,
+            ),
+          ),
           Spacer(),
           RoundBtn(
             icon: Icons.remove,

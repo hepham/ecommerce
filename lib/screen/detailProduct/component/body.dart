@@ -3,13 +3,13 @@ import 'package:commerce/screen/detailProduct/component/color.dart';
 import 'package:commerce/screen/detailProduct/component/productImage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:commerce/models/product.dart';
+import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/screen/detailProduct/component/description.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/component/Button.dart';
 import 'package:commerce/models/cart.dart';
 class Body extends StatelessWidget {
-  final Product product;
+  final newProduct product;
   const Body({Key? key, required this.product}) : super(key: key);
 
   @override

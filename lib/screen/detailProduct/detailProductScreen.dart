@@ -1,4 +1,5 @@
 import 'package:commerce/component/navigationBar.dart';
+import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/screen/detailProduct/component/body.dart';
 import 'package:commerce/screen/detailProduct/component/color.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,16 @@ class DetailProduct extends StatelessWidget {
   static String routeName='/details';
   @override
   Widget build(BuildContext context) {
-
+    final ProductDetailsArguments args=  ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
     return Scaffold(
       //xem kĩ ở body trong component
-      body: Body(product: demoProducts[0] ,),
+      body: Body(product: args.NewProduct ,),
       bottomNavigationBar: NavigationBar(selectedMenu: MenuState.none),
     );
   }
+}
+class ProductDetailsArguments {
+  final newProduct NewProduct;
+
+  ProductDetailsArguments({required this.NewProduct});
 }

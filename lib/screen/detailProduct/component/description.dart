@@ -1,3 +1,4 @@
+import 'package:commerce/models/ProductResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/models/product.dart';
 import 'package:commerce/config.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class productDecription extends StatefulWidget {
   const productDecription({Key? key, required this.product, this.pressOneMore})
       : super(key: key);
-  final Product product;
+  final newProduct product;
   final GestureTapCallback? pressOneMore;
 
   @override
@@ -28,7 +29,7 @@ class _productDecriptionState extends State<productDecription> {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Text(
-            widget.product.title,
+            widget.product.title_name,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),

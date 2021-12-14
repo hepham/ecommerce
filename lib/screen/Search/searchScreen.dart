@@ -10,7 +10,7 @@ class searchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: searchField(),
+      // body: searchField(),
     );
   }
 }
