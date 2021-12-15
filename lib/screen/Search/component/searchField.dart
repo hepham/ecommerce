@@ -99,7 +99,7 @@ class _searchFieldState extends State<searchField> {
 
   Widget buildSearch() => SearchWidget(
     text: query,
-    hintText: 'Title or Author Name',
+    hintText: 'Tìm kiếm sản phẩm',
     onChanged: seachProducts,
   );
   Future seachProducts(String query) async => debounce(() async {
