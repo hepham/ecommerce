@@ -17,6 +17,7 @@ class _colorState extends State<color> {
   int selectedColor = 0;int index = 0;
 
 
+
   @override
   Widget build(BuildContext context) {
     temp=index;
@@ -56,6 +57,7 @@ class _colorState extends State<color> {
 
                 print(index);
               });
+
             },
           ),
           SizedBox(

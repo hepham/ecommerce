@@ -27,9 +27,10 @@ class _BodyState extends State<Body> {
   }
   Future init() async{
     final products=await ProductApi.GetProduct();
-    setState(() {
+    if(mounted) setState(() {
       this.ListProducts=convertList(products);
       this.Products=products;
+
     });
   }
   @override

@@ -9,6 +9,7 @@ import '../../enums.dart';
 class DetailProduct extends StatelessWidget {
   const DetailProduct({Key? key}) : super(key: key);
   static String routeName='/details';
+
   @override
   Widget build(BuildContext context) {
     final ProductDetailsArguments args=  ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;

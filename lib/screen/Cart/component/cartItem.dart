@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/models/cart.dart';
@@ -17,7 +19,7 @@ class CartItem extends StatelessWidget {
               color: Color(0xFFF5F6F9),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Image.asset(Cart.product.images[0]),
+            child: Image.memory(base64Decode(Cart.product.images[0])),
           ),
         ),
         SizedBox(

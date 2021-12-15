@@ -1,12 +1,183 @@
-// import 'package:commerce/component/Button.dart';
-// import 'package:commerce/component/component.dart';
-// import 'package:commerce/config.dart';
-// import 'package:commerce/models/ProductResponse.dart';
-// import 'package:flutter/material.dart';
-// import 'package:commerce/screen/Search/searchScreen.dart';
-// import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-// import 'package:commerce/models/product.dart';
-//
+import 'package:commerce/api/apiResponse.dart';
+import 'package:commerce/component/Button.dart';
+import 'package:commerce/component/component.dart';
+import 'package:commerce/config.dart';
+import 'package:commerce/models/ProductResponse.dart';
+import 'package:commerce/screen/Home/component/productCard.dart';
+import 'package:flutter/material.dart';
+import 'package:commerce/screen/Search/searchScreen.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:commerce/models/product.dart';
+
+import 'dart:async';
+class searchField extends StatefulWidget {
+  const searchField({Key? key}) : super(key: key);
+
+  @override
+  _searchFieldState createState() => _searchFieldState();
+}
+
+class _searchFieldState extends State<searchField> {
+  List<Product>products =[];
+  List<newProduct>Products=[];
+  String query = '';
+  Timer? debouncer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    init();
+  }
+
+  @override
+  void dispose() {
+    debouncer?.cancel();
+    super.dispose();
+  }
+
+  void debounce(
+      VoidCallback callback, {
+        Duration duration = const Duration(milliseconds: 1000),
+      }) {
+    if (debouncer != null) {
+      debouncer!.cancel();
+    }
+
+    debouncer = Timer(duration, callback);
+  }
+
+  Future init() async {
+    final products=await ProductApi.GetProductbyName(query);
+    final List<newProduct> productslist= convertList(products);
+    print(productslist.length);
+    setState(() => this.Products = productslist);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("test"),
+        centerTitle: true,
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Column(
+        children: <Widget>[
+         buildSearch(),
+          Expanded(
+            // child: ListView.builder(
+            //   itemCount: Products.length,
+            //   itemBuilder: (context, index) {
+            //     final Product = Products[index];
+            //
+            //     return buildproduct(Product);
+            //   },
+            // ),
+            child:SingleChildScrollView(
+              child: Column(
+                children: [
+                  for(int i=0;i<Products.length-1;i+=2)
+                    Row(
+                      children: [
+                        card(product: Products[i]),
+                        card(product: Products[i+1]),
+                      ],
+                    ),
+                ],
+              ),
+            )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildproduct(newProduct product) {
+    return card(product: product);
+  }
+
+  Widget buildSearch() => SearchWidget(
+    text: query,
+    hintText: 'Title or Author Name',
+    onChanged: seachProducts,
+  );
+  Future seachProducts(String query) async => debounce(() async {
+    final products = await ProductApi.GetProductbyName(query);
+    final List<newProduct> productslist= convertList(products);
+    // final List<Datum> productresponse= await ProductApi.GetProduct();
+    // print(productresponse[0].name);
+
+    if (!mounted) return;
+
+    setState(() {
+      this.query = query;
+      this.Products = productslist;
+    });
+  });
+}
+
+
+class SearchWidget extends StatefulWidget {
+  final String text;
+  final ValueChanged<String> onChanged;
+  final String hintText;
+
+  const SearchWidget({
+    Key? key,
+    required this.text,
+    required this.onChanged,
+    required this.hintText,
+  }) : super(key: key);
+
+  @override
+  _SearchWidgetState createState() => _SearchWidgetState();
+}
+
+class _SearchWidgetState extends State<SearchWidget> {
+  final controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    final styleActive = TextStyle(color: Colors.black);
+    final styleHint = TextStyle(color: Colors.black54);
+    final style = widget.text.isEmpty ? styleHint : styleActive;
+
+    return Container(
+      height: 42,
+      margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+        border: Border.all(color: Colors.black26),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          icon: Icon(Icons.search, color: style.color),
+          suffixIcon: widget.text.isNotEmpty
+              ? GestureDetector(
+            child: Icon(Icons.close, color: style.color),
+            onTap: () {
+              controller.clear();
+              widget.onChanged('');
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
+          )
+              : null,
+          hintText: widget.hintText,
+          hintStyle: style,
+          border: InputBorder.none,
+        ),
+        style: style,
+        onChanged: widget.onChanged,
+      ),
+    );
+  }
+}
+
+
 //
 // List<String> _searchHistory = [];
 // class searchField extends StatefulWidget {
@@ -17,7 +188,7 @@
 // }
 //
 // class _searchFieldState extends State<searchField> {
-//
+//   List<newProduct>ProductList=[];
 //   static const historyLength = 5;
 //
 //   late List<String> filteredSearchHistory;
@@ -67,6 +238,7 @@
 //     super.initState();
 //     controller = FloatingSearchBarController();
 //     filteredSearchHistory = filterSearchTerms(filter: null);
+//     init();
 //   }
 //
 //   @override
@@ -74,7 +246,13 @@
 //     controller.dispose();
 //     super.dispose();
 //   }
+//   Future init() async {
+//     final products=await ProductApi.GetProductbyName(selectedTerm!);
+//     if(mounted)setState(() {
+//       this.ProductList=convertList(products);
+//     });
 //
+//   }
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -92,6 +270,8 @@
 //         //   selectedTerm ?? 'The Search App',
 //         //   style: Theme.of(context).textTheme.headline6,
 //         // ),
+//
+//
 //         hint: 'Search and find out...',
 //         actions: [
 //           FloatingSearchBarAction.searchToClear(),
@@ -191,7 +371,6 @@
 //
 //   @override
 //   Widget build(BuildContext context) {
-//
 //     final fsb = FloatingSearchBar.of(context);
 //     if(searchTerm == null) {
 //       return Center(
@@ -248,35 +427,3 @@
 //
 // }
 
-
-// class SearchField extends StatelessWidget {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       margin: EdgeInsets.only(top: getProportionateScreenWidth(5)),
-//       width: SizeConfig.screenWidth ,
-//       height: 50,
-//       decoration: BoxDecoration(
-//         color: Color(0xFF979797).withOpacity(0.2),
-//         borderRadius: BorderRadius.circular((20)),
-//       ),
-//       child: TextField(
-//
-//         onChanged: (value) {
-//
-//         },
-//         decoration: InputDecoration(
-//           enabledBorder: InputBorder.none,
-//           focusedBorder: InputBorder.none,
-//           hintText: 'Search',
-//           prefixIcon: Icon(Icons.search),
-//           contentPadding: EdgeInsets.symmetric(
-//             horizontal: getProportionateScreenWidth(20),
-//             vertical: getProportionateScreenWidth(15),),
-//         ),
-//       ),
-//     );
-//   }
-//
-// }

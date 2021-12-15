@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:flutter/material.dart';
-import 'package:commerce/models/product.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/screen/detailProduct/detailProductScreen.dart';
 import 'package:flutter/rendering.dart';
@@ -47,20 +46,36 @@ class _cardState extends State<card> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      width: getProportionateScreenWidth(180),
-                      height: getProportionateScreenWidth(180),
-                      child: ClipRRect(
-                        child: Stack(
-                          children: [
-                            Image.memory(base64Decode(widget.product.images[0]),fit: BoxFit.cover,alignment:Alignment.center,),
+                    // Container(
+                    //   // padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+                    //   // decoration: BoxDecoration(
+                    //   //   color: Colors.grey.withOpacity(0.1),
+                    //   //   borderRadius: BorderRadius.circular(20),
+                    //   // ),
+                    //   // width: getProportionateScreenWidth(180),
+                    //   // height: getProportionateScreenWidth(180),
+                    //   // child: ClipRRect(
+                    //   //   child: Stack(
+                    //   //     children: [
+                    //   //       Image.memory(base64Decode(widget.product.images[0]),fit: BoxFit.cover,alignment:Alignment.center,),
+                    //   //
+                    //   //     ],
+                    //   //   ),
+                    //   // ),
+                    //
+                    // ),
+                    AspectRatio(
+                      aspectRatio: 1.2,
+                      child: Container(
+                        padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(20),
 
-                          ],
+                        ),
+                        child: Hero(
+                          tag: widget.product.id.toString(),
+                          child:  Image.memory(base64Decode(widget.product.images[0]),fit: BoxFit.cover,alignment:Alignment.center,),
                         ),
                       ),
                     ),
