@@ -34,17 +34,27 @@ class _userDecriptionState extends State<userDecription> {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Text(widget.user.age.toString() + ' years old',
-              style: TextStyle(fontStyle: FontStyle.italic,color: Colors.black54)),
+              style: TextStyle(
+                  fontStyle: FontStyle.italic, color: Colors.black54)),
         ),
-        SizedBox(
-          height: 2,
+        Row(
+          children: [
+            Checkbox(
+              value: isSeller,
+              activeColor: Colors.redAccent,
+              onChanged: (bool? value) {},
+            ),
+            Text("Seller"),
+          ],
         ),
+
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Text(
             widget.user.address.toString(),
-            style: TextStyle(fontStyle: FontStyle.italic,color: Colors.black54),
+            style:
+                TextStyle(fontStyle: FontStyle.italic, color: Colors.black54),
           ),
         ),
         SizedBox(

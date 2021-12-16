@@ -55,7 +55,7 @@ List<User> searchQuery(String? searchText) {
 bool isSeller = false;
 String userName = "Hà Đăng";
 const String email = "test@gmail.com";
-const String phone = "0123456789";
+String phone = "0123456789";
 String password = "password";
 String address = "Cổ Nhuế, Hà Nội, Việt Nam";
 int age = 22;
