@@ -41,7 +41,7 @@ List<User> demoUser = [
     address: address,
     email: email,
     phone: phone,
-    password: phone,
+    password: password,
     isSeller: isSeller,
   ),
 ];

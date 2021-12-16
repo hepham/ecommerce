@@ -38,7 +38,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  image_picker: ^0.8.4+1
+  image_picker:
+  path_provider:
+  image:
+  shared_preferences:
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

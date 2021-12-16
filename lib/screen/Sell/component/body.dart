@@ -1,6 +1,6 @@
+import 'package:commerce/screen/Sell/tabs/MyShop/myshop.dart';
 import 'package:commerce/screen/Sell/tabs/deleteMyShop/delete_my_shop.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,7 +13,11 @@ class Body extends StatelessWidget {
         ProfileMenu(
           icon: "assets/icons/User.svg",
           text: "My Shop",
-          press: () {},
+          press: () {Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (ctx) => MyShop(),
+            ),
+          );},
         ),
         ProfileMenu(
           icon: "assets/icons/Cash.svg",

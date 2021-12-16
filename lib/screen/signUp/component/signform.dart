@@ -16,6 +16,7 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
+  String? phonenumber;
   String? password;
   String? conform_password;
   bool remember = false;
@@ -41,6 +42,8 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: [
+          buildPhoneNumberFormField(),
+          SizedBox(height: getProportionateScreenHeight(30)),
           buildEmailFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
@@ -171,6 +174,39 @@ class _SignUpFormState extends State<SignUpForm> {
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+      ),
+    );
+  }
+
+  TextFormField buildPhoneNumberFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.phone,
+      onSaved: (newValue) => phonenumber = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPhoneNumberNullError);
+        } else if (value.length ==10) {
+          removeError(error: kInvalidPhoneNumberError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value!.isEmpty) {
+          addError(error: kPhoneNumberNullError);
+          return "";
+        } else if (value.length!=10) {
+          addError(error: kInvalidPhoneNumberError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Phone",
+        hintText: "Enter your phone number",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg"),
       ),
     );
   }

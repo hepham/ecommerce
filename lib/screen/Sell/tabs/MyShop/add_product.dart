@@ -1,20 +1,19 @@
 import 'dart:io';
 
+import 'package:commerce/screen/Sell/tabs/MyShop/myshop.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../profile_screen.dart';
+class AddProduct extends StatefulWidget{
 
-class ChangeAvatar extends StatefulWidget {
+
   @override
-  State<ChangeAvatar> createState() => _ChangeAvatarState();
+  State<AddProduct> createState() => _AddProductState();
 }
 
-class _ChangeAvatarState extends State<ChangeAvatar> {
+class _AddProductState extends State<AddProduct> {
   late File image = null as File;
-
 
   Future getCameraImage() async {
     var picture = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -33,10 +32,9 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
 
   }
 
-
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -48,7 +46,7 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
           onPressed: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (ctx) => ProfileScreen(),
+                builder: (ctx) => MyShop(),
               ),
             );
           },
@@ -69,8 +67,8 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
                     CircleAvatar(
                       backgroundImage: image != null
                           ? FileImage(image)
-                          : AssetImage("assets/images/avatar.jpg")
-                              as ImageProvider,
+                          : AssetImage("assets/images/technology.jpg")
+                      as ImageProvider,
                     ),
                     Positioned(
                       right: -12,
@@ -97,7 +95,7 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
             press: getCameraImage,
           ),
         ],
-      ),
-    );
-  }
+      ),);
+
+}
 }

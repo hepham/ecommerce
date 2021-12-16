@@ -24,9 +24,9 @@ class Body extends StatelessWidget {
                   "Complete your information or\n continue with social media",
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                SizedBox(height: SizeConfig.screenHeight * 0.06),
                 SignUpForm(),
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                SizedBox(height: SizeConfig.screenHeight * 0.035),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
