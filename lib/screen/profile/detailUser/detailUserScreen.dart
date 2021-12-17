@@ -1,6 +1,5 @@
 import 'package:commerce/component/navigationBar.dart';
 import 'package:commerce/models/UserResponse.dart';
-import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/profile/profile_screen.dart';
 
 import 'package:flutter/material.dart';

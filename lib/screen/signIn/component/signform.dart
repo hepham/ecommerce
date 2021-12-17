@@ -5,7 +5,6 @@ import 'package:commerce/component/custom_surfix_icon.dart';
 import 'package:commerce/component/form_error.dart';
 import 'package:commerce/helper/keyboard.dart';
 import 'package:commerce/models/Login.dart';
-import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +23,6 @@ class _SignFormState extends State<SignForm> {
   String? password;
   bool? remember = false;
   late LoginRequest loginRequest;
-  GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final formkey = GlobalKey<FormState>();
   void initState(){
     super.initState();

@@ -5,7 +5,6 @@ import 'package:commerce/screen/Sell/sell_screen.dart';
 import 'package:commerce/screen/Sell/tabs/sellSignUp/sell_sign_up.dart';
 import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:commerce/models/user.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:commerce/enums.dart';
 

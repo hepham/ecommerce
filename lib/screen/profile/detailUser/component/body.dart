@@ -1,5 +1,4 @@
 import 'package:commerce/models/UserResponse.dart';
-import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/profile/detailUser/component/description.dart';
 import 'package:commerce/screen/profile/detailUser/component/productImage.dart';
 

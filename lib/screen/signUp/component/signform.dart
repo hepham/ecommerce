@@ -1,12 +1,12 @@
+import 'package:commerce/api/Register_Service.dart';
 import 'package:commerce/component/custom_surfix_icon.dart';
 import 'package:commerce/component/form_error.dart';
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/signIn/SignInScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config.dart';
 import '../../../constants.dart';
-
-
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -20,6 +20,8 @@ class _SignUpFormState extends State<SignUpForm> {
   String? password;
   String? conform_password;
   bool remember = false;
+  late Register_Service register_service;
+  late UserSignUp user;
   final List<String?> errors = [];
 
   void addError({String? error}) {
@@ -59,11 +61,22 @@ class _SignUpFormState extends State<SignUpForm> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (ctx) => SignInScreen(),
-                    ),
-                  );
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    user.age = 0;
+                    user.username = 'default';
+                    user.image = '';
+                    user.address = ' ';
+                    user.description = 'null';
+                    user.isSeller = false;
+
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (ctx) => SignInScreen(),
+                      ),
+                    );
+                  }
+
                 },
                 color: Colors.redAccent,
                 child: Text(
@@ -87,6 +100,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
         } else if (value.isNotEmpty && password == conform_password) {
+          user.password = conform_password!;
           removeError(error: kMatchPassError);
         }
         conform_password = value;
@@ -153,6 +167,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
         } else if (emailValidatorRegExp.hasMatch(value)) {
+          user.gmail = email!;
           removeError(error: kInvalidEmailError);
         }
         return null;
@@ -185,7 +200,8 @@ class _SignUpFormState extends State<SignUpForm> {
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
-        } else if (value.length ==10) {
+        } else if (value.length == 10) {
+          user.phone = phonenumber!;
           removeError(error: kInvalidPhoneNumberError);
         }
         return null;
@@ -194,7 +210,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value!.isEmpty) {
           addError(error: kPhoneNumberNullError);
           return "";
-        } else if (value.length!=10) {
+        } else if (value.length != 10) {
           addError(error: kInvalidPhoneNumberError);
           return "";
         }

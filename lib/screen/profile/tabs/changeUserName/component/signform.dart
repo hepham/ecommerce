@@ -2,7 +2,6 @@
 import 'package:commerce/component/form_error.dart';
 import 'package:commerce/helper/keyboard.dart';
 import 'package:commerce/models/UserResponse.dart';
-import 'package:commerce/models/user.dart';
 
 import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';

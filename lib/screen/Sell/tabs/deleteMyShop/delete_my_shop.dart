@@ -1,5 +1,4 @@
 import 'package:commerce/models/UserResponse.dart';
-import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:commerce/screen/Sell/sell_screen.dart';
 import 'package:flutter/material.dart';

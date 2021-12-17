@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:commerce/models/Login.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/models/UserResponse.dart';
-import 'package:commerce/models/user.dart';
 import 'package:http/http.dart' as http;
 
 import '../enums.dart';

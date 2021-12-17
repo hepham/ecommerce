@@ -1,5 +1,4 @@
 import 'package:commerce/models/UserResponse.dart';
-import 'package:commerce/models/user.dart';
 import 'package:flutter/material.dart';
 
 import 'package:commerce/config.dart';

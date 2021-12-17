@@ -89,3 +89,49 @@ Data user = new Data(
     isSeller: false,
     description: '',
     image: '');
+
+class UserSignUp {
+  UserSignUp({
+    required this.username,
+    required this.gmail,
+    required this.phone,
+    required this.password,
+    required this.address,
+    required this.age,
+    required this.isSeller,
+    required this.description,
+    required this.image,
+  });
+
+  late String username;
+  String gmail;
+  String phone;
+  String password;
+  String address;
+  int age;
+  late bool isSeller;
+  String description;
+  String image;
+
+  factory UserSignUp.fromJson(Map<String, dynamic> json) => UserSignUp(
+    username: json["username"],
+    image: json["image"],
+    gmail: json["gmail"],
+    phone: json["phone"],
+    password: json["password"],
+    address: json["address"],
+    age: json["age"],
+    isSeller: json["isSeller"],
+    description: json["description"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "username": username,
+    "gmail": gmail,
+    "phone": phone,
+    "password": password,
+    "address": address,
+    "age": age,
+    "isSeller": isSeller,
+  };
+}

@@ -1,7 +1,7 @@
 import 'package:commerce/models/UserResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
-import 'package:commerce/models/user.dart';
+
 
 class productImage extends StatefulWidget {
   const productImage({Key? key, required this.user}) : super(key: key);
