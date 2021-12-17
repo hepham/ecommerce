@@ -47,11 +47,11 @@ class _searchFieldState extends State<searchField> {
     debouncer = Timer(duration, callback);
   }
 
-  Future init() async {
+  Future  init() async {
     final products=await ProductApi.GetProductbyName(query);
     final List<newProduct> productslist= convertList(products);
     print(productslist.length);
-    setState(() => this.Products = productslist);
+    if(mounted)setState(() => this.Products = productslist);
   }
 
   @override
@@ -100,9 +100,9 @@ class _searchFieldState extends State<searchField> {
   Widget buildSearch() => SearchWidget(
     text: query,
     hintText: 'Tìm kiếm sản phẩm',
-    onChanged: seachProducts,
+    onChanged: searchProducts,
   );
-  Future seachProducts(String query) async => debounce(() async {
+  Future searchProducts(String query) async => debounce(() async {
     final products = await ProductApi.GetProductbyName(query);
     final List<newProduct> productslist= convertList(products);
     // final List<Datum> productresponse= await ProductApi.GetProduct();

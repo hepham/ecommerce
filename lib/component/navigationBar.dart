@@ -1,3 +1,4 @@
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/Cart/CartScreen.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:commerce/screen/Sell/sell_screen.dart';
@@ -66,7 +67,7 @@ class NavigationBar extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                if (isSeller == false) {
+                if (user.isSeller == false) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (ctx) => SellSignUp(),

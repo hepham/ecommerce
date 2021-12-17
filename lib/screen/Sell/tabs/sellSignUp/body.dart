@@ -1,3 +1,4 @@
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:commerce/screen/Sell/sell_screen.dart';
@@ -37,7 +38,7 @@ class Body extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         onPressed: () {
-                          isSeller = true;
+                          user.isSeller = true;
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: (ctx) => SellScreen(),

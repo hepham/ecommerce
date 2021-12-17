@@ -1,3 +1,4 @@
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/profile/detailUser/component/description.dart';
 import 'package:commerce/screen/profile/detailUser/component/productImage.dart';
@@ -9,7 +10,7 @@ import '../../../../config.dart';
 
 
 class Body extends StatelessWidget {
-  final User user;
+  final Data user;
   const Body({Key? key, required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:commerce/component/navigationBar.dart';
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/profile/profile_screen.dart';
 
@@ -36,7 +37,7 @@ class DetailUserScreen extends StatelessWidget {
 
       ),
 
-      body: Body(user: demoUser[0] ,),
+      body: Body(user: user ,),
       bottomNavigationBar: NavigationBar(selectedMenu: MenuState.none),
     );
   }

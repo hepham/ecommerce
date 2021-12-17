@@ -1,12 +1,17 @@
 import 'dart:convert';
 
+import 'package:commerce/models/Login.dart';
 import 'package:commerce/models/ProductResponse.dart';
+import 'package:commerce/models/UserResponse.dart';
+import 'package:commerce/models/user.dart';
 import 'package:http/http.dart' as http;
+
+import '../enums.dart';
 
 class ProductApi {
   static Future<List<Product>> GetProduct() async {
     final url = Uri.parse(
-        'https://2e49-2405-4803-fde0-8830-1472-1c18-fc88-9e21.ngrok.io/api/products');
+        ApiUrl+'/products');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -22,7 +27,7 @@ class ProductApi {
   }
   static Future<List<Product>> GetProductbyName(String name) async {
     final url = Uri.parse(
-        'https://2e49-2405-4803-fde0-8830-1472-1c18-fc88-9e21.ngrok.io/api/products');
+        ApiUrl+'/products');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -37,7 +42,7 @@ class ProductApi {
     }
   }
   static UpdateProduct(newProduct newproduct) async{
-    final url=Uri.parse('https://2e49-2405-4803-fde0-8830-1472-1c18-fc88-9e21.ngrok.io/api/products');
+    final url=Uri.parse(ApiUrl+'/products');
     Product temp=convertToProduct(newproduct);
     final response = await http.post(
       url,
@@ -58,3 +63,40 @@ class ProductApi {
     }
   }
 }
+class UserApi{
+  static Future<Data>GetUser() async {
+    final url = Uri.parse(
+        ApiUrl+'/users');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      // final ProductResponse Products = json.decode(response.body);
+      //   print(response.body.toString());
+      // ProductResponse productresponse= ProductResponse.fromJson(jsonDecode(response.body));
+      UserResponse userResponse=UserResponse.fromJson(jsonDecode(response.body));
+      print(userResponse.data.username);
+      return userResponse.data;
+    } else {
+      throw Exception();
+    }
+
+  }
+}
+// class LoginApi{
+//   static Future<DataLogin> LoginRequest(String phone,String password) async{
+//     final url=Uri.parse(ApiUrl+'users/login');
+//     LoginAccount loginAccount=new LoginAccount(phone: phone, password: password);
+//     final response = await http.get(url);
+//
+//     if (response.statusCode == 200) {
+//       // final ProductResponse Products = json.decode(response.body);
+//       //   print(response.body.toString());
+//       // ProductResponse productresponse= ProductResponse.fromJson(jsonDecode(response.body));
+//       UserLogin userLogin=UserLogin.fromJson(jsonDecode(response.body));
+//       print(userLogin.dataLogin);
+//       return userLogin.dataLogin;
+//     } else {
+//       throw Exception();
+//     }
+//   }
+// }

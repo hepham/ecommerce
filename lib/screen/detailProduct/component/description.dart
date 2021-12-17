@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:commerce/api/apiResponse.dart';
+import 'package:commerce/enums.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/models/product.dart';
@@ -18,7 +19,7 @@ class _productDecriptionState extends State<productDecription> {
   int index = 2;
   bool check = false;
   postData()async{
-    final url=Uri.parse('https://2e49-2405-4803-fde0-8830-1472-1c18-fc88-9e21.ngrok.io/api/products/update');
+    final url=Uri.parse(ApiUrl+ '/products/update');
     Product temp=convertToProduct(widget.product);
     print(json.encode(temp.toJson()));
     final response = await http.post(

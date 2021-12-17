@@ -1,3 +1,4 @@
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/user.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,7 @@ import 'package:commerce/config.dart';
 class userDecription extends StatefulWidget {
   const userDecription({Key? key, required this.user, this.pressOneMore})
       : super(key: key);
-  final User user;
+  final Data user;
   final GestureTapCallback? pressOneMore;
 
   @override
@@ -40,7 +41,7 @@ class _userDecriptionState extends State<userDecription> {
         Row(
           children: [
             Checkbox(
-              value: isSeller,
+              value: user.isSeller,
               activeColor: Colors.redAccent,
               onChanged: (bool? value) {},
             ),

@@ -1,7 +1,11 @@
+import 'package:commerce/api/Login_Service.dart';
+import 'package:commerce/api/User_Service.dart';
+import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/component/custom_surfix_icon.dart';
 import 'package:commerce/component/form_error.dart';
 import 'package:commerce/helper/keyboard.dart';
-
+import 'package:commerce/models/Login.dart';
+import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +20,17 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
-  String? phonenumber;
+  String? phone;
   String? password;
   bool? remember = false;
+  late LoginRequest loginRequest;
+  GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
+  void initState(){
+    super.initState();
+    loginRequest=new LoginRequest();
+    
+  }
   final List<String?> errors = [];
 
   void addError({String? error}) {
@@ -83,16 +95,25 @@ class _SignFormState extends State<SignForm> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
-                  //if (_formKey.currentState!.validate()) {
-                    //_formKey.currentState!.save();
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    Login_Services loginService=new Login_Services();
+                    loginService.login(loginRequest).then((value){
+                      print(value.status);
+                      if(value.status=='success'){
+                        print("ok");
+                        User_Service.GetUserbyId(int.parse(value.dataLogin.accessToken));
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (ctx) => homeScreen(),
+                          ),
+                        );
+                      }
+                    });
 
-                    //KeyboardUtil.hideKeyboard(context);
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (ctx) => homeScreen(),
-                      ),
-                    );
-                  //}
+                    KeyboardUtil.hideKeyboard(context);
+
+                  }
 
                 },
                 color: Colors.redAccent,
@@ -112,7 +133,7 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (newValue) => loginRequest.password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
@@ -145,35 +166,30 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPhoneFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
-      onSaved: (newValue) => phonenumber = newValue,
+      onSaved: (newValue) => loginRequest.phone = newValue!,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kPhoneNumberNullError);
-        } else if (value.length == 10) {
-          removeError(error: kInvalidPhoneNumberError);
-        }
-        return null;
 
       },
       validator: (value) {
-        if (value!.isEmpty) {
-          addError(error: kPhoneNumberNullError);
-          return "";
-        } else if (value.length != 10) {
-          addError(error: kInvalidPhoneNumberError);
-          return "";
-        }
-        return null;
 
       },
       decoration: InputDecoration(
         labelText: "Phone",
-        hintText: "Enter your phone number",
+        hintText: "Enter your phone",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
   }
+  // bool validateAndSave() {
+  //   final form = _formkey.currentState;
+  //   if (form!.validate()) {
+  //     form.save();
+  //     return true;
+  //   }
+  //   return false;
+  // }
 }
+

@@ -1,3 +1,4 @@
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/user.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:commerce/screen/Sell/sell_screen.dart';
@@ -51,7 +52,7 @@ class DeleteMyShop extends StatelessWidget{
                     borderRadius: BorderRadius.circular(20),
                   ),
                   onPressed: () {
-                    isSeller = false;
+                    user.isSeller = false;
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (ctx) => homeScreen(),
