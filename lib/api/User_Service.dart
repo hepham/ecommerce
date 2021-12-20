@@ -13,7 +13,7 @@ class User_Service {
           UserResponse.fromJson(jsonDecode(response.body));
           user.id=userResponse.data.id ;
           user.phone=userResponse.data.phone;
-          user.password=userResponse.data.password;
+          // user.password=userResponse.data.password;
           user.isSeller=userResponse.data.isSeller;
           user.gmail=userResponse.data.gmail;
           user.description=userResponse.data.description;

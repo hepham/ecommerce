@@ -21,7 +21,16 @@ class _SignUpFormState extends State<SignUpForm> {
   String? conform_password;
   bool remember = false;
   late Register_Service register_service;
-  late UserSignUp user;
+  UserSignUp userSignUp = new UserSignUp(
+      username: ' ',
+      gmail: '',
+      phone: '09',
+      password: '',
+      address: '',
+      age: 0,
+      isSeller: false,
+      description: '',
+      image: '');
   final List<String?> errors = [];
 
   void addError({String? error}) {
@@ -63,20 +72,20 @@ class _SignUpFormState extends State<SignUpForm> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    user.age = 0;
-                    user.username = 'default';
-                    user.image = '';
-                    user.address = ' ';
-                    user.description = 'null';
-                    user.isSeller = false;
-
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (ctx) => SignInScreen(),
-                      ),
-                    );
+                    print(userSignUp.password);
+                    Register_Service registerService = new Register_Service();
+                    registerService.Register(userSignUp).then((value) {
+                      print(value.status);
+                      if (value.status == 'success') {
+                        print('register sucess');
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (ctx) => SignInScreen(),
+                          ),
+                        );
+                      }
+                    });
                   }
-
                 },
                 color: Colors.redAccent,
                 child: Text(
@@ -100,7 +109,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
         } else if (value.isNotEmpty && password == conform_password) {
-          user.password = conform_password!;
+          userSignUp.password = conform_password!;
           removeError(error: kMatchPassError);
         }
         conform_password = value;
@@ -137,6 +146,7 @@ class _SignUpFormState extends State<SignUpForm> {
           removeError(error: kShortPassError);
         }
         password = value;
+        userSignUp.password = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -162,12 +172,11 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      onSaved: (newValue) => userSignUp.gmail = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
         } else if (emailValidatorRegExp.hasMatch(value)) {
-          user.gmail = email!;
           removeError(error: kInvalidEmailError);
         }
         return null;
@@ -201,7 +210,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
         } else if (value.length == 10) {
-          user.phone = phonenumber!;
+          userSignUp.phone = value;
           removeError(error: kInvalidPhoneNumberError);
         }
         return null;

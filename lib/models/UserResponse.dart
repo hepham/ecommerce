@@ -34,7 +34,7 @@ class Data {
     required this.username,
     required this.gmail,
     required this.phone,
-    required this.password,
+    // required this.password,
     required this.address,
     required this.age,
     required this.isSeller,
@@ -46,7 +46,7 @@ class Data {
   late String username;
   String gmail;
   String phone;
-  String password;
+  // String password;
   String address;
   int age;
   late bool isSeller;
@@ -59,7 +59,7 @@ class Data {
         image: json["image"],
         gmail: json["gmail"],
         phone: json["phone"],
-        password: json["password"],
+        // password: json["password"],
         address: json["address"],
         age: json["age"],
         isSeller: json["isSeller"],
@@ -71,7 +71,7 @@ class Data {
         "username": username,
         "gmail": gmail,
         "phone": phone,
-        "password": password,
+        // "password": password,
         "address": address,
         "age": age,
         "isSeller": isSeller,
@@ -83,7 +83,7 @@ Data user = new Data(
     username: 'null',
     gmail: '',
     phone: '',
-    password: '',
+    // password: '',
     address: '',
     age: 0,
     isSeller: false,
@@ -104,14 +104,14 @@ class UserSignUp {
   });
 
   late String username;
-  String gmail;
-  String phone;
-  String password;
-  String address;
-  int age;
+  late String gmail;
+  late String phone;
+  late String password;
+  late String address;
+  late int age;
   late bool isSeller;
-  String description;
-  String image;
+  late String description;
+  late String image;
 
   factory UserSignUp.fromJson(Map<String, dynamic> json) => UserSignUp(
     username: json["username"],

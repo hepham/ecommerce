@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:commerce/enums.dart';
 import 'package:commerce/models/UserResponse.dart';
 class Register_Service{
-  static Future<UserResponse> Register(UserSignUp user)async{
+  Future<UserResponse> Register(UserSignUp user)async{
     final url=Uri.parse(ApiUrl+'/users/register');
     final response = await http.post(
       url,

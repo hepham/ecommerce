@@ -57,7 +57,7 @@ class _productReviewState extends State<productReview> {
                   Container(
                     child: CircleAvatar(
                       radius: 20.0,
-                      backgroundImage: AssetImage(chat.image),
+                      backgroundImage: AssetImage('assets/images/avatar.jpg'),
                     ),
                     padding: EdgeInsets.all(2),
                     decoration:
