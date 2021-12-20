@@ -24,11 +24,11 @@ class _SignFormState extends State<SignForm> {
   bool? remember = false;
   late LoginRequest loginRequest;
   final formkey = GlobalKey<FormState>();
-  void initState(){
+  void initState() {
     super.initState();
-    loginRequest=new LoginRequest();
-    
+    loginRequest = new LoginRequest();
   }
+
   final List<String?> errors = [];
 
   void addError({String? error}) {
@@ -93,14 +93,20 @@ class _SignFormState extends State<SignForm> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => homeScreen(),
+                    ),
+                  );
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    Login_Services loginService=new Login_Services();
-                    loginService.login(loginRequest).then((value){
+                    Login_Services loginService = new Login_Services();
+                    loginService.login(loginRequest).then((value) {
                       print(value.status);
-                      if(value.status=='success'){
+                      if (value.status == 'success') {
                         print("ok");
-                        User_Service.GetUserbyId(int.parse(value.dataLogin.accessToken));
+                        User_Service.GetUserbyId(
+                            int.parse(value.dataLogin.accessToken));
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (ctx) => homeScreen(),
@@ -110,9 +116,7 @@ class _SignFormState extends State<SignForm> {
                     });
 
                     KeyboardUtil.hideKeyboard(context);
-
                   }
-
                 },
                 color: Colors.redAccent,
                 child: Text(
@@ -165,12 +169,8 @@ class _SignFormState extends State<SignForm> {
     return TextFormField(
       keyboardType: TextInputType.phone,
       onSaved: (newValue) => loginRequest.phone = newValue!,
-      onChanged: (value) {
-
-      },
-      validator: (value) {
-
-      },
+      onChanged: (value) {},
+      validator: (value) {},
       decoration: InputDecoration(
         labelText: "Phone",
         hintText: "Enter your phone",
@@ -190,4 +190,3 @@ class _SignFormState extends State<SignForm> {
   //   return false;
   // }
 }
-

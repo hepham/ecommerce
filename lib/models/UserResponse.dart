@@ -88,7 +88,7 @@ Data user = new Data(
     age: 0,
     isSeller: false,
     description: '',
-    image: '');
+    image: 'assets/images/avatar.jpg');
 
 class UserSignUp {
   UserSignUp({

@@ -1,13 +1,14 @@
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/screen/detailProduct/component/color.dart';
 import 'package:commerce/screen/detailProduct/component/productImage.dart';
+import 'package:commerce/screen/detailProduct/component/productReview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/screen/detailProduct/component/description.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/component/Button.dart';
-import 'package:commerce/models/cart.dart';
+
 class Body extends StatelessWidget {
   final newProduct product;
   const Body({Key? key, required this.product}) : super(key: key);
@@ -45,7 +46,6 @@ class Body extends StatelessWidget {
           ),
         ),
 
-
         //button add cart
         Container(
           margin: EdgeInsets.only(top: getProportionateScreenWidth(10)),
@@ -59,7 +59,6 @@ class Body extends StatelessWidget {
               )),
           child: Row(
             children: [
-
               Container(
                 padding: EdgeInsets.only(
                   left: SizeConfig.screenWidth * 0.2,
@@ -70,13 +69,22 @@ class Body extends StatelessWidget {
                 child: Button(
                   text: 'Add to Cart',
                   press: () {
-                     demoCart.add( cart(product: product, numOfItems: temp));
+                    demoCart.add(cart(product: product, numOfItems: temp));
                   },
                 ),
               ),
             ],
           ),
         ),
+        SizedBox(
+          height: getProportionateScreenHeight(20),
+        ),
+        Container(
+            height: 40,
+            padding: EdgeInsets.fromLTRB(0, 0, 200, 0),
+            child: Button(text: "Bình luận")),
+
+        productReview(product: product),
       ],
     );
   }

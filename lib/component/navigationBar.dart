@@ -3,6 +3,7 @@ import 'package:commerce/screen/Cart/CartScreen.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:commerce/screen/Sell/sell_screen.dart';
 import 'package:commerce/screen/Sell/tabs/sellSignUp/sell_sign_up.dart';
+import 'package:commerce/screen/chat/chatScreen.dart';
 import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -46,7 +47,7 @@ class NavigationBar extends StatelessWidget {
             ),
             IconButton(
               onPressed: () =>
-                  Navigator.pushNamed(context, homeScreen.routeName),
+                  Navigator.pushNamed(context, MessageScreen.routeName),
               icon: SvgPicture.asset(
                 'assets/icons/Mail.svg',
                 color: MenuState.message == selectedMenu
