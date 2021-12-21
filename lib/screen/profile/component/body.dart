@@ -2,11 +2,8 @@
 import 'package:commerce/screen/profile/detailUser/detailUserScreen.dart';
 import 'package:commerce/screen/profile/tabs/logout.dart';
 
-import 'package:commerce/screen/profile/tabs/mycash.dart';
 import 'package:commerce/screen/profile/tabs/settings.dart';
-import 'package:commerce/screen/signIn/SignInScreen.dart';
 import 'package:flutter/material.dart';
-
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
@@ -28,17 +25,7 @@ class Body extends StatelessWidget {
             );
           },
         ),
-        ProfileMenu(
-          icon: "assets/icons/Cash.svg",
-          text: "My Cash",
-          press: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (ctx) => MyCash(),
-              ),
-            );
-          },
-        ),
+
         ProfileMenu(
           icon: "assets/icons/Settings.svg",
           text: "Settings",

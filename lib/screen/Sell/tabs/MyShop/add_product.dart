@@ -5,6 +5,8 @@ import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../config.dart';
+
 class AddProduct extends StatefulWidget{
 
 
@@ -13,13 +15,13 @@ class AddProduct extends StatefulWidget{
 }
 
 class _AddProductState extends State<AddProduct> {
-  late File image = null as File;
+  late File _image = null as File;
 
   Future getCameraImage() async {
     var picture = await ImagePicker().pickImage(source: ImageSource.camera);
     File file = File( picture!.path );
     setState(() {
-      image = file;
+      _image = file;
     });
   }
 
@@ -27,7 +29,7 @@ class _AddProductState extends State<AddProduct> {
     var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
     File file = File( picture!.path );
     setState(() {
-      image = file ;
+      _image = file ;
     });
 
   }
@@ -65,8 +67,8 @@ class _AddProductState extends State<AddProduct> {
                   overflow: Overflow.visible,
                   children: <Widget>[
                     CircleAvatar(
-                      backgroundImage: image != null
-                          ? FileImage(image)
+                      backgroundImage: _image != null
+                          ? FileImage(_image)
                           : AssetImage("assets/images/technology.jpg")
                       as ImageProvider,
                     ),
@@ -93,6 +95,31 @@ class _AddProductState extends State<AddProduct> {
             text: "From Camera",
             icon: "assets/icons/Camera Icon.svg",
             press: getCameraImage,
+          ),
+          SizedBox(height: 10,),
+          SizedBox(
+            width: getProportionateScreenWidth(200),
+            height: getProportionateScreenHeight(56),
+            child: FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                onPressed: () {
+
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => MyShop(),
+                    ),
+                  );
+                },
+                color: Colors.redAccent,
+                child: Text(
+                  "Continue",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getProportionateScreenWidth(18),
+                  ),
+                )),
           ),
         ],
       ),);
