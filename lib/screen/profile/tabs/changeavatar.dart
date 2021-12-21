@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:image_picker/image_picker.dart';
 
+import '../../../config.dart';
 import '../profile_screen.dart';
 
 class ChangeAvatar extends StatefulWidget {
@@ -13,14 +15,14 @@ class ChangeAvatar extends StatefulWidget {
 }
 
 class _ChangeAvatarState extends State<ChangeAvatar> {
-  late File image = null as File;
+  late File _image = null as File;
 
 
   Future getCameraImage() async {
     var picture = await ImagePicker().pickImage(source: ImageSource.camera);
     File file = File( picture!.path );
     setState(() {
-      image = file;
+      _image = file;
     });
   }
 
@@ -28,7 +30,7 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
     var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
     File file = File( picture!.path );
     setState(() {
-      image = file ;
+      _image = file ;
     });
 
   }
@@ -67,8 +69,8 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
                   overflow: Overflow.visible,
                   children: <Widget>[
                     CircleAvatar(
-                      backgroundImage: image != null
-                          ? FileImage(image)
+                      backgroundImage: _image != null
+                          ? FileImage(_image)
                           : AssetImage("assets/images/avatar.jpg")
                               as ImageProvider,
                     ),
@@ -95,6 +97,31 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
             text: "From Camera",
             icon: "assets/icons/Camera Icon.svg",
             press: getCameraImage,
+          ),
+          SizedBox(height: 10,),
+          SizedBox(
+            width: getProportionateScreenWidth(200),
+            height: getProportionateScreenHeight(56),
+            child: FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                onPressed: () {
+                  user.images = _image.toString();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (ctx) => ProfileScreen(),
+                      ),
+                    );
+                },
+                color: Colors.redAccent,
+                child: Text(
+                  "Continue",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getProportionateScreenWidth(18),
+                  ),
+                )),
           ),
         ],
       ),

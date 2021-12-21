@@ -19,11 +19,7 @@ class Body extends StatelessWidget {
             ),
           );},
         ),
-        ProfileMenu(
-          icon: "assets/icons/Cash.svg",
-          text: "My Cash",
-          press: () {},
-        ),
+
         ProfileMenu(
           icon: "assets/icons/Settings.svg",
           text: "Settings",
