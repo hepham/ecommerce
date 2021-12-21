@@ -31,7 +31,7 @@ class BodyChat extends StatelessWidget {
                 Container(
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundImage: AssetImage(user.image),
+                    backgroundImage: AssetImage(user.images),
                   ),
                   padding: EdgeInsets.all(2),
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [

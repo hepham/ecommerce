@@ -14,7 +14,7 @@ class color extends StatefulWidget {
 
 int temp= 1;
 class _colorState extends State<color> {
-  int selectedColor = 0;int index = 0;
+  int selectedColor = 0;int index = 1;
 
 
 

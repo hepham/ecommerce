@@ -5,8 +5,7 @@ import 'dart:convert';
 
 class Login_Services {
   Future<LoginResponse> login(LoginRequest loginRequest) async {
-    final url = Uri.parse(
-        ApiUrl+"/users/login");
+    final url = Uri.parse(ApiUrl+'/users/login');
     final response = await http.post(
       url,
       headers: <String, String>{

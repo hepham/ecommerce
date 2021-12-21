@@ -184,7 +184,10 @@ Product convertToProduct(newProduct newProduct) {
   String tempImage = '';
   for (int i = 0; i < newProduct.images.length; i++) {
     tempImage = tempImage + newProduct.images[i];
-    tempImage = tempImage + '|';
+    if(i<newProduct.images.length-1){
+      tempImage = tempImage + '|';
+    }
+
   }
   String temptColor = '';
   for (int i = 0; i < newProduct.colors.length; i++) {

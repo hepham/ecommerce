@@ -82,7 +82,7 @@ class Body extends StatelessWidget {
         Container(
             height: 40,
             padding: EdgeInsets.fromLTRB(0, 0, 200, 0),
-            child: Button(text: "Bình luận")),
+            child: Button(text: "Comment")),
 
         productReview(product: product),
       ],

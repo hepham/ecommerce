@@ -17,7 +17,7 @@ class User_Service {
           user.isSeller=userResponse.data.isSeller;
           user.gmail=userResponse.data.gmail;
           user.description=userResponse.data.description;
-          user.image=userResponse.data.image;
+          user.images=userResponse.data.images;
           user.age=userResponse.data.age;
           user.address=userResponse.data.address;
           user.username=userResponse.data.username;

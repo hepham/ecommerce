@@ -15,9 +15,17 @@ class Register_Service{
     if (response.statusCode == 200) {
       // final ProductResponse Products = json.decode(response.body);
       //   print(response.body.toString());
-      UserResponse userResponse=UserResponse.fromJson(jsonDecode(response.body));
-      print(userResponse.status);
-      return userResponse;
+      print(response.body);
+      try {
+        UserResponse userResponse=UserResponse.fromJson(jsonDecode(response.body));
+        return userResponse;
+      }
+      catch(e)
+      {
+        throw Exception();
+      }
+      print(response.body);
+
     } else {
       throw Exception();
     }

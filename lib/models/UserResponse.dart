@@ -34,32 +34,32 @@ class Data {
     required this.username,
     required this.gmail,
     required this.phone,
-    // required this.password,
+    required this.password,
     required this.address,
     required this.age,
     required this.isSeller,
     required this.description,
-    required this.image,
+    required this.images,
   });
 
   int id;
-  late String username;
+  String username;
   String gmail;
   String phone;
-  // String password;
+  String password;
   String address;
   int age;
-  late bool isSeller;
+  bool isSeller;
   String description;
-  String image;
+  String images;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
         username: json["username"],
-        image: json["image"],
+        images: json["images"],
         gmail: json["gmail"],
         phone: json["phone"],
-        // password: json["password"],
+        password: json["password"],
         address: json["address"],
         age: json["age"],
         isSeller: json["isSeller"],
@@ -69,12 +69,14 @@ class Data {
   Map<String, dynamic> toJson() => {
         "id": id,
         "username": username,
+        "images": images,
         "gmail": gmail,
         "phone": phone,
-        // "password": password,
+        "password": password,
         "address": address,
         "age": age,
         "isSeller": isSeller,
+        "description": description
       };
 }
 
@@ -83,12 +85,12 @@ Data user = new Data(
     username: 'null',
     gmail: '',
     phone: '',
-    // password: '',
+    password: '',
     address: '',
     age: 0,
     isSeller: false,
     description: '',
-    image: 'assets/images/avatar.jpg');
+    images: 'assets/images/avatar.jpg');
 
 class UserSignUp {
   UserSignUp({
@@ -100,7 +102,7 @@ class UserSignUp {
     required this.age,
     required this.isSeller,
     required this.description,
-    required this.image,
+    required this.images,
   });
 
   late String username;
@@ -111,27 +113,29 @@ class UserSignUp {
   late int age;
   late bool isSeller;
   late String description;
-  late String image;
+  late String images;
 
   factory UserSignUp.fromJson(Map<String, dynamic> json) => UserSignUp(
-    username: json["username"],
-    image: json["image"],
-    gmail: json["gmail"],
-    phone: json["phone"],
-    password: json["password"],
-    address: json["address"],
-    age: json["age"],
-    isSeller: json["isSeller"],
-    description: json["description"],
-  );
+        username: json["username"],
+        images: json["images"],
+        gmail: json["gmail"],
+        phone: json["phone"],
+        password: json["password"],
+        address: json["address"],
+        age: json["age"],
+        isSeller: json["isSeller"],
+        description: json["description"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "username": username,
-    "gmail": gmail,
-    "phone": phone,
-    "password": password,
-    "address": address,
-    "age": age,
-    "isSeller": isSeller,
-  };
+        "username": username,
+        "images": images,
+        "gmail": gmail,
+        "phone": phone,
+        "password": password,
+        "address": address,
+        "age": age,
+        "isSeller": isSeller,
+        "description": description
+      };
 }

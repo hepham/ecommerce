@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:commerce/models/UserResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
@@ -21,7 +23,8 @@ class _productImageState extends State<productImage> {
           width: getProportionateScreenWidth(300),
           child:Hero(
             tag: widget.user.id.toString(),
-            child: Image.asset(widget.user.image),
+            // child: Image.asset(widget.user.images),
+           child: Image.memory(base64Decode(widget.user.images)),
           ),
         ),
 

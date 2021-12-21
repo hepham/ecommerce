@@ -1,3 +1,4 @@
+import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/screen/chat/messageScreen.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,6 +31,8 @@ class _productDecriptionState extends State<productDecription> {
             onTap: () {
               setState(() {
                 widget.product.isFavourite = !widget.product.isFavourite;
+                ProductApi.postData(widget.product);
+
               });
             },
             child: Align(

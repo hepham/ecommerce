@@ -5,6 +5,7 @@ import 'package:commerce/component/custom_surfix_icon.dart';
 import 'package:commerce/component/form_error.dart';
 import 'package:commerce/helper/keyboard.dart';
 import 'package:commerce/models/Login.dart';
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -93,20 +94,22 @@ class _SignFormState extends State<SignForm> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (ctx) => homeScreen(),
-                    ),
-                  );
+                  // Navigator.of(context).pushReplacement(
+                  //   MaterialPageRoute(
+                  //     builder: (ctx) => homeScreen(),
+                  //   ),
+                  // );
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     Login_Services loginService = new Login_Services();
                     loginService.login(loginRequest).then((value) {
                       print(value.status);
                       if (value.status == 'success') {
-                        print("ok");
+
                         User_Service.GetUserbyId(
                             int.parse(value.dataLogin.accessToken));
+                        user.password=loginRequest.password!;
+                        print(user.password);
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (ctx) => homeScreen(),

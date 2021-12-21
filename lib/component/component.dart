@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
@@ -106,6 +107,7 @@ class _cardState extends State<card> {
                             setState(() {
                               widget.product.isFavourite =
                                   !widget.product.isFavourite;
+                              ProductApi.postData(widget.product);
                             });
                           },
                           child: Container(
