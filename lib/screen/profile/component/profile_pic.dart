@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/profile/tabs/changeavatar.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +22,7 @@ class ProfilePic extends StatelessWidget {
             overflow: Overflow.visible,
             children: <Widget>[
               CircleAvatar(
-                backgroundImage: AssetImage(user.images),
+                  backgroundImage:MemoryImage(base64Decode(user.images)),
               ),
               Positioned(
                 right: -12,
