@@ -38,13 +38,13 @@ class _colorState extends State<color> {
                 isSelected: i == selectedColor,
               ),
             ),
-          ...List.generate(
-            widget.product.colors.length,
-            (index) => colorDot(
-              color: widget.product.colors[index],
-              isSelected: index == selectedColor,
-            ),
-          ),
+          // ...List.generate(
+          //   widget.product.colors.length,
+          //   (index) => colorDot(
+          //     color: widget.product.colors[index],
+          //     isSelected: index == selectedColor,
+          //   ),
+          // ),
           Spacer(),
           RoundBtn(
             icon: Icons.remove,

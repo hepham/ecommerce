@@ -24,7 +24,6 @@ class _BodyState extends State<Body> {
           child: Dismissible(
             key: Key(demoCart[index].product.id.toString()),
             direction: DismissDirection.endToStart,
-
             onDismissed: (direction) {
               setState(() {
                 demoCart.removeAt(index);
