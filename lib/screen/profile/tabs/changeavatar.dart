@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'dart:io'as Io;
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
                     CircleAvatar(
                       backgroundImage: _image != null
                           ? FileImage(_image)
-                          : AssetImage("assets/images/avatar.jpg")
+                          : MemoryImage(base64Decode(user.images))
                               as ImageProvider,
                     ),
                     Positioned(
@@ -107,7 +108,12 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
-                  user.images = _image.toString();
+
+                  print(_image.path.toString());
+                  final bytes = Io.File(_image.path.toString()).readAsBytesSync();
+                  String img64 = base64Encode(bytes);
+                  print(img64.substring(0, 100));
+                  user.images=img64;
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (ctx) => ProfileScreen(),
