@@ -57,38 +57,40 @@ class _searchFieldState extends State<searchField> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("test"),
-        centerTitle: true,
-        backgroundColor: Colors.redAccent,
-      ),
-      body: Column(
-        children: <Widget>[
-         buildSearch(),
-          Expanded(
-            // child: ListView.builder(
-            //   itemCount: Products.length,
-            //   itemBuilder: (context, index) {
-            //     final Product = Products[index];
-            //
-            //     return buildproduct(Product);
-            //   },
-            // ),
-            child:SingleChildScrollView(
-              child: Column(
-                children: [
-                  for(int i=0;i<Products.length-1;i+=2)
-                    Row(
-                      children: [
-                        card(product: Products[i]),
-                        card(product: Products[i+1]),
-                      ],
-                    ),
-                ],
-              ),
-            )
-          ),
-        ],
+      // appBar: AppBar(
+      //   title: Text("Search"),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.redAccent,
+      // ),
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+           buildSearch(),
+            Expanded(
+              // child: ListView.builder(
+              //   itemCount: Products.length,
+              //   itemBuilder: (context, index) {
+              //     final Product = Products[index];
+              //
+              //     return buildproduct(Product);
+              //   },
+              // ),
+              child:SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for(int i=0;i<Products.length-1;i+=2)
+                      Row(
+                        children: [
+                          card(product: Products[i]),
+                          card(product: Products[i+1]),
+                        ],
+                      ),
+                  ],
+                ),
+              )
+            ),
+          ],
+        ),
       ),
     );
   }

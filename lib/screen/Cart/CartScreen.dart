@@ -1,6 +1,7 @@
 import 'package:commerce/component/navigationBar.dart';
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/screen/Cart/component/Body.dart';
+import 'package:commerce/screen/Cart/component/checkoutCard.dart';
 import 'package:flutter/material.dart';
 
 import '../../enums.dart';
@@ -33,7 +34,8 @@ class CartScreen extends StatelessWidget {
         ),
       ),
       body: Body(),
-      bottomNavigationBar: NavigationBar(selectedMenu: MenuState.cart),
+        bottomNavigationBar:Checkout(),
+      // bottomNavigationBar: NavigationBar(selectedMenu: MenuState.cart),
     );
   }
 }

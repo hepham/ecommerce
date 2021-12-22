@@ -6,6 +6,7 @@ class cart{
   final int numOfItems;
   cart({required this.product,required this.numOfItems});
 
+
 }
 List<cart>demoCart=[
   // cart(product: demoProducts[0], numOfItems: 10),

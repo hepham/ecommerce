@@ -5,6 +5,7 @@ import 'package:commerce/models/cart.dart';
 
 import '../../../config.dart';
 import 'cartItem.dart';
+import 'checkoutCard.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -46,6 +47,7 @@ class _BodyState extends State<Body> {
           ),
         ),
       ),
+
     );
   }
 }
