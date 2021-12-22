@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:io'as Io;
+import 'package:commerce/api/User_Service.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
@@ -114,6 +115,8 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
                   String img64 = base64Encode(bytes);
                   print(img64.substring(0, 100));
                   user.images=img64;
+                  User_Service.UserUpdate(user);
+
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (ctx) => ProfileScreen(),

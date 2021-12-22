@@ -26,4 +26,25 @@ class User_Service {
       throw Exception();
     }
   }
+  static UserUpdate(Data user)async{
+    final url=Uri.parse(ApiUrl+ '/users/update');
+
+    print(json.encode(user.toJson()));
+    final response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: json.encode(user.toJson()),
+    );
+    if (response.statusCode == 200) {
+      // If the server did return a 200 CREATED response,
+      // then parse the JSON.
+      print(response.body);
+    } else {
+      // If the server did not return a 200 CREATED response,
+      // then throw an exception.
+      throw Exception('Update failed.');
+    }
+  }
 }

@@ -1,4 +1,6 @@
 
+import 'package:commerce/api/User_Service.dart';
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/profile/tabs/settings.dart';
 import 'package:flutter/material.dart';
 
@@ -152,6 +154,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                       _displaySnackBar(context);
                     }
                     else {
+                      user.password=password;
+                      User_Service.UserUpdate(user);
+                      print(password);
                       checkpass = true;
                       Navigator.of(context).pushReplacement(
                       MaterialPageRoute(

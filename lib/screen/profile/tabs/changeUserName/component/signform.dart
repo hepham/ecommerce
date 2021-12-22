@@ -1,4 +1,5 @@
 
+import 'package:commerce/api/User_Service.dart';
 import 'package:commerce/component/form_error.dart';
 import 'package:commerce/helper/keyboard.dart';
 import 'package:commerce/models/UserResponse.dart';
@@ -57,6 +58,7 @@ class _SignFormState extends State<SignForm> {
                   if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
                   user.username= name.toString();
+                  User_Service.UserUpdate(user);
 
                   KeyboardUtil.hideKeyboard(context);
                   Navigator.of(context).pushReplacement(
