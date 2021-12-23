@@ -1,12 +1,15 @@
+import 'package:commerce/api/Order_Service.dart';
+import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/screen/Cart/CartScreen.dart';
+import 'package:commerce/screen/Cart/component/cartItem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:commerce/models/cart.dart';
 
-import '../../../config.dart';
-import 'cartItem.dart';
-import 'checkoutCard.dart';
+import '../../../../config.dart';
+import 'package:commerce/models/UserResponse.dart';
+
 
 class Body extends StatefulWidget {
   @override
@@ -14,13 +17,34 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  List<cart> CartList=[];
+  void initState(){
+
+    super.initState();
+    this.init();
+  }
+  Future init()async{
+    List<cart> TemptList=[];
+    final carts=await Order_Service().getListOrderUser(user.id);
+    for(int i=0;i<carts.length;i++){
+      var product=await ProductApi.GetProductById(carts[i].productId);
+      print(product.title_name);
+      cart tempt=new cart(product: product,numOfItems: carts[i].quantity,idOrder: carts[i].id);
+      TemptList.add(tempt);
+
+    }
+    if(mounted)setState(() {
+      this.CartList=TemptList;
+    });
+    print(CartList.length);
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+      EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: ListView.builder(
-        itemCount: demoCart.length,
+        itemCount: CartList.length,
         itemBuilder: (context, index) => Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Dismissible(
@@ -29,8 +53,10 @@ class _BodyState extends State<Body> {
             direction: DismissDirection.endToStart,
             onDismissed: (direction) {
               setState(() {
-                demoCart.removeAt(index);
-                print(demoCart.length);
+                Order_Service().deleteOrder(CartList[index].idOrder);
+                CartList.removeAt(index);
+
+                print(CartList.length);
 
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(' delete a item')));
@@ -51,7 +77,7 @@ class _BodyState extends State<Body> {
                 ],
               ),
             ),
-            child: CartItem(Cart: demoCart[index]),
+            child: CartItem(Cart: CartList[index]),
           ),
         ),
       ),

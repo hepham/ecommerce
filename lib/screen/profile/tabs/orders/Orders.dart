@@ -1,14 +1,17 @@
+import 'package:commerce/component/Button.dart';
 import 'package:commerce/component/navigationBar.dart';
+import 'package:commerce/config.dart';
 import 'package:commerce/models/cart.dart';
-import 'package:commerce/screen/Cart/component/Body.dart';
+import 'package:commerce/screen/profile/tabs/orders/Body.dart';
 import 'package:commerce/screen/Cart/component/checkoutCard.dart';
+import 'package:commerce/screen/profile/tabs/orders/OrderCheck.dart';
 import 'package:flutter/material.dart';
 
-import '../../enums.dart';
 
-class CartScreen extends StatelessWidget {
-  static String routeName = '/cart';
-  const CartScreen({Key? key}) : super(key: key);
+
+class OrderScreen extends StatelessWidget {
+  static String routeName = '/order';
+  const OrderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class CartScreen extends StatelessWidget {
 
           children: [
             Text(
-              'Your Cart',
+              'Orders',
               style: TextStyle(
                 color: Colors.black,
               ),
@@ -34,7 +37,8 @@ class CartScreen extends StatelessWidget {
         ),
       ),
       body: Body(),
-      bottomNavigationBar:Checkout(),
+      bottomNavigationBar:OrderCheck(),
+
       // bottomNavigationBar: NavigationBar(selectedMenu: MenuState.cart),
     );
   }

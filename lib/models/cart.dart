@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 
 class cart{
   final newProduct product;
-  final int numOfItems;
-  cart({required this.product,required this.numOfItems});
+   int numOfItems;
+   int idOrder;
+  cart({required this.product,required this.numOfItems,required this.idOrder});
 
 
 }

@@ -69,7 +69,7 @@ class Body extends StatelessWidget {
                 child: Button(
                   text: 'Add to Cart',
                   press: () {
-                    demoCart.add(cart(product: product, numOfItems: temp));
+                    demoCart.add(cart(product: product, numOfItems: temp,idOrder: 0));
                   },
                 ),
               ),

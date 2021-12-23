@@ -11,6 +11,8 @@ import 'package:commerce/screen/start/start.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:commerce/screen/detailProduct/detailProductScreen.dart';
 import 'package:commerce/screen/DiscountScreen/discountScreen.dart';
+
+import 'models/cart.dart';
 final Map<String,WidgetBuilder>routes={
   start.routeName:(context)=>start(),
   SignInScreen.routeName:(context)=>SignInScreen(),

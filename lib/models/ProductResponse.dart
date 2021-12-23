@@ -45,16 +45,16 @@ class Product {
     required this.images,
   });
 
-  final int id;
-  final String title_Name;
-  final String images;
-  final String colors;
-  final int price;
-  final String type;
+  int id;
+  String title_Name;
+  String images;
+  String colors;
+  int price;
+  String type;
   bool isFavourite;
   bool isPopular;
-  final String description;
-  final int user_id;
+  String description;
+  int user_id;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json['id'],
@@ -85,8 +85,8 @@ class Product {
 
 List<newProduct> demoProducts = [
   newProduct(
-id: 10,
-    type:'techology',
+    id: 10,
+    type: 'techology',
     images: [
       "assets/images/iphone13product.jpg",
       "assets/images/iphone13.jpg",
@@ -102,11 +102,11 @@ id: 10,
     description: 'sdksjhkjshk',
     isFavourite: true,
     isPopular: true,
-    user_id:15,
+    user_id: 15,
   ),
   newProduct(
     id: 10,
-    type:'techology',
+    type: 'techology',
     images: [
       "assets/images/iphone13product.jpg",
       "assets/images/iphone13.jpg",
@@ -122,7 +122,7 @@ id: 10,
     description: 'sdksjhkjshk',
     isFavourite: true,
     isPopular: true,
-    user_id:15,
+    user_id: 15,
   ),
 ];
 List<newProduct> searchQuery(String? searchText) {
@@ -184,10 +184,9 @@ Product convertToProduct(newProduct newProduct) {
   String tempImage = '';
   for (int i = 0; i < newProduct.images.length; i++) {
     tempImage = tempImage + newProduct.images[i];
-    if(i<newProduct.images.length-1){
+    if (i < newProduct.images.length - 1) {
       tempImage = tempImage + '|';
     }
-
   }
   String temptColor = '';
   for (int i = 0; i < newProduct.colors.length; i++) {

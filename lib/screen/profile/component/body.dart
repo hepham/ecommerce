@@ -1,5 +1,6 @@
 
 import 'package:commerce/screen/profile/detailUser/detailUserScreen.dart';
+import 'package:commerce/screen/profile/tabs/orders/Orders.dart';
 import 'package:commerce/screen/profile/tabs/logout.dart';
 
 import 'package:commerce/screen/profile/tabs/settings.dart';
@@ -33,6 +34,17 @@ class Body extends StatelessWidget {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (ctx) => Settings(),
+              ),
+            );
+          },
+        ),
+        ProfileMenu(
+          icon: "assets/icons/Cart.svg",
+          text: "Orders",
+          press: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (ctx) => OrderScreen(),
               ),
             );
           },

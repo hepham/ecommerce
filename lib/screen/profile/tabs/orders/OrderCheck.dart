@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:commerce/config.dart';
 
-class Checkout extends StatefulWidget {
-  const Checkout({Key? key}) : super(key: key);
+class OrderCheck extends StatefulWidget {
+  const OrderCheck({Key? key}) : super(key: key);
 
 
   @override
-  State<Checkout> createState() => _CheckoutState();
+  State<OrderCheck> createState() => _OrderCheckState();
 }
 
-class _CheckoutState extends State<Checkout> {
+class _OrderCheckState extends State<OrderCheck> {
 
   int Sumcart(List<cart> CartList){
     int T=0;
@@ -78,21 +78,21 @@ class _CheckoutState extends State<Checkout> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text.rich(
-                  TextSpan(
-                    text: "Total:\n",
-                    children: [
-                      TextSpan(
-                        text: "\$ ${Sumcart(demoCart)}",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                      ),
-                    ],
-                  ),
-                ),
+                // Text.rich(
+                //   TextSpan(
+                //     text: "Total:\n",
+                //     children: [
+                //       TextSpan(
+                //         text: "\$ ${Sumcart(demoCart)}",
+                //         style: TextStyle(fontSize: 16, color: Colors.black),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 SizedBox(
-                  width: getProportionateScreenWidth(190),
+                  width: getProportionateScreenWidth(300),
                   child: Button(
-                    text: "Check Out",
+                    text: "Update",
                     press: () {
                       for(int i=0;i<demoCart.length;i++){
                         OrderRequest orderRequest=new OrderRequest(userIdBuy: user.id, productId: demoCart[i].product.id, quantity: demoCart[i].numOfItems, isCompleted: false, userIdSell: demoCart[i].product.user_id);
