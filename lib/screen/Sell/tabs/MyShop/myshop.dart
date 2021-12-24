@@ -10,12 +10,13 @@ class MyShop extends StatelessWidget{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Shop",style: TextStyle(color: Colors.black),),
-        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text("My Shop",style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.redAccent,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.of(context).pushReplacement(

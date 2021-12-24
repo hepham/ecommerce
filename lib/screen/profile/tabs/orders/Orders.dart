@@ -7,6 +7,8 @@ import 'package:commerce/screen/Cart/component/checkoutCard.dart';
 import 'package:commerce/screen/profile/tabs/orders/OrderCheck.dart';
 import 'package:flutter/material.dart';
 
+import '../../profile_screen.dart';
+
 
 
 class OrderScreen extends StatelessWidget {
@@ -20,6 +22,19 @@ class OrderScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (ctx) => ProfileScreen(),
+              ),
+            );
+          },
+        ),
         title: Column(
 
           children: [

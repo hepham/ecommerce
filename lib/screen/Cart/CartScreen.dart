@@ -2,6 +2,7 @@ import 'package:commerce/component/navigationBar.dart';
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/screen/Cart/component/Body.dart';
 import 'package:commerce/screen/Cart/component/checkoutCard.dart';
+import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../enums.dart';
@@ -17,6 +18,19 @@ class CartScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (ctx) => homeScreen(),
+              ),
+            );
+          },
+        ),
         title: Column(
 
           children: [

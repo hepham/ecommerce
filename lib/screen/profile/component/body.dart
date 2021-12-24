@@ -13,6 +13,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: 10),
         ProfilePic(),
         SizedBox(height: 20),
         ProfileMenu(

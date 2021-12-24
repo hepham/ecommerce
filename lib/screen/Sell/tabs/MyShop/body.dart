@@ -2,7 +2,7 @@ import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/screen/Home/component/productCard.dart';
-import 'package:commerce/screen/Sell/tabs/MyShop/add_product.dart';
+import 'package:commerce/screen/Sell/tabs/MyShop/addProduct/new_product_images.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +44,7 @@ class _BodyState extends State<Body> {
                 text: "Add New Product",
                 press: () {Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (ctx) => AddProduct(),
+                    builder: (ctx) => NewProductImage(),
                   ),
                 );},
               ),

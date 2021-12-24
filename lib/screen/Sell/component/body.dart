@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
             padding: EdgeInsets.all(20),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            color: Colors.redAccent,
+            color: Colors.pink,
             onPressed: () {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(

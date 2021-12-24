@@ -1,4 +1,5 @@
 import 'package:commerce/component/navigationBar.dart';
+import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../enums.dart';
@@ -11,12 +12,27 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
+
+        backgroundColor: Colors.redAccent,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (ctx) => homeScreen(),
+              ),
+            );
+          },
+        ),
+        elevation: 0.0,
+
         title: Text(
           "My Profile",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Body(),

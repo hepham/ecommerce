@@ -11,15 +11,12 @@ class SellSignUp extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          "My Shop",
-          style: TextStyle(color: Colors.black),
-        ),
+        backgroundColor: Colors.redAccent,
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.of(context).pushReplacement(
@@ -29,6 +26,12 @@ class SellSignUp extends StatelessWidget {
             );
           },
         ),
+
+        title: Text(
+          "My Shop",
+          style: TextStyle(color: Colors.white),
+        ),
+
       ),
       body: Body(),
       bottomNavigationBar: NavigationBar(selectedMenu: MenuState.sell),
