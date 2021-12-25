@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 import '../../../config.dart';
 import '../../../constants.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -110,6 +115,9 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                       builder: (ctx) => SignInScreen(),
                     ),
                   );
+                  setState(() {
+
+                  });
                 },
                 color: Colors.redAccent,
                 child: Text(

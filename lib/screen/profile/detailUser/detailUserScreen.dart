@@ -10,9 +10,14 @@ import 'component/body.dart';
 
 
 
-class DetailUserScreen extends StatelessWidget {
+class DetailUserScreen extends StatefulWidget {
   const DetailUserScreen({Key? key}) : super(key: key);
 
+  @override
+  State<DetailUserScreen> createState() => _DetailUserScreenState();
+}
+
+class _DetailUserScreenState extends State<DetailUserScreen> {
   @override
   Widget build(BuildContext context) {
 
@@ -31,6 +36,9 @@ class DetailUserScreen extends StatelessWidget {
                 builder: (ctx) => ProfileScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
 

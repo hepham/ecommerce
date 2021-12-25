@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 
 import '../../../../enums.dart';
 
-class SellSignUp extends StatelessWidget {
+class SellSignUp extends StatefulWidget {
+  @override
+  State<SellSignUp> createState() => _SellSignUpState();
+}
+
+class _SellSignUpState extends State<SellSignUp> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,6 +29,9 @@ class SellSignUp extends StatelessWidget {
                 builder: (ctx) => homeScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
 

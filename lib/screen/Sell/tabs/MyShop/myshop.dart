@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 
 import '../../sell_screen.dart';
 
-class MyShop extends StatelessWidget{
+class MyShop extends StatefulWidget{
 
+  @override
+  State<MyShop> createState() => _MyShopState();
+}
+
+class _MyShopState extends State<MyShop> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,6 +29,9 @@ class MyShop extends StatelessWidget{
                 builder: (ctx) => SellScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
       ),

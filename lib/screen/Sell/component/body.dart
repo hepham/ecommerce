@@ -4,7 +4,12 @@ import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,7 +22,10 @@ class Body extends StatelessWidget {
             MaterialPageRoute(
               builder: (ctx) => MyShop(),
             ),
-          );},
+          );
+          setState(() {
+
+          });},
         ),
 
         ProfileMenu(
@@ -38,6 +46,9 @@ class Body extends StatelessWidget {
                   builder: (ctx) => DeleteMyShop(),
                 ),
               );
+              setState(() {
+
+              });
             },
             child: Row(
               children: [

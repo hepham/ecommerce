@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import '../../../config.dart';
 import '../../../constants.dart';
 
-class NoAccountText extends StatelessWidget {
+class NoAccountText extends StatefulWidget {
   const NoAccountText({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<NoAccountText> createState() => _NoAccountTextState();
+}
+
+class _NoAccountTextState extends State<NoAccountText> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,6 +37,9 @@ class NoAccountText extends StatelessWidget {
                 builder: (ctx) => SignUpScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
       ],

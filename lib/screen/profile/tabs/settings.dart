@@ -1,21 +1,30 @@
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:commerce/screen/profile/profile_screen.dart';
 import 'package:commerce/screen/profile/tabs/changepassword.dart';
-import 'package:commerce/screen/profile/tabs/changeUserName/changeusername.dart';
+import 'package:commerce/screen/profile/tabs/updateUserInfo//update_user_info.dart';
+
 import 'package:flutter/material.dart';
 
 
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.redAccent,
+        centerTitle: true,
+        title: Text("User Settings",style: TextStyle(color: Colors.white),),
+
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.of(context).pushReplacement(
@@ -23,6 +32,9 @@ class Settings extends StatelessWidget {
                 builder: (ctx) => ProfileScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
       ),
@@ -35,14 +47,17 @@ class Settings extends StatelessWidget {
           ),
           SizedBox(height: 30),
           ProfileMenu(
-            text: "Change UserName",
+            text: "Update My Information",
             icon: "assets/icons/User.svg",
             press: () {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (ctx) => ChangeUserName(),
+                  builder: (ctx) => UpdateUserInfo(),
                 ),
               );
+              setState(() {
+
+              });
             },),
           ProfileMenu(
               text: "Change Password",
@@ -53,6 +68,9 @@ class Settings extends StatelessWidget {
                     builder: (ctx) => ChangePassword(),
                   ),
                 );
+                setState(() {
+
+                });
               },),
         ],
       ),

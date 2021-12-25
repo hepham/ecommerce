@@ -6,10 +6,15 @@ import 'package:flutter/material.dart';
 import '../../enums.dart';
 import 'component/body.dart';
 
-class SellScreen extends StatelessWidget {
+class SellScreen extends StatefulWidget {
   static String routeName = '/sell';
   const SellScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SellScreen> createState() => _SellScreenState();
+}
+
+class _SellScreenState extends State<SellScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +32,7 @@ class SellScreen extends StatelessWidget {
                 builder: (ctx) => homeScreen(),
               ),
             );
+            setState(() {});
           },
         ),
 

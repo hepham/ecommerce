@@ -76,6 +76,9 @@ class _SignFormState extends State<SignForm> {
                       builder: (ctx) => ForgotPassword(),
                     ),
                   );
+                  setState(() {
+
+                  });
                 },
                 child: Text(
                   "Forgot Password",
@@ -115,6 +118,9 @@ class _SignFormState extends State<SignForm> {
                             builder: (ctx) => homeScreen(),
                           ),
                         );
+                        setState(() {
+
+                        });
                       }
                     });
 

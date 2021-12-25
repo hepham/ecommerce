@@ -6,13 +6,18 @@ import 'package:flutter/material.dart';
 
 import '../../../config.dart';
 
-class LogOut extends StatelessWidget{
+class LogOut extends StatefulWidget{
 
+  @override
+  State<LogOut> createState() => _LogOutState();
+}
+
+class _LogOutState extends State<LogOut> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      
+
       body: Column(
         children: [
           SizedBox(height: 300),
@@ -34,6 +39,9 @@ class LogOut extends StatelessWidget{
                         builder: (ctx) => SignInScreen(),
                       ),
                     );
+                    setState(() {
+
+                    });
                   },
                   color: Colors.redAccent,
                   child: Text(
@@ -60,6 +68,9 @@ class LogOut extends StatelessWidget{
                         builder: (ctx) => ProfileScreen(),
                       ),
                     );
+                    setState(() {
+
+                    });
                   },
                   color: Colors.redAccent,
                   child: Text(
@@ -77,5 +88,4 @@ class LogOut extends StatelessWidget{
 
     );
   }
-
 }

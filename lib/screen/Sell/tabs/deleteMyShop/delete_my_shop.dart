@@ -8,8 +8,13 @@ import '../../../../constants.dart';
 
 
 
-class DeleteMyShop extends StatelessWidget{
+class DeleteMyShop extends StatefulWidget{
 
+  @override
+  State<DeleteMyShop> createState() => _DeleteMyShopState();
+}
+
+class _DeleteMyShopState extends State<DeleteMyShop> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -27,6 +32,9 @@ class DeleteMyShop extends StatelessWidget{
                 builder: (ctx) => SellScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
 
@@ -57,6 +65,9 @@ class DeleteMyShop extends StatelessWidget{
                         builder: (ctx) => homeScreen(),
                       ),
                     );
+                    setState(() {
+
+                    });
                   },
                   color: Colors.redAccent,
                   child: Text(
@@ -100,5 +111,4 @@ class DeleteMyShop extends StatelessWidget{
 
     );
   }
-
 }

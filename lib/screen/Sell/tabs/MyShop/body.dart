@@ -46,7 +46,10 @@ class _BodyState extends State<Body> {
                   MaterialPageRoute(
                     builder: (ctx) => NewProductImage(),
                   ),
-                );},
+                );
+                setState(() {
+
+                });},
               ),
               SizedBox(height: getProportionateScreenHeight(20),),
               ProductCard(products: ListProducts,),

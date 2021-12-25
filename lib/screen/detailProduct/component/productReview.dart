@@ -44,6 +44,8 @@ class _productReviewState extends State<productReview> {
                 date: '',
                 text: values,
               ));
+              setState(() {
+              });
             },
           ),
         ],

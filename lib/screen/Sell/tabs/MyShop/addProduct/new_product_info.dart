@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../../config.dart';
 
-String pn = "";
-String pd = "";
+String name = "";
+String description = "";
+String type = "";
+String price = "";
+
 
 class NewProductInfo extends StatefulWidget {
   @override
@@ -34,6 +37,9 @@ class _NewProductInfoState extends State<NewProductInfo> {
                 builder: (ctx) => NewProductImage(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
       ),
@@ -48,7 +54,7 @@ class _NewProductInfoState extends State<NewProductInfo> {
                 TextFormField(
                   onChanged: (value) {
                     setState(() {
-                      pd = value;
+                      name = value;
                     });
                   },
                   decoration: InputDecoration(
@@ -59,12 +65,35 @@ class _NewProductInfoState extends State<NewProductInfo> {
                 TextFormField(
                   onChanged: (value) {
                     setState(() {
-                      pd = value;
+                      description = value;
                     });
                   },
                   decoration: InputDecoration(
                     hintText: "Describe Your New Product",
                     labelText: "Product Detail",
+                  ),
+                ),
+                TextFormField(
+                  onChanged: (value) {
+                    setState(() {
+                      type = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    hintText: "Type Of Product",
+                    labelText: "Product Type",
+                  ),
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) {
+                    setState(() {
+                      price = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    hintText: "New Product Price",
+                    labelText: "Product Price",
                   ),
                 ),
               ],
@@ -82,13 +111,20 @@ class _NewProductInfoState extends State<NewProductInfo> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   onPressed: () {
-                    newProductInstance.title_name = pn;
-                    newProductInstance.description = pd;
+                    newProductInstance.title_name = name;
+                    newProductInstance.description = description;
+                    newProductInstance.type = type;
+                    var priceInt = int.parse(price);
+                    assert(priceInt is int);
+                    newProductInstance.price = priceInt;
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (ctx) => MyShop(),
                       ),
                     );
+                    setState(() {
+
+                    });
                   },
                   color: Colors.redAccent,
                   child: Text(

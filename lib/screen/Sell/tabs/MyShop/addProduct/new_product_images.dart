@@ -112,6 +112,9 @@ class _NewProductImagesState extends State<NewProductImage> {
                   _imageListFile.forEach((index) {
                     newProductInstance.images.add(index.toString());
                   });
+                  setState(() {
+
+                  });
                 },
                 color: Colors.redAccent,
                 child: Text(

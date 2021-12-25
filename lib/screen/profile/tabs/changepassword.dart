@@ -44,6 +44,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                 builder: (ctx) => Settings(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
       ),
@@ -162,7 +165,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                       MaterialPageRoute(
                         builder: (ctx) => Settings(),
                       ),
-                    );}
+                    );
+                    setState(() {
+
+                    });}
                   },
                   color: Colors.redAccent,
                   child: Text(

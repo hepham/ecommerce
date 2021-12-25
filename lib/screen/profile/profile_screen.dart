@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import '../../enums.dart';
 import 'component/body.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   static String routeName = '/profile';
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +31,9 @@ class ProfileScreen extends StatelessWidget {
                 builder: (ctx) => homeScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
         elevation: 0.0,

@@ -82,6 +82,9 @@ class _SignUpFormState extends State<SignUpForm> {
                             builder: (ctx) => SignInScreen(),
                           ),
                         );
+                        setState(() {
+
+                        });
                       }
                     });
                   }

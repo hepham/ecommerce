@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:io'as Io;
+import 'dart:io' as Io;
 import 'package:commerce/api/User_Service.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
@@ -19,10 +19,9 @@ class ChangeAvatar extends StatefulWidget {
 class _ChangeAvatarState extends State<ChangeAvatar> {
   late File _image = null as File;
 
-
   Future getCameraImage() async {
     var picture = await ImagePicker().pickImage(source: ImageSource.camera);
-    File file = File( picture!.path );
+    File file = File(picture!.path);
     setState(() {
       _image = file;
     });
@@ -30,13 +29,11 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
 
   Future getGalleryImage() async {
     var picture = await ImagePicker().pickImage(source: ImageSource.gallery);
-    File file = File( picture!.path );
+    File file = File(picture!.path);
     setState(() {
-      _image = file ;
+      _image = file;
     });
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +52,7 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
                 builder: (ctx) => ProfileScreen(),
               ),
             );
+            setState(() {});
           },
         ),
       ),
@@ -100,7 +98,9 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
             icon: "assets/icons/Camera Icon.svg",
             press: getCameraImage,
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           SizedBox(
             width: getProportionateScreenWidth(200),
             height: getProportionateScreenHeight(56),
@@ -109,19 +109,20 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
-
                   print(_image.path.toString());
-                  final bytes = Io.File(_image.path.toString()).readAsBytesSync();
+                  final bytes =
+                      Io.File(_image.path.toString()).readAsBytesSync();
                   String img64 = base64Encode(bytes);
                   print(img64.substring(0, 100));
-                  user.images=img64;
+                  user.images = img64;
                   User_Service.UserUpdate(user);
 
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (ctx) => ProfileScreen(),
-                      ),
-                    );
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => ProfileScreen(),
+                    ),
+                  );
+                  setState(() {});
                 },
                 color: Colors.redAccent,
                 child: Text(

@@ -1,4 +1,4 @@
-import 'package:commerce/screen/profile/tabs/changeUserName/component/body.dart';
+import 'package:commerce/screen/profile/tabs/updateUserInfo/component/body.dart';
 import 'package:commerce/screen/profile/profile_screen.dart';
 
 
@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 
 
 
-class ChangeUserName extends StatefulWidget {
+class UpdateUserInfo extends StatefulWidget {
   @override
-  State<ChangeUserName> createState() => _ChangeUserNameState();
+  State<UpdateUserInfo> createState() => _UpdateUserInfoState();
 }
 
 
-class _ChangeUserNameState extends State<ChangeUserName> {
+class _UpdateUserInfoState extends State<UpdateUserInfo> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -30,6 +30,9 @@ class _ChangeUserNameState extends State<ChangeUserName> {
                 builder: (ctx) => ProfileScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
       ),

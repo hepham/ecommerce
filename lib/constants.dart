@@ -36,11 +36,15 @@ const String kMatchPassError = "Passwords don't match";
 const String kShortNameError = "Name is too short";
 const String kNameNullError = "Please Enter your name";
 
+const String kAgeNullError = "Please Enter your age";
+const String kValidAgeError = "Refill your age, Please!";
+
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kInvalidPhoneNumberError = "Please Enter Valid Number";
 const String kMatchPhoneNumberError = "Number don't match";
 
 const String kAddressNullError = "Please Enter your address";
+const String kValidAddressError = "Refill your full address, Please!";
 
 
 

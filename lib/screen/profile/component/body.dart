@@ -8,7 +8,12 @@ import 'package:flutter/material.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,6 +30,9 @@ class Body extends StatelessWidget {
                 builder: (ctx) => DetailUserScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
 
@@ -37,6 +45,9 @@ class Body extends StatelessWidget {
                 builder: (ctx) => Settings(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
         ProfileMenu(
@@ -48,6 +59,9 @@ class Body extends StatelessWidget {
                 builder: (ctx) => OrderScreen(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
         ProfileMenu(
@@ -59,6 +73,9 @@ class Body extends StatelessWidget {
                 builder: (ctx) => LogOut(),
               ),
             );
+            setState(() {
+
+            });
           },
         ),
       ],
