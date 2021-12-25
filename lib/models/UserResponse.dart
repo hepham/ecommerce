@@ -136,6 +136,6 @@ class UserSignUp {
         "address": address,
         "age": age,
         "isSeller": isSeller,
-        "description": description
+        "description": description,
       };
 }

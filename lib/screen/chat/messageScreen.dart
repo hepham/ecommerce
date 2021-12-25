@@ -190,7 +190,7 @@ class _ChatScreenState extends State<ChatScreen> {
     Data chat = user;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.redAccent,
         centerTitle: true,
         title: RichText(
           textAlign: TextAlign.center,

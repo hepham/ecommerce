@@ -1,5 +1,7 @@
 
+
 import 'package:commerce/models/UserResponse.dart';
+import 'package:commerce/models/comment.dart';
 import 'package:commerce/screen/chat/messageScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,11 +15,10 @@ class BodyChat extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return ListView.builder(
-      itemCount: 1,
+      itemCount: review.length,
       itemBuilder: (BuildContext context, int index) {
-        index = 1;
 
-        final Data chat = user;
+        final Comment chat = review[index];
         return GestureDetector(
           onTap: () => Navigator.pushNamed(context, ChatScreen.routeName),
 
@@ -31,7 +32,7 @@ class BodyChat extends StatelessWidget {
                 Container(
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundImage: AssetImage(user.images),
+                    backgroundImage: AssetImage(chat.user.images),
                   ),
                   padding: EdgeInsets.all(2),
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
@@ -55,7 +56,7 @@ class BodyChat extends StatelessWidget {
                           Row(
                             children: <Widget>[
                               Text(
-                                chat.username,
+                                chat.user.username,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -73,7 +74,7 @@ class BodyChat extends StatelessWidget {
                       Container(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          chat.username,
+                          chat.text,
                           style: TextStyle(
                             fontSize: 13,
                             color: Colors.black54,

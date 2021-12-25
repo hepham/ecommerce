@@ -22,7 +22,7 @@ class _MessageState extends State<MessageScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.redAccent,
         centerTitle: true,
         title: RichText(
           textAlign: TextAlign.center,
