@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:commerce/screen/Sell/tabs/MyShop/addProduct/new_product_info.dart';
 import 'package:commerce/screen/Sell/tabs/MyShop/myshop.dart';
 import 'package:flutter/material.dart';
+import 'package:commerce/models/ProductResponse.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../config.dart';
@@ -14,6 +16,7 @@ class NewProductImage extends StatefulWidget {
 class _NewProductImagesState extends State<NewProductImage> {
   final ImagePicker _picker = ImagePicker();
   List<XFile> _imageList = [];
+  List<File> _imageListFile = [];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class _NewProductImagesState extends State<NewProductImage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "My Shop",
+          "Choose Product Preview",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.redAccent,
@@ -90,7 +93,9 @@ class _NewProductImagesState extends State<NewProductImage> {
                 selectImageGallery();
               },
               child: Text("Select image from Gallery")),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           SizedBox(
             width: getProportionateScreenWidth(200),
             height: getProportionateScreenHeight(56),
@@ -99,6 +104,14 @@ class _NewProductImagesState extends State<NewProductImage> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => NewProductInfo(),
+                    ),
+                  );
+                  _imageListFile.forEach((index) {
+                    newProductInstance.images.add(index.toString());
+                  });
                 },
                 color: Colors.redAccent,
                 child: Text(
@@ -109,7 +122,9 @@ class _NewProductImagesState extends State<NewProductImage> {
                   ),
                 )),
           ),
-          SizedBox(height: 100,),
+          SizedBox(
+            height: 100,
+          ),
         ],
       )),
     );
@@ -120,7 +135,9 @@ class _NewProductImagesState extends State<NewProductImage> {
         await _picker.pickImage(source: ImageSource.camera);
     if (selectedImage!.path.isNotEmpty) {
       _imageList.add(selectedImage);
+      _imageListFile.add(File(selectedImage.path));
     }
+
     setState(() {});
   }
 
@@ -129,6 +146,7 @@ class _NewProductImagesState extends State<NewProductImage> {
         await _picker.pickImage(source: ImageSource.gallery);
     if (selectedImage!.path.isNotEmpty) {
       _imageList.add(selectedImage);
+      _imageListFile.add(File(selectedImage.path));
     }
     setState(() {});
   }

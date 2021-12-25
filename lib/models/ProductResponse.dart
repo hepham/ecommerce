@@ -134,10 +134,10 @@ List<newProduct> searchQuery(String? searchText) {
 
 class newProduct {
   final int id;
-  final String title_name, description, type;
-  final List<String> images;
-  final List<Color> colors;
-  final int price;
+   String title_name, description, type;
+   List<String> images;
+   List<Color> colors;
+   int price;
   bool isFavourite, isPopular;
   final int user_id;
 
@@ -154,6 +154,8 @@ class newProduct {
     required this.user_id,
   });
 }
+
+newProduct newProductInstance = newProduct(id: -1, type: '', images: [], colors: [], title_name: '', price: -1, description: '', user_id: -1);
 
 newProduct convert(Product product) {
   // print(product.images);
