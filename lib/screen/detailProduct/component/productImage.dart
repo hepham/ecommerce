@@ -23,14 +23,14 @@ class _productImageState extends State<productImage> {
         SizedBox(
           width: getProportionateScreenWidth(300),
           child:Hero(
-            tag: widget.product.id.toString(),
+            tag: widget.product.id,
             child: Image.memory(base64Decode(widget.product.images[selectedImage])),
           ),
         ),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: [//widget.product.images.length
             ...List.generate(widget.product.images.length,
                     (index) => buildSmallProductPreview(index)),
           ],
