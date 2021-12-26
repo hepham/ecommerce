@@ -2,13 +2,16 @@ import 'package:commerce/api/Order_Service.dart';
 import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/screen/Cart/CartScreen.dart';
-import 'package:commerce/screen/Cart/component/cartItem.dart';
+import 'package:commerce/screen/Sell/tabs/MyShop/orders/cartItem.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:commerce/models/cart.dart';
 
-import '../../../../config.dart';
+
 import 'package:commerce/models/UserResponse.dart';
+
+import '../../../../../config.dart';
 
 
 class Body extends StatefulWidget {
@@ -25,11 +28,11 @@ class _BodyState extends State<Body> {
   }
   Future init()async{
     List<cart> TemptList=[];
-    final carts=await Order_Service().getListOrderSeller(user.id);
+    final carts=await Order_Service().getListOrderUser(user.id);
     for(int i=0;i<carts.length;i++){
       var product=await ProductApi.GetProductById(carts[i].productId);
       print(product.title_name);
-      cart tempt=new cart(product: product,numOfItems: carts[i].quantity,idOrder: carts[i].id, IdBuy: user.id,);
+      cart tempt=new cart(product: product,numOfItems: carts[i].quantity,idOrder: carts[i].id, IdBuy: carts[i].userIdBuy);
       TemptList.add(tempt);
 
     }
@@ -58,8 +61,6 @@ class _BodyState extends State<Body> {
 
                 print(CartList.length);
 
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text(' delete a item')));
 
 
               });
@@ -67,17 +68,17 @@ class _BodyState extends State<Body> {
             background: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
-                color: Color(0xFFFFE6E6),
+                color: Color(0x42FF38),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Row(
                 children: [
                   Spacer(),
-                  SvgPicture.asset("assets/icons/Trash.svg"),
+                  SvgPicture.asset("assets/icons/Success.svg",color: Colors.green),
                 ],
               ),
             ),
-            child: CartItem(Cart: CartList[index]),
+            child: OrderItem(Cart: CartList[index]),
           ),
         ),
       ),

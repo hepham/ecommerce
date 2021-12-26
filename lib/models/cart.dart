@@ -5,7 +5,8 @@ class cart{
   final newProduct product;
    int numOfItems;
    int idOrder;
-  cart({required this.product,required this.numOfItems,required this.idOrder});
+   int IdBuy;
+  cart({required this.product,required this.numOfItems,required this.idOrder,required this.IdBuy});
 
 
 }

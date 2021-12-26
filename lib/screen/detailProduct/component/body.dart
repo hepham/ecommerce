@@ -1,3 +1,4 @@
+import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/screen/detailProduct/component/color.dart';
 import 'package:commerce/screen/detailProduct/component/productImage.dart';
@@ -69,7 +70,7 @@ class Body extends StatelessWidget {
                 child: Button(
                   text: 'Add to Cart',
                   press: () {
-                    demoCart.add(cart(product: product, numOfItems: temp,idOrder: 0));
+                    demoCart.add(cart(product: product, numOfItems: temp,idOrder: 0, IdBuy: user.id));
                   },
                 ),
               ),

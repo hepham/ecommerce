@@ -105,12 +105,15 @@ class _SignFormState extends State<SignForm> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     Login_Services loginService = new Login_Services();
-                    loginService.login(loginRequest).then((value) {
+                    loginService.login(loginRequest).then((value) async {
                       print(value.status);
                       if (value.status == 'success') {
 
-                        User_Service.GetUserbyId(
+                        final tempt=await User_Service.GetUserbyId(
                             int.parse(value.dataLogin.accessToken));
+                        user=tempt;
+
+                        print(user.phone);
                         user.password=loginRequest.password!;
                         print(user.password);
                         Navigator.of(context).pushReplacement(

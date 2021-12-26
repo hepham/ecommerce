@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:commerce/api/User_Service.dart';
 import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/models/ProductResponse.dart';
+import 'package:commerce/models/UserResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/screen/detailProduct/detailProductScreen.dart';
@@ -20,7 +22,32 @@ class card extends StatefulWidget {
 }
 int temp1=0;
 class _cardState extends State<card> {
+  Data customer = new Data(
+    id: 0,
+    username: "waitting...",
+    gmail:  "waitting...",
+    phone:  "waitting...",
+    password:  "waitting...",
+    address:  "waitting...",
+    age: 0,
+    isSeller: true,
+    description:  "waitting...",
+    images:  "waitting...",);
+  void initState() {
+    super.initState();
+    this.init();
+  }
 
+  Future init() async {
+    print(widget.product.user_id);
+    final tempt = await User_Service.GetUserbyId(widget.product.user_id);
+    if (mounted)
+      setState(() {
+        this.customer = tempt;
+        print(customer.username);
+        print(customer.address);
+      });
+  }
 
   @override
 
@@ -130,7 +157,13 @@ class _cardState extends State<card> {
                           ),
                         )
                       ],
-                    )
+                    ),
+                    Text(
+                      customer.username,
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
                   ],
                 ),
               ))),

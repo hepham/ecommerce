@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/comment.dart';
@@ -72,7 +74,7 @@ class _productReviewState extends State<productReview> {
                       Container(
                         child: CircleAvatar(
                           radius: 20.0,
-                          backgroundImage: AssetImage(chat.user.images),
+                          backgroundImage: MemoryImage(base64Decode((chat.user.images))),
                         ),
                         padding: EdgeInsets.all(2),
                         decoration:
