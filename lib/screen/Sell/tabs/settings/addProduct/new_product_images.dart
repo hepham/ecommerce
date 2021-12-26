@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:io' as Io;
-import 'package:commerce/screen/Sell/tabs/MyShop/addProduct/new_product_info.dart';
+import 'package:commerce/screen/Sell/tabs/settings/addProduct/new_product_info.dart';
 import 'package:commerce/screen/Sell/tabs/MyShop/myshop.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../../config.dart';
+import '../../../../../../config.dart';
+
+
 
 class NewProductImage extends StatefulWidget {
   @override

@@ -1,4 +1,5 @@
 import 'package:commerce/screen/Sell/tabs/MyShop/myshop.dart';
+import 'package:commerce/screen/Sell/tabs/settings/setting.dart';
 import 'package:commerce/screen/Sell/tabs/deleteMyShop/delete_my_shop.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,16 @@ class _BodyState extends State<Body> {
         ProfileMenu(
           icon: "assets/icons/Settings.svg",
           text: "Settings",
-          press: () {},
+          press: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (ctx) => Setting(),
+              ),
+            );
+            setState(() {
+
+            });
+          },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

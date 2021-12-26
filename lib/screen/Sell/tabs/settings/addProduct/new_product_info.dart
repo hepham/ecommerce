@@ -1,12 +1,13 @@
 import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/models/UserResponse.dart';
-import 'package:commerce/screen/Sell/tabs/MyShop/addProduct/new_product_images.dart';
+import 'package:commerce/screen/Sell/tabs/settings/addProduct/new_product_images.dart';
 import 'package:commerce/screen/Sell/tabs/MyShop/myshop.dart';
 import 'package:commerce/screen/profile/tabs/settings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../config.dart';
+import '../../../../../../config.dart';
+
 
 String name = "";
 String description = "";
@@ -99,6 +100,7 @@ class _NewProductInfoState extends State<NewProductInfo> {
                       labelText: "Product Price",
                     ),
                   ),
+
                 ],
               ),
             ),

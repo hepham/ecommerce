@@ -8,6 +8,8 @@ import 'package:commerce/models/Login.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../config.dart';
 import '../../../constants.dart';
@@ -20,14 +22,20 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
-  String? phone;
-  String? password;
-  bool? remember = false;
+  bool remember = false;
+  TextEditingController phone = TextEditingController();
+  TextEditingController pass = TextEditingController();
+  late Box box1;
+
   late LoginRequest loginRequest;
   final formkey = GlobalKey<FormState>();
+
+  @override
   void initState() {
     super.initState();
     loginRequest = new LoginRequest();
+    createBox();
+
   }
 
   final List<String?> errors = [];
@@ -44,6 +52,29 @@ class _SignFormState extends State<SignForm> {
       setState(() {
         errors.remove(error);
       });
+  }
+
+
+  void createBox()async{
+    box1=await Hive.openBox("logindata");
+    getData();
+  }
+
+  void getData()async{
+    if(box1.get('phone')!=null){
+      phone.text=box1.get('phone');
+      remember = true;
+      setState(() {
+
+      });
+    }
+    if(box1.get('pass')!=null){
+      pass.text=box1.get('pass');
+      remember = true;
+      setState(() {
+
+      });
+    }
   }
 
   @override
@@ -63,7 +94,7 @@ class _SignFormState extends State<SignForm> {
                 activeColor: Colors.redAccent,
                 onChanged: (value) {
                   setState(() {
-                    remember = value;
+                    remember = value!;
                   });
                 },
               ),
@@ -97,11 +128,11 @@ class _SignFormState extends State<SignForm> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
-                   // Navigator.of(context).pushReplacement(
-                   //  MaterialPageRoute(
-                   //    builder: (ctx) => homeScreen(),
-                   //   ),
-                   // );
+                  if(remember){
+                    box1.put('phone', phone.text);
+                    box1.put('pass', pass.text);
+                  };
+
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     Login_Services loginService = new Login_Services();

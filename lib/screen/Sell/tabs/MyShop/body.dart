@@ -2,7 +2,7 @@ import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/screen/Home/component/productCard.dart';
-import 'package:commerce/screen/Sell/tabs/MyShop/addProduct/new_product_images.dart';
+
 import 'package:commerce/screen/Sell/tabs/MyShop/orders/Orders.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
@@ -40,18 +40,7 @@ class _BodyState extends State<Body> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: getProportionateScreenHeight(20)),
-              ProfileMenu(
-                icon: "assets/icons/User.svg",
-                text: "Add New Product",
-                press: () {Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (ctx) => NewProductImage(),
-                  ),
-                );
-                setState(() {
 
-                });},
-              ),
               ProfileMenu(
                 icon: "assets/icons/User.svg",
                 text: "Orders",

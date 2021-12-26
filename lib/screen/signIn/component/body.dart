@@ -43,7 +43,8 @@ class _BodyState extends State<Body> {
                   children: [
                     SocalCard(
                       icon: "assets/icons/google-icon.svg",
-                      press: () {},
+                      press: () {
+                      },
                     ),
                     SocalCard(
                       icon: "assets/icons/facebook-2.svg",
