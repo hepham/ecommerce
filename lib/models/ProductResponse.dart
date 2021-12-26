@@ -25,10 +25,10 @@ class ProductResponse {
       );
 
   Map<String, dynamic> toJson() => {
-        'status': status,
-        'message': message,
-        'data': List<dynamic>.from(data.map((x) => x.toJson())),
-      };
+    'status': status,
+    'message': message,
+    'data': List<dynamic>.from(data.map((x) => x.toJson())),
+  };
 }
 
 class Product {
@@ -57,30 +57,30 @@ class Product {
   int user_id;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-        id: json['id'],
-        title_Name: json['title_name'],
-        colors: json['colors'],
-        price: json['price'],
-        type: json['type'],
-        isFavourite: json['isFavourite'],
-        isPopular: json['isPopular'],
-        description: json['description'],
-        user_id: json['user_id'],
-        images: json['images'],
-      );
+    id: json['id'],
+    title_Name: json['title_name'],
+    colors: json['colors'],
+    price: json['price'],
+    type: json['type'],
+    isFavourite: json['isFavourite'],
+    isPopular: json['isPopular'],
+    description: json['description'],
+    user_id: json['user_id'],
+    images: json['images'],
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'title_name': title_Name,
-        'colors': colors,
-        'price': price,
-        'type': type,
-        'isFavourite': isFavourite,
-        'isPopular': isPopular,
-        'description': description,
-        'user_id': user_id,
-        'images': images,
-      };
+    'id': id,
+    'title_name': title_Name,
+    'colors': colors,
+    'price': price,
+    'type': type,
+    'isFavourite': isFavourite,
+    'isPopular': isPopular,
+    'description': description,
+    'user_id': user_id,
+    'images': images,
+  };
 }
 
 List<newProduct> demoProducts = [
@@ -89,7 +89,7 @@ List<newProduct> demoProducts = [
     type: 'techology',
     images: [
       "assets/images/iphone13product.jpg",
-      "assets/images/iphone13.jpg",
+
     ],
     colors: [
       Color(0xFFF6625E),
@@ -109,7 +109,7 @@ List<newProduct> demoProducts = [
     type: 'techology',
     images: [
       "assets/images/iphone13product.jpg",
-      "assets/images/iphone13.jpg",
+
     ],
     colors: [
       Color(0xFFF6625E),

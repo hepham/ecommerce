@@ -33,6 +33,8 @@ class _BodyState extends State<Body> {
 
     });
   }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,8 +47,7 @@ class _BodyState extends State<Body> {
               homeHeader(),
               Discount(),
               specialOffers(),
-
-               ProductCard(products: ListProducts,),
+              ProductCard(products: ListProducts,),
             ],
           ),
         )
