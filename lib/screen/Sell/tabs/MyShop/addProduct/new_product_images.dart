@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
-
+import 'dart:io' as Io;
 import 'package:commerce/screen/Sell/tabs/MyShop/addProduct/new_product_info.dart';
 import 'package:commerce/screen/Sell/tabs/MyShop/myshop.dart';
 import 'package:flutter/material.dart';
@@ -110,7 +111,12 @@ class _NewProductImagesState extends State<NewProductImage> {
                     ),
                   );
                   _imageListFile.forEach((index) {
-                    newProductInstance.images.add(index.toString());
+                    final bytes =
+                    Io.File(index.path.toString()).readAsBytesSync();
+                    String img64 = base64Encode(bytes);
+                    print(img64.substring(0, 100));
+                    newProductInstance.images.add(img64);
+
                   });
                   setState(() {
 

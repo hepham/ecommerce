@@ -10,7 +10,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         for(int i=0;i<products.length-1;i+=2)
         Row(
           children: [
@@ -20,5 +20,11 @@ class ProductCard extends StatelessWidget {
         ),
       ],
     );
+    // return GridView.count(crossAxisCount: 2,
+    // children: List.generate(products.length, (index) {
+    //   return card(product: products[index]);
+    // }),
+    // );
+    
   }
 }

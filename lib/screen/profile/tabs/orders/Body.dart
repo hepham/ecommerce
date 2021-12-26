@@ -25,7 +25,7 @@ class _BodyState extends State<Body> {
   }
   Future init()async{
     List<cart> TemptList=[];
-    final carts=await Order_Service().getListOrderSeller(user.id);
+    final carts=await Order_Service().getListOrderUser(user.id);
     for(int i=0;i<carts.length;i++){
       var product=await ProductApi.GetProductById(carts[i].productId);
       print(product.title_name);

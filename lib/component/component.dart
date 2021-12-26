@@ -134,7 +134,7 @@ class _cardState extends State<card> {
                             setState(() {
                               widget.product.isFavourite =
                                   !widget.product.isFavourite;
-                              ProductApi.postData(widget.product);
+                              ProductApi.UpdateProduct(widget.product);
                             });
                           },
                           child: Container(

@@ -133,13 +133,13 @@ List<newProduct> searchQuery(String? searchText) {
 }
 
 class newProduct {
-  final int id;
-   String title_name, description, type;
-   List<String> images;
-   List<Color> colors;
-   int price;
+   int id;
+  String title_name, description, type;
+  List<String> images;
+  List<Color> colors;
+  int price;
   bool isFavourite, isPopular;
-  final int user_id;
+   int user_id;
 
   newProduct({
     required this.id,
@@ -155,7 +155,19 @@ class newProduct {
   });
 }
 
-newProduct newProductInstance = newProduct(id: -1, type: '', images: [], colors: [], title_name: '', price: -1, description: '', user_id: -1);
+newProduct newProductInstance = newProduct(
+    id: -1,
+    type: '',
+    images: [],
+    colors: [
+      Color(0xFFF6625E),
+      Color(0xFF836DB8),
+      Color(0xFFDECB9C),
+    ],
+    title_name: '',
+    price: -1,
+    description: '',
+    user_id: -1);
 
 newProduct convert(Product product) {
   // print(product.images);
@@ -163,6 +175,7 @@ newProduct convert(Product product) {
   List<Color> listColor = [];
   List<String> listColorstring = product.colors.split('|');
   for (int i = 0; i < listColorstring.length; i++) {
+    print(listColorstring[i].toString());
     Color newColor = HexColor.fromHex(listColorstring[i]);
     listColor.add(newColor);
   }

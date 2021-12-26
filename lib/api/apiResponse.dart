@@ -55,15 +55,15 @@ class ProductApi {
     }
   }
   static UpdateProduct(newProduct newproduct) async{
-    final url=Uri.parse(ApiUrl+'/products');
+    final url=Uri.parse(ApiUrl+ '/products/update');
     Product temp=convertToProduct(newproduct);
+    print(json.encode(temp.toJson()));
     final response = await http.post(
       url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(temp),
-
+      body: json.encode(temp.toJson()),
     );
     if (response.statusCode == 200) {
       // If the server did return a 201 CREATED response,
@@ -75,8 +75,8 @@ class ProductApi {
       throw Exception('Update failed.');
     }
   }
-  static postData(newProduct product)async{
-    final url=Uri.parse(ApiUrl+ '/products/update');
+  static createProduct(newProduct product)async{
+    final url=Uri.parse(ApiUrl+ '/products/create');
     Product temp=convertToProduct(product);
     print(json.encode(temp.toJson()));
     final response = await http.post(

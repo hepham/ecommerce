@@ -31,7 +31,7 @@ class _productDecriptionState extends State<productDecription> {
             onTap: () {
               setState(() {
                 widget.product.isFavourite = !widget.product.isFavourite;
-                ProductApi.postData(widget.product);
+                ProductApi.UpdateProduct(widget.product);
 
               });
             },
