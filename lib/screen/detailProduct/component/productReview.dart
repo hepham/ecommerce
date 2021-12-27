@@ -30,6 +30,7 @@ class _productReviewState extends State<productReview> {
     final comments=await Comment_Services.getComment(widget.product.id);
     if(mounted) setState(() {
         print(comments.data.length);
+        review=convertToCommentList(comments.data);
     //    gans list cho nay nua la xong
     });
   }
@@ -67,10 +68,11 @@ class _productReviewState extends State<productReview> {
                 commentRequest.productId=widget.product.id;
                 Comment_Services.CreateComment(commentRequest);
                 review.add(Comment(
-                  product: widget.product,
+                  // product: widget.product,
+
                   user: user,
-                  date: '',
-                  text: values,
+                  // date:'';
+                  text: values, idProduct: widget.product.id,
                 ));
                 setState(() {
                 });
