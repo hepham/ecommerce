@@ -6,13 +6,13 @@ import 'dart:convert';
 class Login_Services {
   Future<LoginResponse> login(LoginRequest loginRequest) async {
     final url = Uri.parse(
-        "https://ecommerce.dungpham.com.vn/api/users/login");
+        ApiUrl+"/users/login");
     final response = await http.post(
       url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: json.encode(loginRequest.toJson()),
+      body: json.encode(loginRequest),
     );
     if (response.statusCode == 200) {
       print(response.body);

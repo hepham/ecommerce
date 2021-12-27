@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:commerce/api/Comment_Services.dart';
+import 'package:commerce/models/CommentResponse.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/comment.dart';
@@ -10,11 +12,27 @@ import 'package:flutter/widgets.dart';
 class productReview extends StatefulWidget {
   const productReview({Key? key, required this.product}) : super(key: key);
   final newProduct product;
+
   @override
   _productReviewState createState() => _productReviewState();
 }
 
 class _productReviewState extends State<productReview> {
+  CommentRequest commentRequest=new CommentRequest(productId: 1, userId: 1, content:"check");
+  late Future<CommentResponse> futureComment;
+  @override
+  void initState() {
+    super.initState();
+    this.init();
+
+  }
+  Future init() async{
+    final comments=await Comment_Services.getComment(widget.product.id);
+    if(mounted) setState(() {
+        print(comments.data.length);
+    //    gans list cho nay nua la xong
+    });
+  }
   _sendCommentArea() {
     String values = "";
 
@@ -40,14 +58,24 @@ class _productReviewState extends State<productReview> {
             iconSize: 25,
             color: Theme.of(context).primaryColor,
             onPressed: () {
-              review.add(Comment(
-                product: demoProducts[1],
-                user: user,
-                date: '',
-                text: values,
-              ));
-              setState(() {
-              });
+
+              print(values);
+              if(values!=""){
+                commentRequest.content=values;
+                print(commentRequest.content);
+                commentRequest.userId=user.id;
+                commentRequest.productId=widget.product.id;
+                Comment_Services.CreateComment(commentRequest);
+                review.add(Comment(
+                  product: widget.product,
+                  user: user,
+                  date: '',
+                  text: values,
+                ));
+                setState(() {
+                });
+              }
+
             },
           ),
         ],
