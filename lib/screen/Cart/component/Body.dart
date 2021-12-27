@@ -9,11 +9,14 @@ import 'cartItem.dart';
 import 'checkoutCard.dart';
 
 class Body extends StatefulWidget {
+  // VoidCallback callback;
+  // Body(this.callback);
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(

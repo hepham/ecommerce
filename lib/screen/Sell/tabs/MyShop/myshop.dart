@@ -1,6 +1,8 @@
+import 'package:commerce/component/navigationBar.dart';
 import 'package:commerce/screen/Sell/tabs/MyShop/body.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../enums.dart';
 import '../../sell_screen.dart';
 
 class MyShop extends StatefulWidget{
@@ -36,6 +38,7 @@ class _MyShopState extends State<MyShop> {
         ),
       ),
       body: Body(),
+      bottomNavigationBar: NavigationBar(selectedMenu: MenuState.sell),
     );
   }
 }

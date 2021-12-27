@@ -161,9 +161,9 @@ newProduct newProductInstance = newProduct(
     type: '',
     images: [],
     colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
+      // Color(0xFFF6625E),
+      // Color(0xFF836DB8),
+      // Color(0xFFDECB9C),
     ],
     title_name: '',
     price: -1,

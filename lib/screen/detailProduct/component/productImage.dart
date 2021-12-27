@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';

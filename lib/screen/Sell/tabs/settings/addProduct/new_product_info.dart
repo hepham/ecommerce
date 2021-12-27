@@ -8,12 +8,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../config.dart';
 
-
 String name = "";
 String description = "";
 String type = "";
 String price = "";
-
+String colors = "";
+List<Color> listColor = [];
+List<String> listColorstring=[];
 
 class NewProductInfo extends StatefulWidget {
   @override
@@ -28,7 +29,10 @@ class _NewProductInfoState extends State<NewProductInfo> {
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
         centerTitle: true,
-        title: Text("New Product Information",style: TextStyle(color: Colors.white),),
+        title: Text(
+          "New Product Information",
+          style: TextStyle(color: Colors.white),
+        ),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -40,9 +44,7 @@ class _NewProductInfoState extends State<NewProductInfo> {
                 builder: (ctx) => NewProductImage(),
               ),
             );
-            setState(() {
-
-            });
+            setState(() {});
           },
         ),
       ),
@@ -100,7 +102,17 @@ class _NewProductInfoState extends State<NewProductInfo> {
                       labelText: "Product Price",
                     ),
                   ),
-
+                  TextFormField(
+                    onChanged: (value) {
+                      setState(() {
+                        colors = value;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Describe Your Product Colors",
+                      labelText: "Colors form:#151026|#151026",
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -116,22 +128,29 @@ class _NewProductInfoState extends State<NewProductInfo> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     onPressed: () {
-                      newProductInstance.user_id=user.id;
+                      newProductInstance.user_id = user.id;
                       newProductInstance.title_name = name;
                       newProductInstance.description = description;
                       newProductInstance.type = type;
                       var priceInt = int.parse(price);
                       assert(priceInt is int);
                       newProductInstance.price = priceInt;
+                      listColorstring=colors.split('|');;
+                      listColor = [];
+                      for (int i = 0; i < listColorstring.length; i++) {
+                        print(listColorstring[i].toString());
+                        Color newColor = HexColor.fromHex(listColorstring[i]);
+                        listColor.add(newColor);
+
+                      }
+                      newProductInstance.colors=listColor;
                       ProductApi.createProduct(newProductInstance);
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (ctx) => MyShop(),
                         ),
                       );
-                      setState(() {
-
-                      });
+                      setState(() {});
                     },
                     color: Colors.redAccent,
                     child: Text(

@@ -7,9 +7,15 @@ import 'package:flutter/material.dart';
 
 import '../../enums.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   static String routeName = '/cart';
   const CartScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +46,10 @@ class CartScreen extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            // Text(
-            //   '${demoCart.length} items',
-            //   style:Theme.of(context).textTheme.caption ,
-            // )
+            Text(
+              '${demoCart.length} items',
+              style:Theme.of(context).textTheme.caption ,
+            )
           ],
         ),
       ),

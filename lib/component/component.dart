@@ -122,7 +122,7 @@ class _cardState extends State<card> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('${widget.product.price}',
+                        Text('\$${widget.product.price}',
                             style: TextStyle(
                               fontSize: getProportionateScreenWidth(18),
                               fontWeight: FontWeight.w600,
