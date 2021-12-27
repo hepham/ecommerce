@@ -8,6 +8,8 @@ import 'package:commerce/screen/Home/component/productCard.dart';
 import 'package:commerce/screen/Home/component/specialOffer.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/screen/Home/component/search.dart';
+
+List<newProduct> ListProducts=[];
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -17,7 +19,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   List<Product>Products=[];
-  List<newProduct>ListProducts=[];
+
   bool isLoading=false;
   late Future<ProductResponse> futureProducts;
   void initState(){
@@ -28,7 +30,7 @@ class _BodyState extends State<Body> {
   Future init() async{
     final products=await ProductApi.GetProduct();
     if(mounted) setState(() {
-      this.ListProducts=convertList(products);
+      ListProducts = convertList(products);
       this.Products=products;
 
     });

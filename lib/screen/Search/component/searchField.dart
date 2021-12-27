@@ -3,11 +3,12 @@ import 'package:commerce/component/Button.dart';
 import 'package:commerce/component/component.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/models/ProductResponse.dart';
+import 'package:commerce/screen/Home/component/Body.dart';
 import 'package:commerce/screen/Home/component/productCard.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/screen/Search/searchScreen.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'package:commerce/models/product.dart';
+
 
 import 'dart:async';
 // class searchField extends StatefulWidget {
@@ -174,7 +175,7 @@ import 'dart:async';
 // }
 
 
-List<newProduct> productslist = [];
+// List<newProduct> productslist = [];
 List<String> _searchHistory = [];
 class searchField extends StatefulWidget {
   const searchField({Key? key}) : super(key: key);
@@ -188,7 +189,7 @@ class _searchFieldState extends State<searchField> {
   static const historyLength = 5;
   Timer? debouncer;
   late List<String> filteredSearchHistory;
-  String query = '';
+
   String? selectedTerm;
 
   List<String> filterSearchTerms({
@@ -202,17 +203,19 @@ class _searchFieldState extends State<searchField> {
       return _searchHistory.reversed.toList();
     }
   }
-  Future searchProducts(String query) async => debounce(() async {
-    final products = await ProductApi.GetProductbyName(query);
-    productslist= convertList(products);
-    // final List<Datum> productresponse= await ProductApi.GetProduct();
-    // print(productresponse[0].name);
-    if (!mounted) return;
-    setState(() {
-      productslist = productslist.where((element) => element.title_name.toLowerCase().contains(query!))
-          .toList();
-    });
-  });
+
+
+  // Future searchProducts(String query) async => debounce(() async {
+  //   final products = await ProductApi.GetProductbyName(query);
+  //   productslist= convertList(products);
+  //   // final List<Datum> productresponse= await ProductApi.GetProduct();
+  //   // print(productresponse[0].name);
+  //   if (!mounted) return;
+  //   setState(() {
+  //     productslist = productslist.where((element) => element.title_name.toLowerCase().contains(query))
+  //         .toList();
+  //   });
+  // });
 
   void addSearchTerm(String term) {
     if (_searchHistory.contains(term)) {
@@ -245,7 +248,7 @@ class _searchFieldState extends State<searchField> {
     super.initState();
     controller = FloatingSearchBarController();
     filteredSearchHistory = filterSearchTerms(filter: null);
-    init();
+    // init();
   }
 
   @override
@@ -262,15 +265,9 @@ class _searchFieldState extends State<searchField> {
     if (debouncer != null) {
       debouncer!.cancel();
     }
-
     debouncer = Timer(duration, callback);
   }
-  Future  init() async {
-    final products=await ProductApi.GetProductbyName(selectedTerm!);
-    final List<newProduct> productslist= convertList(products);
-    print(productslist.length);
-    if(mounted)setState(() => this.Products = productslist);
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -284,12 +281,6 @@ class _searchFieldState extends State<searchField> {
           ),
         ),
         transition: CircularFloatingSearchBarTransition(),
-        // physics: BouncingScrollPhysics(),
-        // title: Text(
-        //   selectedTerm ?? 'The Search App',
-        //   style: Theme.of(context).textTheme.headline6,
-        // ),
-
 
         hint: 'Search and find out...',
         actions: [
@@ -304,7 +295,7 @@ class _searchFieldState extends State<searchField> {
           setState(() {
             addSearchTerm(query);
             selectedTerm = query;
-            searchProducts(selectedTerm!);
+            // searchProducts(selectedTerm!);
           });
           controller.close();
         },
@@ -409,7 +400,7 @@ class SearchResultsListView extends StatelessWidget {
         ),
       );
     }
-    if(searchQuery(searchTerm).isEmpty) {
+    if(searchQuery(searchTerm).isEmpty || searchTerm == '') {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -432,11 +423,11 @@ class SearchResultsListView extends StatelessWidget {
           child: Column(
             children: [
 
-              for(int i=0;i<productslist.length-1;i+=2)
+              for(int i=0;i<searchQuery(searchTerm).length-1;i+=2)
                 Row(
                   children: [
-                    card(product: productslist[i]),
-                    card(product: productslist[i+1]),
+                    card(product: searchQuery(searchTerm)[i]),
+                    card(product: searchQuery(searchTerm)[i+1]),
                   ],
                 ),
             ],
@@ -444,6 +435,5 @@ class SearchResultsListView extends StatelessWidget {
         ),
       );
     }
-
 }
 

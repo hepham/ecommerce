@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:commerce/screen/Home/component/Body.dart';
 import 'package:flutter/material.dart';
 
 class ProductResponse {
@@ -126,20 +127,20 @@ List<newProduct> demoProducts = [
   ),
 ];
 List<newProduct> searchQuery(String? searchText) {
-  return demoProducts
+  return ListProducts
       .where(
           (element) => element.title_name.toLowerCase().contains(searchText!))
       .toList();
 }
 
 class newProduct {
-   int id;
+  int id;
   String title_name, description, type;
   List<String> images;
   List<Color> colors;
   int price;
   bool isFavourite, isPopular;
-   int user_id;
+  int user_id;
 
   newProduct({
     required this.id,
