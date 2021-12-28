@@ -23,6 +23,7 @@ class _productReviewState extends State<productReview> {
   @override
   void initState() {
     super.initState();
+    review=[];
     this.init();
 
   }
@@ -66,15 +67,27 @@ class _productReviewState extends State<productReview> {
                 print(commentRequest.content);
                 commentRequest.userId=user.id;
                 commentRequest.productId=widget.product.id;
-                Comment_Services.CreateComment(commentRequest);
-                review.add(Comment(
-                  // product: widget.product,
+                bool check=false;
+                Comment_Services comment_services=new Comment_Services();
+                Comment_Services.CreateComment(commentRequest).then((value) async{
+                  print(value);
+                  if (value== 'success') {
+                     init();
 
-                  user: user,
-                  // date:'';
-                  text: values, idProduct: widget.product.id,
-                ));
+                  }
+                });
+
+
+                // review.add(Comment(
+                //   // product: widget.product,
+                //
+                //   user: user,
+                //   // date:'';
+                //   text: values, idProduct: widget.product.id,
+                // ));
+
                 setState(() {
+
                 });
               }
 

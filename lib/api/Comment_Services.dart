@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../enums.dart';
 class Comment_Services{
-  static Future<CommentResponse> CreateComment(CommentRequest commentRequest)async{
+  static Future<String> CreateComment(CommentRequest commentRequest)async{
     final url=Uri.parse(ApiUrl+"/comments/create");
     final response = await http.post(
       url,
@@ -14,7 +14,8 @@ class Comment_Services{
     );
     if(response.statusCode==200){
       print(response.body);
-      return CommentResponse.fromJson(jsonDecode(response.body));
+      return "success";
+      // return CommentResponse.fromJson(jsonDecode(response.body)).status;
     }else{
       throw Exception("fail to send comment");
     }

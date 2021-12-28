@@ -107,6 +107,7 @@ class _NewProductImagesState extends State<NewProductImage> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 onPressed: () {
+                  newProductInstance.images=[];
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (ctx) => NewProductInfo(),
