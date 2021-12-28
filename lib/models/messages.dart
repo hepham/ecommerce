@@ -32,7 +32,7 @@ List<Message> chats = [
 ];
 
 List<Message> messages = [
-  Message(send: user, receive: user, time: '', text: 'text'),
+  Message(send: user, receive: user1, time: '', text: 'text'),
   Message(send: user1, receive : user, time: '', text: 'a')
  
 ];

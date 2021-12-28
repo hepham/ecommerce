@@ -73,7 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       child: CircleAvatar(
                         radius: 15,
-                        backgroundImage: AssetImage(message.receive.images),
+                        backgroundImage: MemoryImage(base64Decode(message.send.images)),
                       ),
                     ),
                   ],
@@ -129,7 +129,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       child: CircleAvatar(
                         radius: 15,
-                        backgroundImage: MemoryImage(base64Decode(message.receive.images)),
+                        backgroundImage: MemoryImage(base64Decode(message.send.images)),
                       ),
                     ),
                     SizedBox(
