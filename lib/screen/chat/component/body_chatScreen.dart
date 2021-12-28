@@ -1,12 +1,11 @@
 
 
 import 'package:commerce/models/UserResponse.dart';
-import 'package:commerce/models/comment.dart';
-import 'package:commerce/screen/chat/messageScreen.dart';
+import 'package:commerce/models/messages.dart';
+import 'package:commerce/screen/chat/component/messageScreen.dart';
 import 'package:flutter/material.dart';
 
 class BodyChat extends StatelessWidget {
-  const BodyChat({Key? key}) : super(key: key);
 
 
 
@@ -15,12 +14,19 @@ class BodyChat extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return ListView.builder(
-      itemCount: review.length,
+      itemCount: chats.length,
       itemBuilder: (BuildContext context, int index) {
 
-        final Comment chat = review[index];
+        final Message chat = chats[index];
         return GestureDetector(
-          onTap: () => Navigator.pushNamed(context, ChatScreen.routeName),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => ChatScreen(
+                user: chat.receive,
+              ),
+            ),
+          ),
 
           child: Container(
             padding: EdgeInsets.symmetric(
@@ -32,7 +38,7 @@ class BodyChat extends StatelessWidget {
                 Container(
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundImage: AssetImage(chat.user.images),
+                    backgroundImage: AssetImage(chat.send.images),
                   ),
                   padding: EdgeInsets.all(2),
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
@@ -56,7 +62,7 @@ class BodyChat extends StatelessWidget {
                           Row(
                             children: <Widget>[
                               Text(
-                                chat.user.username,
+                                chat.receive.username,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,

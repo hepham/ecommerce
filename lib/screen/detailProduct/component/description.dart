@@ -1,6 +1,7 @@
 import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/models/ProductResponse.dart';
-import 'package:commerce/screen/chat/messageScreen.dart';
+import 'package:commerce/models/UserResponse.dart';
+import 'package:commerce/screen/chat/component/messageScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
@@ -65,11 +66,14 @@ class _productDecriptionState extends State<productDecription> {
           top: 60.0,
           right: 10.0,
           child: GestureDetector(
-            onTap: () {
-              setState(() {
-                Navigator.pushNamed(context, ChatScreen.routeName);
-              });
-            },
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ChatScreen(
+                  user: user,
+                ),
+              ),
+            ),
             child: Align(
               alignment: Alignment.centerRight,
 
