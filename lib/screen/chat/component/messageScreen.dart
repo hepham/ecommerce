@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/messages.dart';
 import 'package:flutter/cupertino.dart';
@@ -127,7 +129,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       child: CircleAvatar(
                         radius: 15,
-                        backgroundImage: AssetImage(message.receive.images),
+                        backgroundImage: MemoryImage(base64Decode(message.receive.images)),
                       ),
                     ),
                     SizedBox(

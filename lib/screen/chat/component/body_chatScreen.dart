@@ -1,5 +1,7 @@
 
 
+import 'dart:convert';
+
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/messages.dart';
 import 'package:commerce/screen/chat/component/messageScreen.dart';
@@ -38,7 +40,7 @@ class BodyChat extends StatelessWidget {
                 Container(
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundImage: AssetImage(chat.send.images),
+                    backgroundImage:MemoryImage(base64Decode(chat.receive.images)),
                   ),
                   padding: EdgeInsets.all(2),
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
