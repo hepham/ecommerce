@@ -70,7 +70,7 @@ class _productDecriptionState extends State<productDecription> {
               context,
               MaterialPageRoute(
                 builder: (_) => ChatScreen(
-                  user: user,
+                  usersend: user,
                 ),
               ),
             ),

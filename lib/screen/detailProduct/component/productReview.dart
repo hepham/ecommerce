@@ -18,82 +18,68 @@ class productReview extends StatefulWidget {
 }
 
 class _productReviewState extends State<productReview> {
-  CommentRequest commentRequest=new CommentRequest(productId: 1, userId: 1, content:"check");
+  CommentRequest commentRequest =
+      new CommentRequest(productId: 1, userId: 1, content: "check");
   late Future<CommentResponse> futureComment;
   @override
   void initState() {
     super.initState();
-    review=[];
+    review = [];
     this.init();
+  }
 
-  }
-  Future init() async{
-    final comments=await Comment_Services.getComment(widget.product.id);
-    if(mounted) setState(() {
+  Future init() async {
+    final comments = await Comment_Services.getComment(widget.product.id);
+    if (mounted)
+      setState(() {
         print(comments.data.length);
-        review=convertToCommentList(comments.data);
-    //    gans list cho nay nua la xong
-    });
+        review = convertToCommentList(comments.data);
+        //    gans list cho nay nua la xong
+      });
   }
+
   _sendCommentArea() {
     String values = "";
+    final controller = TextEditingController();
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8),
       height: 70,
       color: Colors.white,
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration.collapsed(
-                hintText: 'Send a comment..',
-              ),
-              textCapitalization: TextCapitalization.sentences,
-              onChanged: (text){
-                values = text;
-              },
-            ),
-          ),
-          IconButton(
+      child: TextField(
+        controller: controller,
+        textCapitalization: TextCapitalization.sentences,
+        onChanged: (text) {
+          values = text;
+        },
+        decoration: InputDecoration(
+          hintText: 'Send a message ...',
+          icon: IconButton(
             icon: Icon(Icons.send),
             iconSize: 25,
             color: Theme.of(context).primaryColor,
             onPressed: () {
-
               print(values);
-              if(values!=""){
-                commentRequest.content=values;
+              if (values != "") {
+                commentRequest.content = values;
                 print(commentRequest.content);
-                commentRequest.userId=user.id;
-                commentRequest.productId=widget.product.id;
-                bool check=false;
-                Comment_Services comment_services=new Comment_Services();
-                Comment_Services.CreateComment(commentRequest).then((value) async{
+                commentRequest.userId = user.id;
+                commentRequest.productId = widget.product.id;
+                bool check = false;
+                Comment_Services comment_services = new Comment_Services();
+                Comment_Services.CreateComment(commentRequest)
+                    .then((value) async {
                   print(value);
-                  if (value== 'success') {
-                     init();
-
+                  if (value == 'success') {
+                    init();
                   }
                 });
 
-
-                // review.add(Comment(
-                //   // product: widget.product,
-                //
-                //   user: user,
-                //   // date:'';
-                //   text: values, idProduct: widget.product.id,
-                // ));
-
-                setState(() {
-
-                });
+                setState(() {});
               }
-
             },
           ),
-        ],
+        ),
       ),
     );
   }
@@ -117,7 +103,8 @@ class _productReviewState extends State<productReview> {
                       Container(
                         child: CircleAvatar(
                           radius: 20.0,
-                          backgroundImage: MemoryImage(base64Decode((chat.user.images))),
+                          backgroundImage:
+                              MemoryImage(base64Decode((chat.user.images))),
                         ),
                         padding: EdgeInsets.all(2),
                         decoration:

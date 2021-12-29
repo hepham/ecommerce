@@ -6,9 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
-  final Data user;
+  final Data usersend;
 
-  ChatScreen({required this.user});
+  ChatScreen({required this.usersend});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -73,7 +73,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       child: CircleAvatar(
                         radius: 15,
-                        backgroundImage: MemoryImage(base64Decode(message.send.images)),
+                        backgroundImage:
+                            MemoryImage(base64Decode(message.send.images)),
                       ),
                     ),
                   ],
@@ -129,7 +130,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       child: CircleAvatar(
                         radius: 15,
-                        backgroundImage: MemoryImage(base64Decode(message.send.images)),
+                        backgroundImage:
+                            MemoryImage(base64Decode(message.send.images)),
                       ),
                     ),
                     SizedBox(
@@ -154,11 +156,35 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _sendMessageArea() {
     String values = "";
+    final controller = TextEditingController();
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8),
-      height: 70,
-      color: Colors.white,
-      child: Row(
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        height: 70,
+        color: Colors.white,
+        child: TextField(
+            controller: controller,
+            textCapitalization: TextCapitalization.sentences,
+            onChanged: (text) {
+              values = text;
+            },
+            decoration: InputDecoration(
+              hintText: 'Send a message ...',
+              icon: IconButton(
+                icon: Icon(Icons.send),
+                iconSize: 25,
+                color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  print(values);
+                  messages.insert(
+                      0,
+                      Message(
+                          receive: user1, send: user, time: '', text: values));
+                  controller.clear();
+                  FocusScope.of(context).requestFocus(FocusNode());
+                },
+              ),
+            ))
+        /**Row(
         children: <Widget>[
           IconButton(
             icon: Icon(Icons.photo),
@@ -168,12 +194,14 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           Expanded(
             child: TextField(
+              controller: controller,
               decoration: InputDecoration.collapsed(
                 hintText: 'Send a message..',
               ),
               textCapitalization: TextCapitalization.sentences,
               onChanged: (text) {
                 values = text;
+
               },
             ),
           ),
@@ -183,51 +211,59 @@ class _ChatScreenState extends State<ChatScreen> {
             color: Theme.of(context).primaryColor,
             onPressed: () {
               print(values);
+              messages.insert(0, Message(receive: user1, send: user, time: '', text: values));
             },
           ),
         ],
-      ),
-    );
+      ),*/
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     int prevUserId = 0;
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.redAccent,
-          centerTitle: true,
-          title: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(children: [
-              TextSpan(
-                  text: widget.user.username,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400,
-                  ))
-            ]),
-          ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.redAccent,
+        centerTitle: true,
+        title: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(children: [
+            TextSpan(
+                text: widget.usersend.username,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                )),
+          ]),
         ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: ListView.builder(
-                reverse: true,
-                padding: EdgeInsets.all(20),
-                itemCount: messages.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Message message = messages[index];
-                  final bool isMe = message.send.id == user.id;
-                  final bool isSameUser = prevUserId == message.send.id;
-                  prevUserId = message.send.id;
-                  return _chatBubble(message, isMe, isSameUser);
-                },
-              ),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              reverse: true,
+              padding: EdgeInsets.all(20),
+              itemCount: messages.length,
+              itemBuilder: (BuildContext context, int index) {
+                final Message message = messages[index];
+                final bool isMe = message.send.id == user.id;
+                final bool isSameUser = prevUserId == message.send.id;
+                prevUserId = message.send.id;
+                return _chatBubble(message, isMe, isSameUser);
+              },
             ),
-            _sendMessageArea(),
-          ],
-        ));
+          ),
+          _sendMessageArea(),
+        ],
+      ),
+    );
   }
 }
