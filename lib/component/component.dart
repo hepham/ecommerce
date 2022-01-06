@@ -53,9 +53,10 @@ class _cardState extends State<card> {
 
   Widget build(BuildContext context) {
     return Container(
+
       child: Padding(
           padding: EdgeInsets.fromLTRB(
-              getProportionateScreenWidth(20),
+              getProportionateScreenWidth(10),
               getProportionateScreenWidth(20),
               getProportionateScreenWidth(20),
               getProportionateScreenWidth(10)),
@@ -73,25 +74,7 @@ class _cardState extends State<card> {
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Container(
-                    //   // padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-                    //   // decoration: BoxDecoration(
-                    //   //   color: Colors.grey.withOpacity(0.1),
-                    //   //   borderRadius: BorderRadius.circular(20),
-                    //   // ),
-                    //   // width: getProportionateScreenWidth(180),
-                    //   // height: getProportionateScreenWidth(180),
-                    //   // child: ClipRRect(
-                    //   //   child: Stack(
-                    //   //     children: [
-                    //   //       Image.memory(base64Decode(widget.product.images[0]),fit: BoxFit.cover,alignment:Alignment.center,),
-                    //   //
-                    //   //     ],
-                    //   //   ),
-                    //   // ),
-                    //
-                    // ),
+                  children:<Widget> [
                     AspectRatio(
                       aspectRatio: 1.2,
                       child: Container(

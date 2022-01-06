@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:commerce/api/chat_Services.dart';
+import 'package:commerce/models/ChatRequest.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/messages.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,14 +9,44 @@ import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
   final Data usersend;
-
-  ChatScreen({required this.usersend});
+  final int roomId;
+  ChatScreen({required this.usersend,required this.roomId});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  // List<Message> messages = [
+  //   // Message(send: user, receive: user1, time: '', text: 'text',),
+  //   // Message(send: user1, receive : user, time: '', text: 'a',),
+  //   // Message(receive: user, send: user1, time: '', text: 'ngu'),
+  //   // Message(receive: user, send: user1, time: '', text: 'vl')
+  //
+  // ];
+  void initState(){
+
+    super.initState();
+    this.init();
+  }
+  Future init() async{
+    final chats=await Chat_Services.GetAllMessage(widget.roomId);
+    List<Message> mess=[];
+    if(mounted) setState(() {
+      for(int i=0;i<chats.length;i++){
+        late Message tempt;
+        if(chats[i].userId==user.id){
+
+          tempt=new Message(receive: widget.usersend, send: user, time: chats[i].createDate.toString(), text: chats[i].content);
+        }
+        else tempt=new Message(receive: user, send: widget.usersend, time: chats[i].createDate.toString(), text: chats[i].content);
+        mess.add(tempt);
+      }
+      messages=mess;
+      print(messages.length);
+
+    });
+  }
   _chatBubble(Message message, bool isMe, bool isSameUser) {
     if (isMe) {
       return Column(
@@ -175,12 +207,17 @@ class _ChatScreenState extends State<ChatScreen> {
                 color: Theme.of(context).primaryColor,
                 onPressed: () {
                   print(values);
+                  // messages.add( Message(
+                  //     receive: user1, send: user, time: '', text: values));
                   messages.insert(
                       0,
                       Message(
                           receive: user1, send: user, time: '', text: values));
+                  print(messages[0]);
                   controller.clear();
                   FocusScope.of(context).requestFocus(FocusNode());
+                  ChatRequest chatRequest=new ChatRequest(roomId: widget.roomId, userId: user.id, content: values);
+                  Chat_Services.SendMessage(chatRequest);
                 },
               ),
             ))

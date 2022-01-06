@@ -1,22 +1,51 @@
 import 'dart:convert';
 
+import 'package:commerce/api/chat_Services.dart';
 import 'package:commerce/models/roomChat.dart';
+import 'package:commerce/models/roomChatResponse.dart';
 import 'package:commerce/screen/chat/component/messageScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:commerce/models/UserResponse.dart';
 
-class BodyChat extends StatelessWidget {
+class BodyChat extends StatefulWidget {
+  @override
+  State<BodyChat> createState() => _BodyChatState();
+}
+
+class _BodyChatState extends State<BodyChat> {
+  late List<Room> roomList = [];
+  void initState() {
+    super.initState();
+    this.init();
+  }
+
+  Future init() async {
+    final lastchat = await Chat_Services.GetAllRoomChat(user.id);
+    if (mounted)
+      setState(() {
+        roomList = convertToListRoom(lastchat);
+        this.roomList = roomList;
+        roomchat = roomList;
+        // print(roomchat[0].user1.id);
+        // print(roomchat[0].user2.id);
+        print(roomList[0].user1.id);
+        print(roomList[0].user2.id);
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: roomchat.length,
+      itemCount: roomList.length,
       itemBuilder: (BuildContext context, int index) {
-        final Room room = roomchat[index];
+        final Room room = roomList[index];
         return GestureDetector(
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
               builder: (_) => ChatScreen(
-                usersend: room.user,
+                usersend: room.user1,
+                roomId: room.roomid,
               ),
             ),
           ),
@@ -31,7 +60,7 @@ class BodyChat extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 20.0,
                     backgroundImage:
-                        MemoryImage(base64Decode(room.user.images)),
+                        MemoryImage(base64Decode(room.user1.images)),
                   ),
                   padding: EdgeInsets.all(2),
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
@@ -55,7 +84,7 @@ class BodyChat extends StatelessWidget {
                           Row(
                             children: <Widget>[
                               Text(
-                                room.user.username,
+                                room.user1.username,
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,

@@ -90,7 +90,7 @@ class _CartItemState extends State<CartItem> {
           press: () {
             setState(() {
               widget.Cart.numOfItems = widget.Cart.numOfItems+1;
-              print(widget.Cart.numOfItems);
+              // print(widget.Cart.numOfItems);
             });
           },
           showShadow: true,

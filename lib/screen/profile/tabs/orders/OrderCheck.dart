@@ -94,13 +94,15 @@ class _OrderCheckState extends State<OrderCheck> {
                   child: Button(
                     text: "Update",
                     press: () {
-                      // for(int i=0;i<demoCart.length;i++){
-                      //   OrderRequest orderRequest=new OrderRequest(userIdBuy: user.id, productId: demoCart[i].product.id, quantity: demoCart[i].numOfItems, isCompleted: false, userIdSell: demoCart[i].product.user_id);
-                      //   Order_Service orderService=new Order_Service();
-                      //   orderService.Order(orderRequest).then((value){
-                      //     print(value.status);
-                      //   });
-                      // }
+                      for(int i=0;i<demoCart.length;i++){
+
+                        OrderRequest orderRequest=new OrderRequest(userIdBuy: user.id, productId: demoCart[i].product.id, quantity: demoCart[i].numOfItems, isCompleted: false, userIdSell: demoCart[i].product.user_id);
+                        Order_Service orderService=new Order_Service();
+                         orderService.deleteOrder(demoCart[i].idOrder);
+                        orderService.Order(orderRequest).then((value){
+                          print(value.status);
+                        });
+                      }
 
                     },
                   ),

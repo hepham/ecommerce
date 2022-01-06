@@ -35,6 +35,7 @@ class _BodyState extends State<Body> {
     }
     if(mounted)setState(() {
       this.CartList=TemptList;
+      demoCart=TemptList;
     });
     print(CartList.length);
   }
@@ -55,7 +56,7 @@ class _BodyState extends State<Body> {
               setState(() {
                 Order_Service().deleteOrder(CartList[index].idOrder);
                 CartList.removeAt(index);
-
+                demoCart=CartList;
                 print(CartList.length);
 
                 ScaffoldMessenger.of(context)

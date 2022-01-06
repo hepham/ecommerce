@@ -6,7 +6,7 @@ class Room {
   final int roomid;
   final Data user1;
   final Data user2;
-  final String mess;
+  String mess;
 
   Room(
     this.roomid,
@@ -17,10 +17,9 @@ class Room {
 }
 
 // dung cai nay thi bi loi String a = messages[messages.length].text;
-String a= messages[4].text;
+String a ="";
 
 List<Room> roomchat = [
-  Room(1, user1, user, a ),
 
 
 ];

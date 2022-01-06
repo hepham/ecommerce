@@ -1,11 +1,14 @@
 import 'package:commerce/api/Login_Service.dart';
 import 'package:commerce/api/User_Service.dart';
 import 'package:commerce/api/apiResponse.dart';
+import 'package:commerce/api/chat_Services.dart';
 import 'package:commerce/component/custom_surfix_icon.dart';
 import 'package:commerce/component/form_error.dart';
 import 'package:commerce/helper/keyboard.dart';
 import 'package:commerce/models/Login.dart';
 import 'package:commerce/models/UserResponse.dart';
+import 'package:commerce/models/roomChat.dart';
+import 'package:commerce/models/roomChatResponse.dart';
 import 'package:commerce/screen/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -143,7 +146,8 @@ class _SignFormState extends State<SignForm> {
                         final tempt=await User_Service.GetUserbyId(
                             int.parse(value.dataLogin.accessToken));
                         user=tempt;
-
+                      final temp2=await Chat_Services.GetAllRoomChat( int.parse(value.dataLogin.accessToken));
+                      roomchat=convertToListRoom(temp2) ;
                         print(user.phone);
                         user.password=loginRequest.password!;
                         print(user.password);
