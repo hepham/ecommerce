@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:commerce/api/chat_Services.dart';
+import 'package:commerce/hub/AppHub.dart';
 import 'package:commerce/models/ChatRequest.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/messages.dart';
@@ -36,7 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
       for(int i=0;i<chats.length;i++){
         late Message tempt;
         if(chats[i].userId==user.id){
-
+          user1=widget.usersend;
           tempt=new Message(receive: widget.usersend, send: user, time: chats[i].createDate.toString(), text: chats[i].content);
         }
         else tempt=new Message(receive: user, send: widget.usersend, time: chats[i].createDate.toString(), text: chats[i].content);
@@ -218,7 +219,11 @@ class _ChatScreenState extends State<ChatScreen> {
                     controller.clear();
                     FocusScope.of(context).requestFocus(FocusNode());
                     ChatRequest chatRequest=new ChatRequest(roomId: widget.roomId, userId: user.id, content: values);
-                    Chat_Services.SendMessage(chatRequest);
+                    String tempt=chatRequest.roomId.toString() + "|" +chatRequest.userId.toString()+"|"+chatRequest.content;
+                    print(chatRequest.toJson().toString());
+                    // Chat_Services.SendMessage(chatRequest);
+                    AppHub.SendMessage(tempt.toString());
+
                   }
 
                 },

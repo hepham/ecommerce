@@ -16,12 +16,12 @@ class MessagesResponse {
 
   final String status;
   final String message;
-  final List<chat> data;
+  final List<Chat> data;
 
   factory MessagesResponse.fromJson(Map<String, dynamic> json) => MessagesResponse(
     status: json["status"],
     message: json["message"],
-    data: List<chat>.from(json["data"].map((x) => chat.fromJson(x))),
+    data: List<Chat>.from(json["data"].map((x) => Chat.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -31,8 +31,8 @@ class MessagesResponse {
   };
 }
 
-class chat {
-  chat({
+class Chat {
+  Chat({
     required this.id,
     required this.roomId,
     required this.userId,
@@ -46,7 +46,7 @@ class chat {
   final String content;
   final DateTime createDate;
 
-  factory chat.fromJson(Map<String, dynamic> json) => chat(
+  factory Chat.fromJson(Map<String, dynamic> json) => Chat(
     id: json["id"],
     roomId: json["room_id"],
     userId: json["user_id"],

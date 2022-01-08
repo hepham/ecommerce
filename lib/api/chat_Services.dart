@@ -22,7 +22,7 @@ class Chat_Services{
     }
 
   }
-  static Future<List<chat>> GetAllMessage(int id) async {
+  static Future<List<Chat>> GetAllMessage(int id) async {
     final url = Uri.parse(
         ApiUrl+'/chats/room/'+id.toString());
     final response = await http.get(url);
