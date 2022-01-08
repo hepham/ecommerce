@@ -209,15 +209,18 @@ class _ChatScreenState extends State<ChatScreen> {
                   print(values);
                   // messages.add( Message(
                   //     receive: user1, send: user, time: '', text: values));
-                  messages.insert(
-                      0,
-                      Message(
-                          receive: user1, send: user, time: '', text: values));
-                  print(messages[0]);
-                  controller.clear();
-                  FocusScope.of(context).requestFocus(FocusNode());
-                  ChatRequest chatRequest=new ChatRequest(roomId: widget.roomId, userId: user.id, content: values);
-                  Chat_Services.SendMessage(chatRequest);
+                  if(values!=null){
+                    messages.insert(
+                        0,
+                        Message(
+                            receive: user1, send: user, time: '', text: values));
+                    print(messages[0]);
+                    controller.clear();
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    ChatRequest chatRequest=new ChatRequest(roomId: widget.roomId, userId: user.id, content: values);
+                    Chat_Services.SendMessage(chatRequest);
+                  }
+
                 },
               ),
             ))

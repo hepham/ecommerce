@@ -1,3 +1,4 @@
+import 'package:commerce/hub/AppHub.dart';
 import 'package:commerce/routes.dart';
 import 'package:commerce/screen/Home/component/specialOffer.dart';
 import 'package:commerce/screen/profile/profile_screen.dart';
@@ -9,12 +10,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
+  await AppHub.OnCreate();
+ //AppHub.SendData();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

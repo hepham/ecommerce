@@ -39,7 +39,7 @@ class _MessageState extends State<MessageScreen> {
       ),
 
       body: BodyChat(),
-      bottomNavigationBar: NavigationBar(selectedMenu: MenuState.none),
+      bottomNavigationBar: NavigationBar(selectedMenu: MenuState.message),
     );
   }
 }
