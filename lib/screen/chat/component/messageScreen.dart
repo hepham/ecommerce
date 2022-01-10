@@ -202,7 +202,7 @@ class _ChatScreenState extends State<ChatScreen> {
             },
             decoration: InputDecoration(
               hintText: 'Send a message ...',
-              icon: IconButton(
+              suffixIcon: IconButton(
                 icon: Icon(Icons.send),
                 iconSize: 25,
                 color: Theme.of(context).primaryColor,

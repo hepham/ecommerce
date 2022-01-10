@@ -6,14 +6,24 @@ import 'package:flutter/material.dart';
 import 'package:commerce/models/product.dart';
 
 import '../../enums.dart';
-class DetailProduct extends StatelessWidget {
+class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key}) : super(key: key);
   static String routeName='/details';
 
   @override
+  State<DetailProduct> createState() => _DetailProductState();
+}
+
+class _DetailProductState extends State<DetailProduct> {
+  @override
   Widget build(BuildContext context) {
     final ProductDetailsArguments args=  ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.redAccent,
+
+      ),
       //xem kĩ ở body trong component
       body: Body(product: args.NewProduct ,),
       bottomNavigationBar: NavigationBar(selectedMenu: MenuState.none),

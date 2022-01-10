@@ -1,4 +1,6 @@
 import 'package:commerce/screen/Sell/tabs/settings/addProduct/new_product_images.dart';
+import 'package:commerce/screen/Sell/tabs/settings/changeProduct/changeProduct.dart';
+import 'package:commerce/screen/Sell/tabs/settings/deleteProduct/deleteProduct.dart';
 import 'package:commerce/screen/profile/component/profile_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -36,12 +38,30 @@ class _BodyState extends State<Body> {
               ProfileMenu(
                 icon: "assets/icons/Parcel.svg",
                 text: "Change a Product",
-                press: () {},
+                press: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => ChangeProduct(),
+                    ),
+                  );
+                  setState(() {
+
+                  });
+                },
               ),
               ProfileMenu(
                 icon: "assets/icons/Trash.svg",
                 text: "Delete A Product",
-                press: () {},
+                press: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => DeleteProduct(),
+                    ),
+                  );
+                  setState(() {
+
+                  });
+                },
               ),
               SizedBox(height: getProportionateScreenHeight(20),),
             ],
