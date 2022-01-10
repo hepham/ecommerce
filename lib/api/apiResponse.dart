@@ -24,7 +24,21 @@ class ProductApi {
       throw Exception();
     }
   }
+  static Future<List<Product>> GetProductBySeller(int id) async {
+    final url = Uri.parse(ApiUrl + '/products');
+    final response = await http.get(url);
 
+    if (response.statusCode == 200) {
+      // final ProductResponse Products = json.decode(response.body);
+      //   print(response.body.toString());
+      ProductResponse productresponse =
+      ProductResponse.fromJson(jsonDecode(response.body));
+      print(productresponse.data[0].images.length);
+      return productresponse.data;
+    } else {
+      throw Exception();
+    }
+  }
   static Future<newProduct> GetProductById(int id) async {
     final url = Uri.parse(ApiUrl + '/products/' + id.toString());
     final response = await http.get(url);

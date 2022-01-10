@@ -3,7 +3,7 @@ import 'package:commerce/api/apiResponse.dart';
 import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/screen/Sell/tabs/settings/deleteProduct/productCard.dart';
 import 'package:flutter/material.dart';
-
+import 'package:commerce/models/UserResponse.dart';
 import '../../../../../config.dart';
 
 class Body extends StatefulWidget {
@@ -24,7 +24,7 @@ class _BodyState extends State<Body> {
     this.init();
   }
   Future init() async{
-    final products=await ProductApi.GetProduct();
+    final products=await ProductApi.GetProductBySeller(user.id);
     if(mounted) setState(() {
       this.ListProducts=convertList(products);
       this.Products=products;
