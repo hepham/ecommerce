@@ -18,6 +18,8 @@ List<Color> listColor = [];
 List<String> listColorstring=[];
 
 class NewInfo extends StatefulWidget {
+  final newProduct product;
+  const NewInfo({Key? key, required this.product}) : super(key: key);
   @override
   State<NewInfo> createState() => _NewInfoState();
 }
@@ -129,13 +131,13 @@ class _NewInfoState extends State<NewInfo> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     onPressed: () {
-                      newProductInstance.user_id = user.id;
-                      newProductInstance.title_name = name;
-                      newProductInstance.description = description;
-                      newProductInstance.type = type;
+                      widget.product.user_id = user.id;
+                      widget.product.title_name = name;
+                      widget.product.description = description;
+                      widget.product.type = type;
                       var priceInt = int.parse(price);
                       assert(priceInt is int);
-                      newProductInstance.price = priceInt;
+                      widget.product.price = priceInt;
                       listColorstring=colors.split('|');;
                       listColor = [];
                       for (int i = 0; i < listColorstring.length; i++) {
@@ -144,8 +146,8 @@ class _NewInfoState extends State<NewInfo> {
                         listColor.add(newColor);
 
                       }
-                      newProductInstance.colors=listColor;
-                      ProductApi.createProduct(newProductInstance);
+                      widget.product.colors=listColor;
+                      ProductApi.UpdateProduct(widget.product);
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (ctx) => ChangeProduct(),

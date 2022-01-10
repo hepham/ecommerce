@@ -117,7 +117,7 @@ class _cardState extends State<card> {
                           onTap: () {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (ctx) => Confirm(),
+                                builder: (ctx) => Confirm( product: widget.product),
                               ),
                             );
                             setState(() {

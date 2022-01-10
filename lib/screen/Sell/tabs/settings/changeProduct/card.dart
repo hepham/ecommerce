@@ -68,7 +68,7 @@ class _cardState extends State<card> {
 
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (ctx) => NewInfo(),
+                      builder: (ctx) => NewInfo( product:widget.product),
                     ),
                   );
                   setState(() {

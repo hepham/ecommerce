@@ -1,3 +1,5 @@
+import 'package:commerce/api/apiResponse.dart';
+import 'package:commerce/models/ProductResponse.dart';
 import 'package:commerce/screen/Sell/tabs/settings/deleteProduct/deleteProduct.dart';
 import 'package:flutter/material.dart';
 
@@ -5,8 +7,9 @@ import '../../../../../config.dart';
 
 
 class Confirm extends StatefulWidget{
-
+  final newProduct product;
   @override
+  const Confirm({Key? key, required this.product}) : super(key: key);
   State<Confirm> createState() => _ConfirmState();
 }
 
@@ -32,6 +35,8 @@ class _ConfirmState extends State<Confirm> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   onPressed: () {
+                    print(widget.product.id);
+                    ProductApi.deleteProduct(widget.product.id);
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (ctx) => DeleteProduct(),
@@ -61,6 +66,7 @@ class _ConfirmState extends State<Confirm> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   onPressed: () {
+
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (ctx) => DeleteProduct(),
