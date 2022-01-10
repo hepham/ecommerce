@@ -33,7 +33,7 @@ class _BodyState extends State<Body> {
                 ),
               ),
               Text(
-                "Please enter your email and we will send \nyou a link to return to your account",
+                "Please enter your phone number and we will send \nyou a link to return to your account",
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
@@ -54,7 +54,7 @@ class ForgotPassForm extends StatefulWidget {
 class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   List<String> errors = [];
-  String? email;
+  String? phone;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -62,41 +62,31 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
       child: Column(
         children: [
           TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            onSaved: (newValue) => email = newValue,
+            keyboardType: TextInputType.phone,
+            onSaved: (newValue) => phone = newValue,
             onChanged: (value) {
-              if (value.isNotEmpty && errors.contains(kEmailNullError)) {
+              if (value.isNotEmpty && errors.contains(kPhoneNumberNullError)) {
                 setState(() {
-                  errors.remove(kEmailNullError);
-                });
-              } else if (emailValidatorRegExp.hasMatch(value) &&
-                  errors.contains(kInvalidEmailError)) {
-                setState(() {
-                  errors.remove(kInvalidEmailError);
+                  errors.remove(kPhoneNumberNullError);
                 });
               }
               return null;
             },
             validator: (value) {
-              if (value!.isEmpty && !errors.contains(kEmailNullError)) {
+              if (value!.isEmpty && !errors.contains(kPhoneNumberNullError )) {
                 setState(() {
-                  errors.add(kEmailNullError);
-                });
-              } else if (!emailValidatorRegExp.hasMatch(value) &&
-                  !errors.contains(kInvalidEmailError)) {
-                setState(() {
-                  errors.add(kInvalidEmailError);
+                  errors.add(kPhoneNumberNullError );
                 });
               }
               return null;
             },
             decoration: InputDecoration(
               labelText: "Email",
-              hintText: "Enter your email",
+              hintText: "Enter your number",
               // If  you are using latest version of flutter then lable text and hint text shown like this
               // if you r using flutter less then 1.20.* then maybe this is not working properly
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
+              suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Phone.svg"),
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(30)),
