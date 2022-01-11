@@ -54,7 +54,7 @@ class _productReviewState extends State<productReview> {
         },
         decoration: InputDecoration(
           hintText: 'Send a message ...',
-          icon: IconButton(
+          suffixIcon: IconButton(
             icon: Icon(Icons.send),
             iconSize: 25,
             color: Theme.of(context).primaryColor,

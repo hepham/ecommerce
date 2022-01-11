@@ -31,7 +31,7 @@ class Chat_Services{
       // final ProductResponse Products = json.decode(response.body);
       //   print(response.body.toString());
       MessagesResponse messagesResponse= MessagesResponse.fromJson(jsonDecode(response.body));
-      print(messagesResponse.data[0].content);
+      // print(messagesResponse.data[0].content);
 
       return messagesResponse.data.reversed.toList();
     } else {

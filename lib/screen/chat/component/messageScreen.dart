@@ -210,7 +210,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   print(values);
                   // messages.add( Message(
                   //     receive: user1, send: user, time: '', text: values));
-                  if(values!=null){
+                  if(values!=""){
                     messages.insert(
                         0,
                         Message(
