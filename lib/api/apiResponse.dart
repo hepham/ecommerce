@@ -39,6 +39,7 @@ class ProductApi {
       throw Exception();
     }
   }
+
   static Future<newProduct> GetProductById(int id) async {
     final url = Uri.parse(ApiUrl + '/products/' + id.toString());
     final response = await http.get(url);

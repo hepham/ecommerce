@@ -420,18 +420,31 @@ class SearchResultsListView extends StatelessWidget {
       return SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(top: fsb.height),
-          child: Column(
-            children: [
-
-              for(int i=0;i<searchQuery(searchTerm).length-1;i+=2)
-                Row(
-                  children: [
-                    card(product: searchQuery(searchTerm)[i]),
-                    card(product: searchQuery(searchTerm)[i+1]),
-                  ],
-                ),
-            ],
-          ),
+          // child: Column(
+          //   children: [
+          //
+          //     for(int i=0;i<searchQuery(searchTerm).length-1;i+=2)
+          //       Row(
+          //         children: [
+          //           card(product: searchQuery(searchTerm)[i]),
+          //           card(product: searchQuery(searchTerm)[i+1]),
+          //         ],
+          //       ),
+          //   ],
+          // ),
+          child: GridView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 350,
+                  childAspectRatio: 4/5,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20),
+              itemCount:searchQuery(searchTerm).length,
+              itemBuilder: (BuildContext ctx, index) {
+                return card(product: searchQuery(searchTerm)[index]);
+              }),
         ),
       );
     }

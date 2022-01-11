@@ -24,19 +24,21 @@ class Order_Service {
     }
   }
 
-  Future<bool> deleteOrder(int id) async {
+  static deleteOrder(int id) async {
     final url = Uri.parse(ApiUrl + '/orders/delete/' + id.toString());
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      return true;
-    } else
-      return false;
+      print(response.body);
+    } else {
+      throw Exception("failed to order");
+    }
   }
 
   Future<List<Infor>> getListOrderUser(int id) async {
     final url = Uri.parse(ApiUrl + '/orders/buy/' + id.toString());
     final response = await http.get(url);
     if (response.statusCode == 200) {
+      print(response.body);
       CartResponse orderResponse =
           CartResponse.fromJson(jsonDecode(response.body));
       return orderResponse.data;
@@ -48,6 +50,7 @@ class Order_Service {
     final url = Uri.parse(ApiUrl + '/orders/sell/' + id.toString());
     final response = await http.get(url);
     if (response.statusCode == 200) {
+      print(response.body);
       CartResponse orderResponse =
       CartResponse.fromJson(jsonDecode(response.body));
       return orderResponse.data;

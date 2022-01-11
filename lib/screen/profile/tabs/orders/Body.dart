@@ -54,7 +54,7 @@ class _BodyState extends State<Body> {
             direction: DismissDirection.endToStart,
             onDismissed: (direction) {
               setState(() {
-                Order_Service().deleteOrder(CartList[index].idOrder);
+                var deleteOrder = Order_Service.deleteOrder(CartList[index].idOrder);
                 CartList.removeAt(index);
                 demoCart=CartList;
                 print(CartList.length);

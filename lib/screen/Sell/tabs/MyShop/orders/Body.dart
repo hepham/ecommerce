@@ -32,7 +32,7 @@ class _BodyState extends State<Body> {
     for(int i=0;i<carts.length;i++){
       var product=await ProductApi.GetProductById(carts[i].productId);
       print(product.title_name);
-      cart tempt=new cart(product: product,numOfItems: carts[i].quantity,idOrder: carts[i].id, IdBuy: carts[i].userIdBuy);
+      cart tempt=new cart(product: product,numOfItems: carts[i].quantity,idOrder: carts[i].id, IdBuy: user.id,);
       TemptList.add(tempt);
 
     }
@@ -56,7 +56,7 @@ class _BodyState extends State<Body> {
             direction: DismissDirection.endToStart,
             onDismissed: (direction) {
               setState(() {
-                Order_Service().deleteOrder(CartList[index].idOrder);
+                Order_Service.deleteOrder(CartList[index].idOrder);
                 CartList.removeAt(index);
 
                 print(CartList.length);

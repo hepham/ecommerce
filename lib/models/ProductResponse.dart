@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:commerce/screen/Home/component/Body.dart';
 import 'package:flutter/material.dart';
+import 'package:fuzzy/fuzzy.dart';
 
 class ProductResponse {
   ProductResponse({
@@ -127,10 +128,38 @@ List<newProduct> demoProducts = [
   ),
 ];
 List<newProduct> searchQuery(String? searchText) {
-  return ListProducts
-      .where(
-          (element) => element.title_name.toLowerCase().contains(searchText!))
-      .toList();
+  final ProductListName = [];
+  for(int i=0;i<ListProducts.length;i++){
+    ProductListName.add(ListProducts[i].title_name.toLowerCase());
+  }
+  final fuse = Fuzzy(
+   ProductListName,
+    options: FuzzyOptions(
+      findAllMatches: true,
+      tokenize: true,
+      threshold: 0.5,
+    ),
+  );
+
+  final result = fuse.search(searchText);
+
+  print(
+      'A score of 0 indicates a perfect match, while a score of 1 indicates a complete mismatch.');
+
+  List<newProduct>searchResult=[];
+  result.forEach((r) {
+    print('\nScore: ${r.score}\n Ten san pham: ${r.item}');
+    for(int i=0;i<ListProducts.length;i++){
+      if(ListProducts[i].title_name.toLowerCase()==r.item){
+        searchResult.add(ListProducts[i]);
+      }
+    }
+  });
+  return searchResult;
+  // return ListProducts
+  //     .where(
+  //         (element) => element.title_name.toLowerCase().contains(searchText!))
+  //     .toList();
 }
 
 class newProduct {
