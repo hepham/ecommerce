@@ -25,7 +25,7 @@ class ProductApi {
     }
   }
   static Future<List<Product>> GetProductBySeller(int id) async {
-    final url = Uri.parse(ApiUrl + '/products');
+    final url = Uri.parse(ApiUrl + '/products/user/'+id.toString());
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
