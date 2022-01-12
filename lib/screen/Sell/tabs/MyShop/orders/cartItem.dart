@@ -34,12 +34,14 @@ class _OrderItemState extends State<OrderItem> {
 
   Future init() async {
     print(widget.Cart.IdBuy);
+    print(widget.Cart.idOrder);
     final tempt = await User_Service.GetUserbyId(widget.Cart.IdBuy);
+    print(tempt.username.toString());
     if (mounted)
       setState(() {
         this.customer = tempt;
-        print(customer.username);
-        print(customer.address);
+        // print(customer.username);
+        // print(customer.address);
       });
   }
 

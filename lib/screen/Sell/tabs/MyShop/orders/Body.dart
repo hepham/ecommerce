@@ -32,7 +32,7 @@ class _BodyState extends State<Body> {
     for(int i=0;i<carts.length;i++){
       var product=await ProductApi.GetProductById(carts[i].productId);
       print(product.title_name);
-      cart tempt=new cart(product: product,numOfItems: carts[i].quantity,idOrder: carts[i].id, IdBuy: user.id,);
+      cart tempt=new cart(product: product,numOfItems: carts[i].quantity,idOrder: carts[i].id, IdBuy: carts[i].userIdBuy,);
       TemptList.add(tempt);
 
     }

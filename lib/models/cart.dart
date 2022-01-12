@@ -11,9 +11,5 @@ class cart{
 
 }
 List<cart>demoCart=[
-  // cart(product: demoProducts[0], numOfItems: 10),
-  // cart(product: demoProducts[0], numOfItems: 10),
-  // cart(product: demoProducts[0], numOfItems: 10),
-  // cart(product: demoProducts[0], numOfItems: 10),
 
 ];
