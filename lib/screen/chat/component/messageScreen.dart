@@ -13,7 +13,7 @@ class ChatScreen extends StatefulWidget {
   final Data usersend;
   final int roomId;
 
-  ChatScreen({required this.usersend,required this.roomId});
+  ChatScreen({required this.usersend, required this.roomId});
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -21,48 +21,56 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   late Timer _timer;
-  int _start = 10;
 
   void startTimer() {
     const oneSec = const Duration(milliseconds: 1);
     _timer = new Timer.periodic(
       oneSec,
-          (Timer timer) {
+      (Timer timer) {
         if (AppHub.isUpdateUI) {
           AppHub.isUpdateUI = false;
-          setState(() {
-
-          });
-
+          setState(() {});
         }
       },
     );
   }
-  void initState(){
-
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+  void initState() {
     super.initState();
     this.init();
   }
-  Future init() async{
-    final chats=await Chat_Services.GetAllMessage(widget.roomId);
-    List<Message> mess=[];
 
-    if(mounted) setState(() {
-      for(int i=0;i<chats.length;i++){
-        late Message tempt;
-        if(chats[i].userId==user.id){
-          user1=widget.usersend;
-          tempt=new Message(receive: widget.usersend, send: user, time: chats[i].createDate.toString(), text: chats[i].content);
+  Future init() async {
+    final chats = await Chat_Services.GetAllMessage(widget.roomId);
+    List<Message> mess = [];
+
+    if (mounted)
+      setState(() {
+        for (int i = 0; i < chats.length; i++) {
+          late Message tempt;
+          if (chats[i].userId == user.id) {
+            user1 = widget.usersend;
+            tempt = new Message(
+                receive: widget.usersend,
+                send: user,
+                time: chats[i].createDate.toString(),
+                text: chats[i].content);
+          } else
+            tempt = new Message(
+                receive: user,
+                send: widget.usersend,
+                time: chats[i].createDate.toString(),
+                text: chats[i].content);
+          mess.add(tempt);
         }
-        else tempt=new Message(receive: user, send: widget.usersend, time: chats[i].createDate.toString(), text: chats[i].content);
-        mess.add(tempt);
-      }
-      messages=mess;
-      print(messages.length);
-
-    });
+        messages = mess;
+        print(messages.length);
+      });
   }
-
 
   _chatBubble(Message message, bool isMe, bool isSameUser) {
     if (isMe) {
@@ -226,29 +234,34 @@ class _ChatScreenState extends State<ChatScreen> {
                   print(values);
                   // messages.add( Message(
                   //     receive: user1, send: user, time: '', text: values));
-                  if(values!=""){
+                  if (values != "") {
                     messages.insert(
                         0,
                         Message(
-                            receive: user1, send: user, time: '', text: values));
+                            receive: user1,
+                            send: user,
+                            time: '',
+                            text: values));
                     print(messages[0]);
                     controller.clear();
                     FocusScope.of(context).requestFocus(FocusNode());
-                    ChatRequest chatRequest=new ChatRequest(roomId: widget.roomId, userId: user.id, content: values);
-                    String tempt=chatRequest.roomId.toString() + "|" +chatRequest.userId.toString()+"|"+chatRequest.content;
+                    ChatRequest chatRequest = new ChatRequest(
+                        roomId: widget.roomId,
+                        userId: user.id,
+                        content: values);
+                    String tempt = chatRequest.roomId.toString() +
+                        "|" +
+                        chatRequest.userId.toString() +
+                        "|" +
+                        chatRequest.content;
                     // print(chatRequest.toJson().toString());
                     // Chat_Services.SendMessage(chatRequest);
                     AppHub.SendMessage(tempt.toString());
-
                   }
-
                 },
               ),
-            ))
-
-        );
+            )));
   }
-
 
   @override
   Widget build(BuildContext context) {

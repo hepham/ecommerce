@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:commerce/api/Order_Service.dart';
 import 'package:commerce/component/Button.dart';
 import 'package:commerce/models/UserResponse.dart';
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/models/oderRequest.dart';
 import 'package:commerce/models/orderResponse.dart';
+import 'package:commerce/screen/Cart/component/Body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:commerce/config.dart';
@@ -18,6 +21,24 @@ class Checkout extends StatefulWidget {
 
 class _CheckoutState extends State<Checkout> {
 
+  late Timer _timer;
+  void startTimer() {
+    const oneSec = const Duration(milliseconds: 1);
+    _timer = new Timer.periodic(
+      oneSec,
+          (Timer timer) {
+        if (Body.isUpdate) {
+          Body.isUpdate=false;
+          setState(() {});
+        }
+      },
+    );
+  }
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
   int Sumcart(List<cart> CartList){
     int T=0;
     for(int i=0;i<CartList.length;i++){
@@ -27,6 +48,7 @@ class _CheckoutState extends State<Checkout> {
   }
   @override
   Widget build(BuildContext context) {
+    startTimer();
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: getProportionateScreenWidth(15),

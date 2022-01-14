@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:commerce/component/RoundBtn.dart';
+import 'package:commerce/screen/Cart/component/Body.dart';
 import 'package:flutter/material.dart';
 import 'package:commerce/config.dart';
 import 'package:commerce/models/cart.dart';
@@ -70,7 +71,7 @@ class _CartItemState extends State<CartItem> {
                 widget.Cart.numOfItems = widget.Cart.numOfItems;
               else
                 widget.Cart.numOfItems = widget.Cart.numOfItems-1;
-
+              Body.isUpdate=true;
               print(  widget.Cart.numOfItems);
             });
 
@@ -90,6 +91,7 @@ class _CartItemState extends State<CartItem> {
           press: () {
             setState(() {
               widget.Cart.numOfItems = widget.Cart.numOfItems+1;
+              Body.isUpdate=true;
               // print(widget.Cart.numOfItems);
             });
           },

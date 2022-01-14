@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:commerce/component/navigationBar.dart';
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/screen/Cart/component/Body.dart';
@@ -16,7 +18,25 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-
+  late Timer _timer;
+  void startTimer() {
+    Body.isUpdate= false;
+    const oneSec = const Duration(milliseconds: 1);
+    _timer = new Timer.periodic(
+      oneSec,
+          (Timer timer) {
+        if (Body.isUpdate&& this.mounted) {
+          Body.isUpdate=false;
+          setState(() {});
+        }
+      },
+    );
+  }
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

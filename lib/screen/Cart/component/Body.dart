@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:commerce/hub/AppHub.dart';
 import 'package:commerce/models/cart.dart';
 import 'package:commerce/screen/Cart/CartScreen.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +12,12 @@ import 'cartItem.dart';
 import 'checkoutCard.dart';
 
 class Body extends StatefulWidget {
-  // VoidCallback callback;
-  // Body(this.callback);
+  static bool isUpdate=false;
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,6 +34,7 @@ class _BodyState extends State<Body> {
             onDismissed: (direction) {
               setState(() {
                 demoCart.removeAt(index);
+                Body.isUpdate=true;
                 print(demoCart.length);
 
                 ScaffoldMessenger.of(context)
