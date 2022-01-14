@@ -11,6 +11,7 @@ import 'package:signalr_netcore/signalr_client.dart';
 import 'package:commerce/screen/chat/component/messageScreen.dart';
 
 class AppHub{
+  static bool isUpdateUI=false;
   static HubConnection hubConnection = HubConnectionBuilder().withUrl(ApiUrlChatRealTime).build();
   static BodyChat bodyChat = new BodyChat();
   static OnCreate() async {
@@ -33,12 +34,10 @@ class AppHub{
       NewMessageResponse newmessage=NewMessageResponse.fromJson(jsonDecode(res));
       Message mess;
       if(newmessage.userId!=user.id){
-
          mess=new Message(receive:user, send: user1, time: newmessage.chat.createDate.toString(), text: newmessage.chat.content);
-         messages.insert(
-             0,mess);
+         messages.insert(0, mess);
       }
-
+      isUpdateUI =true;
 
 
     });

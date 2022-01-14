@@ -28,8 +28,6 @@ class Chat_Services{
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      // final ProductResponse Products = json.decode(response.body);
-      //   print(response.body.toString());
       MessagesResponse messagesResponse= MessagesResponse.fromJson(jsonDecode(response.body));
       // print(messagesResponse.data[0].content);
 

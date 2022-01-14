@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:quiver/async.dart';
 import 'package:commerce/api/chat_Services.dart';
@@ -19,24 +20,23 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  late Timer _timer;
   int _start = 10;
-  int _current = 10;
 
   void startTimer() {
-    CountdownTimer countDownTimer = new CountdownTimer(
-      new Duration(seconds: _start),
-      new Duration(seconds: 1),
+    const oneSec = const Duration(milliseconds: 1);
+    _timer = new Timer.periodic(
+      oneSec,
+          (Timer timer) {
+        if (AppHub.isUpdateUI) {
+          AppHub.isUpdateUI = false;
+          setState(() {
+
+          });
+
+        }
+      },
     );
-
-    var sub = countDownTimer.listen(null);
-    sub.onData((duration) {
-      setState(() { _current = _start - duration.elapsed.inSeconds; });
-    });
-
-    sub.onDone(() {
-      print("Done");
-      sub.cancel();
-    });
   }
   void initState(){
 
@@ -245,45 +245,15 @@ class _ChatScreenState extends State<ChatScreen> {
                 },
               ),
             ))
-        /**Row(
-        children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.photo),
-            iconSize: 25,
-            color: Theme.of(context).primaryColor,
-            onPressed: () {},
-          ),
-          Expanded(
-            child: TextField(
-              controller: controller,
-              decoration: InputDecoration.collapsed(
-                hintText: 'Send a message..',
-              ),
-              textCapitalization: TextCapitalization.sentences,
-              onChanged: (text) {
-                values = text;
 
-              },
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.send),
-            iconSize: 25,
-            color: Theme.of(context).primaryColor,
-            onPressed: () {
-              print(values);
-              messages.insert(0, Message(receive: user1, send: user, time: '', text: values));
-            },
-          ),
-        ],
-      ),*/
         );
   }
 
 
   @override
   Widget build(BuildContext context) {
-    int prevUserId = 0;startTimer();
+    int prevUserId = 0;
+    startTimer();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
