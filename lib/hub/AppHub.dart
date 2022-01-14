@@ -42,8 +42,6 @@ class AppHub{
 
 
     });
-    //
-    // await hubConnection.invoke("SendMessage", args: <Object>["0", "kerhoangde|dungdeptrai"]);
 
 
   }

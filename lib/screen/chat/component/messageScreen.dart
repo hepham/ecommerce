@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:quiver/async.dart';
 import 'package:commerce/api/chat_Services.dart';
 import 'package:commerce/hub/AppHub.dart';
 import 'package:commerce/models/ChatRequest.dart';
@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 class ChatScreen extends StatefulWidget {
   final Data usersend;
   final int roomId;
+
   ChatScreen({required this.usersend,required this.roomId});
 
   @override
@@ -18,13 +19,25 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  // List<Message> messages = [
-  //   // Message(send: user, receive: user1, time: '', text: 'text',),
-  //   // Message(send: user1, receive : user, time: '', text: 'a',),
-  //   // Message(receive: user, send: user1, time: '', text: 'ngu'),
-  //   // Message(receive: user, send: user1, time: '', text: 'vl')
-  //
-  // ];
+  int _start = 10;
+  int _current = 10;
+
+  void startTimer() {
+    CountdownTimer countDownTimer = new CountdownTimer(
+      new Duration(seconds: _start),
+      new Duration(seconds: 1),
+    );
+
+    var sub = countDownTimer.listen(null);
+    sub.onData((duration) {
+      setState(() { _current = _start - duration.elapsed.inSeconds; });
+    });
+
+    sub.onDone(() {
+      print("Done");
+      sub.cancel();
+    });
+  }
   void initState(){
 
     super.initState();
@@ -33,6 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Future init() async{
     final chats=await Chat_Services.GetAllMessage(widget.roomId);
     List<Message> mess=[];
+
     if(mounted) setState(() {
       for(int i=0;i<chats.length;i++){
         late Message tempt;
@@ -48,6 +62,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
     });
   }
+
+
   _chatBubble(Message message, bool isMe, bool isSameUser) {
     if (isMe) {
       return Column(
@@ -220,7 +236,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     FocusScope.of(context).requestFocus(FocusNode());
                     ChatRequest chatRequest=new ChatRequest(roomId: widget.roomId, userId: user.id, content: values);
                     String tempt=chatRequest.roomId.toString() + "|" +chatRequest.userId.toString()+"|"+chatRequest.content;
-                    print(chatRequest.toJson().toString());
+                    // print(chatRequest.toJson().toString());
                     // Chat_Services.SendMessage(chatRequest);
                     AppHub.SendMessage(tempt.toString());
 
@@ -264,9 +280,10 @@ class _ChatScreenState extends State<ChatScreen> {
         );
   }
 
+
   @override
   Widget build(BuildContext context) {
-    int prevUserId = 0;
+    int prevUserId = 0;startTimer();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
